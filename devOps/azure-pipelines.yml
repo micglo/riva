@@ -1,0 +1,28 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'devOps/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Publish_Artifact_With_Script_Files
+    displayName: 'Publish artifact with script files'
+    jobs:
+    - job: Publish_Artifact_With_Script_Files
+      displayName: 'Publish artifact with script files'
+      steps:
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(System.DefaultWorkingDirectory)/devOps/scripts'
+            ArtifactName: 'Scripts'
+            publishLocation: 'Container'
+
