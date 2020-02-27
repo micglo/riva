@@ -1,0 +1,39 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Build_Riva_BuildingBlocks_Application
+    displayName: 'Build Riva.BuildingBlocks application'
+    jobs:
+    - job: Build_Riva_BuildingBlocks_Application
+      displayName: 'Build Riva.BuildingBlocks application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet restore for Riva.BuildingBlocks.WebApiTest'
+          inputs:
+            command: 'restore'
+            projects: 'src/buildingBlocks/src/Riva.BuildingBlocks.WebApiTest/Riva.BuildingBlocks.WebApiTest.csproj'
+            verbosityRestore: 'Normal'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet publish for Riva.BuildingBlocks.WebApiTest'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'src/buildingBlocks/src/Riva.BuildingBlocks.WebApiTest/Riva.BuildingBlocks.WebApiTest.csproj'
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
