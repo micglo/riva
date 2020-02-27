@@ -1,0 +1,409 @@
+{
+  "source": 2,
+  "revision": 16,
+  "description": null,
+  "createdBy": {
+    "displayName": "Michał Głowaczewski",
+    "url": "https://spsprodeus22.vssps.visualstudio.com/Aa3d04ae2-13e3-443e-8631-e6e1f0281325/_apis/Identities/2091925e-cf59-4280-ab05-8beb78f42c49",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/michalglowaczewski/_apis/GraphProfile/MemberAvatars/msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw"
+      }
+    },
+    "id": "2091925e-cf59-4280-ab05-8beb78f42c49",
+    "uniqueName": "michalglowaczewski@hotmail.com",
+    "imageUrl": "https://dev.azure.com/michalglowaczewski/_apis/GraphProfile/MemberAvatars/msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw",
+    "descriptor": "msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw"
+  },
+  "createdOn": "2020-02-27T18:44:03.137Z",
+  "modifiedBy": {
+  },
+  "modifiedOn": "",
+  "isDeleted": false,
+  "lastRelease": {
+  },
+  "variables": {
+  },
+  "variableGroups": [
+    6,
+    7
+  ],
+  "environments": [
+    {
+      "id": 44,
+      "name": "Dev",
+      "rank": 1,
+      "owner": {
+        "displayName": "Michał Głowaczewski",
+        "url": "https://spsprodeus22.vssps.visualstudio.com/Aa3d04ae2-13e3-443e-8631-e6e1f0281325/_apis/Identities/2091925e-cf59-4280-ab05-8beb78f42c49",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/michalglowaczewski/_apis/GraphProfile/MemberAvatars/msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw"
+          }
+        },
+        "id": "2091925e-cf59-4280-ab05-8beb78f42c49",
+        "uniqueName": "michalglowaczewski@hotmail.com",
+        "imageUrl": "https://dev.azure.com/michalglowaczewski/_apis/GraphProfile/MemberAvatars/msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw",
+        "descriptor": "msa.N2U1ZTY5YzAtN2EyOC03ODgxLWI1MmUtN2JlMjk5OTQxYzEw"
+      },
+      "variables": {
+      },
+      "variableGroups": [
+      ],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 132
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": {
+        "id": 133
+      },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 134
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": {
+              "parallelExecutionType": 0
+            },
+            "agentSpecification": {
+              "identifier": "ubuntu-18.04"
+            },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_RivaMessages-CI",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "All",
+                  "artifactItems": [
+                  ]
+                },
+                {
+                  "alias": "_RivaTools-CI",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "All",
+                  "artifactItems": [
+                  ]
+                }
+              ]
+            },
+            "queueId": 18,
+            "demands": [
+            ],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {
+            }
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Deploy RivaMessages application",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {
+              },
+              "taskId": "ef9c6e68-b2d1-4123-9624-f34de3dcfdcd",
+              "version": "1.*",
+              "name": "Compose Resource Group name",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": true,
+              "continueOnError": true,
+              "timeoutInMinutes": 0,
+              "definitionType": "metaTask",
+              "overrideInputs": {
+              },
+              "condition": "succeededOrFailed()",
+              "inputs": {
+                "locationShort": "$(Location.WestEurope.ShortName)",
+                "projectName": "$(Project.Name)",
+                "stage": "$(Stage)",
+                "vsoResourceGroupVariableName": "ResourceGroup.Name"
+              }
+            },
+            {
+              "environment": {
+              },
+              "taskId": "584bcff2-3353-4f11-872b-6ba01267a972",
+              "version": "5.*",
+              "name": "ARM Outputs - Functions",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {
+              },
+              "condition": "succeeded()",
+              "inputs": {
+                "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+                "ConnectedServiceNameARM": "$(ServiceConnection.Azure.Portal)",
+                "resourceGroupName": "$(ResourceGroup.Name)",
+                "prefix": "",
+                "outputNames": "",
+                "whenLastDeploymentIsFailed": "fail",
+                "deploymentNameFilter": "$(ResourceGroup.Deployment.FunctionApps)"
+              }
+            },
+            {
+              "environment": {
+              },
+              "taskId": "501dd25d-1785-43e4-b4e5-a5c78ccc0573",
+              "version": "1.*",
+              "name": "Deploy RivaMessages application",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {
+              },
+              "condition": "succeeded()",
+              "inputs": {
+                "azureSubscription": "$(ServiceConnection.Azure.Portal)",
+                "appType": "functionAppLinux",
+                "appName": "$(rivaMessagesFunctionsName)",
+                "deployToSlotOrASE": "false",
+                "resourceGroupName": "",
+                "slotName": "production",
+                "package": "$(System.DefaultWorkingDirectory)/_RivaMessages-CI/RivaMessagesApp/Riva.Messages.zip",
+                "runtimeStack": "DOCKER|microsoft/azure-functions-dotnet-core2.0:2.0",
+                "startUpCommand": "",
+                "customWebConfig": "",
+                "appSettings": "",
+                "configurationStrings": "",
+                "deploymentMethod": "auto"
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [
+      ],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": 1,
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [
+      ],
+      "currentRelease": {
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {
+      },
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": [
+        ]
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": [
+        ]
+      },
+      "environmentTriggers": [
+      ],
+      "badgeUrl": "https://vsrm.dev.azure.com/michalglowaczewski/_apis/public/Release/badge/e3ccb07b-c829-45b6-9ecc-a2c8962d7f21/36/44"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "e3ccb07b-c829-45b6-9ecc-a2c8962d7f21:69",
+      "type": "Build",
+      "alias": "_RivaMessages-CI",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/michalglowaczewski/_permalink/_build/index?collectionId=459c1c31-dc35-4eea-9eaa-d677103c7c40&projectId=e3ccb07b-c829-45b6-9ecc-a2c8962d7f21&definitionId=69",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "69",
+          "name": "RivaFunctions-CI"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "e3ccb07b-c829-45b6-9ecc-a2c8962d7f21",
+          "name": "Riva"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isRetained": false
+    },
+    {
+      "sourceId": "e3ccb07b-c829-45b6-9ecc-a2c8962d7f21:56",
+      "type": "Build",
+      "alias": "_RivaTools-CI",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/michalglowaczewski/_permalink/_build/index?collectionId=459c1c31-dc35-4eea-9eaa-d677103c7c40&projectId=e3ccb07b-c829-45b6-9ecc-a2c8962d7f21&definitionId=56",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "56",
+          "name": "RivaTools-CI"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "e3ccb07b-c829-45b6-9ecc-a2c8962d7f21",
+          "name": "Riva"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [
+  ],
+  "releaseNameFormat": "Release-$(rev:r)",
+  "tags": [
+  ],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseClone"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    }
+  },
+  "id": 36,
+  "name": "RivaMessages-CD",
+  "path": "\\",
+  "projectReference": null,
+  "url": "https://vsrm.dev.azure.com/michalglowaczewski/e3ccb07b-c829-45b6-9ecc-a2c8962d7f21/_apis/Release/definitions/36",
+  "_links": {
+    "self": {
+      "href": "https://vsrm.dev.azure.com/michalglowaczewski/e3ccb07b-c829-45b6-9ecc-a2c8962d7f21/_apis/Release/definitions/36"
+    },
+    "web": {
+      "href": "https://dev.azure.com/michalglowaczewski/e3ccb07b-c829-45b6-9ecc-a2c8962d7f21/_release?definitionId=36"
+    }
+  }
+}

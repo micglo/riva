@@ -1,0 +1,55 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/azureFunctions/messages/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Infrastructure/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Core/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Domain/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Build_Riva_Messages_Application
+    displayName: 'Build Riva Messages application'
+    jobs:
+    - job: Build_Riva_Messages_Application
+      displayName: 'Build Riva Messages application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet restore'
+          inputs:
+            command: 'restore'
+            projects: 'src/azureFunctions/messages/tests/Riva.Messages.Test/Riva.Messages.Test.csproj'
+            verbosityRestore: 'Normal'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet publish'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'src/azureFunctions/messages/src/Riva.Messages/Riva.Messages.csproj'
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish build artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'RivaMessagesApp'
+            publishLocation: 'Container'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Messages test'
+          inputs:
+            command: 'test'
+            projects: 'src/azureFunctions/messages/tests/Riva.Messages.Test/Riva.Messages.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Messages tests'
