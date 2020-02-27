@@ -1,0 +1,11 @@
+﻿@model Riva.Identity.Web.Models.ViewModels.ErrorViewModel
+@{
+    Layout = "_ErrorLayout";
+}
+
+<h1 class="heading">@Model.StatusCode</h1>
+<p class="subheading">@Model.Message</p>
+
+<div class="text-center mt-4">
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-info">Go home</a>
+</div>

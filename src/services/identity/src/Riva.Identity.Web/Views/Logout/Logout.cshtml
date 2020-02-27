@@ -1,0 +1,33 @@
+﻿@model Riva.Identity.Web.Models.ViewModels.LogoutViewModel
+@{
+    ViewData["Title"] = "Logout";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1>Logout</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <p>Would you like to log out?</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form asp-controller="Logout" asp-action="Logout" method="post" novalidate>
+            <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <button class="btn btn-danger" name="processLogout" value="false">Cancel</button>
+                        <button class="btn btn-primary" name="processLogout" value="true">Log out</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

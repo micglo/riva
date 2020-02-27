@@ -1,0 +1,31 @@
+﻿@model Riva.Identity.Web.Models.ViewModels.LoggedOutViewModel
+
+
+
+<div class="row">
+    <div class="col-12">
+        <h1>
+            Logout
+            <small>You are now logged out</small>
+        </h1>
+    </div>
+</div>
+
+@if (Model.SignOutIframeUrl != null)
+{
+    <iframe width="0" height="0" src="@Model.SignOutIframeUrl"></iframe>
+}
+
+@if (Model.PostLogoutRedirectUri != null)
+{
+    <div class="row">
+        <div class="col-12">
+            Click <a id="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the application.
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script src="~/js/signout-redirect.js"></script>
+    }
+}

@@ -1,0 +1,140 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/src/*'
+      - 'src/services/identity/*'
+      - 'infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/identityWeb/*'
+    exclude:
+      - 'src/services/identity/devOps/api-azure-pipelines.yml'
+      - 'src/services/identity/src/Riva.Identity.Web.Api/*'
+      - 'src/services/identity/tests/Riva.Identity.Web.Api.Test/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'Global variables'
+  - group: 'Dev stage variables'
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Test_Application
+    displayName: 'Test application'
+    jobs:
+    - job: Test_Application
+      displayName: 'Test application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Identity.Domain.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/identity/tests/Riva.Identity.Domain.Test/Riva.Identity.Domain.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Identity.Domain.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Identity.Core.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/identity/tests/Riva.Identity.Core.Test/Riva.Identity.Core.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Identity.Core.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Identity.Infrastructure.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/identity/tests/Riva.Identity.Infrastructure.Test/Riva.Identity.Infrastructure.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Identity.Infrastructure.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Identity.Web.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/identity/tests/Riva.Identity.Web.Test/Riva.Identity.Web.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Identity.Web.Test tests'
+
+  - stage: Build_And_Push_Docker_Image_For_Develop
+    displayName: 'Build and push docker image for develop'
+    dependsOn: Test_Application
+    condition: and(succeeded('Test_Application'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: 'Dev stage variables'
+    jobs:
+    - job: Build_And_Push_Docker_Image
+      displayName: 'Build and push docker image'
+      steps:
+      - task: Docker@2
+        displayName: 'Run docker build and push'
+        inputs:
+          containerRegistry: '$(ServiceConnection.Azure.ContainerRegistry)'
+          repository: '$(Image.RivaIdentityWeb)'
+          command: 'buildAndPush'
+          Dockerfile: 'src/services/identity/src/Riva.Identity.Web/Dockerfile.Develop'
+          buildContext: '$(System.DefaultWorkingDirectory)'
+          tags: '$(Image.Tag)'
+
+  - stage: Push_Infrastructure_Scripts
+    displayName: 'Push infrastructure scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+    - job: Push_Infrastructure_Scripts
+      displayName: 'Push infrastructure scripts'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/identityWeb'
+          ArtifactName: 'Infrastructure'
+          publishLocation: 'Container'
+
+  - stage: Push_Database_Migration_Scripts
+    displayName: 'Push database migration scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+    - job: Push_Database_Migration_Scripts
+      displayName: 'Push database migration scripts'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: "Install dotnet ef"
+          inputs:
+            command: custom
+            custom: tool
+            arguments: install --global dotnet-ef --version 3.1.1
+        - task: CmdLine@2
+          displayName: "Create migratio script for RivaIdentityDbContext"
+          inputs:
+            script: |
+              set ASPNETCORE_ENVIRONMENT=Local
+              dotnet ef migrations script --project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Infrastructure/Riva.Identity.Infrastructure.csproj --startup-project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Web/Riva.Identity.Web.csproj --context RivaIdentityDbContext --configuration Release --output $(build.artifactstagingdirectory)/migrations/rivaIdentityDbMigration.sql --idempotent
+        - task: CmdLine@2
+          displayName: "Create migratio script for ConfigurationDbContext"
+          inputs:
+            script: |
+              set ASPNETCORE_ENVIRONMENT=Local
+              dotnet ef migrations script --project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Infrastructure/Riva.Identity.Infrastructure.csproj --startup-project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Web/Riva.Identity.Web.csproj --context ConfigurationDbContext --configuration Release --output $(build.artifactstagingdirectory)/migrations/configurationDbMigration.sql --idempotent
+        - task: CmdLine@2
+          displayName: "Create migratio script for PersistedGrantDbContext"
+          inputs:
+            script: |
+              set ASPNETCORE_ENVIRONMENT=Local
+              dotnet ef migrations script --project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Infrastructure/Riva.Identity.Infrastructure.csproj --startup-project $(system.defaultWorkingDirectory)/src/services/identity/src/Riva.Identity.Web/Riva.Identity.Web.csproj --context PersistedGrantDbContext --configuration Release --output $(build.artifactstagingdirectory)/migrations/persistedGrantDbMigration.sql --idempotent
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish build artifact'
+          inputs:
+            PathtoPublish: '$(build.artifactstagingdirectory)/migrations'
+            ArtifactName: 'RivaIdentityDatabaseMigrations'
+            publishLocation: 'Container'

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Riva.Identity.Web.Api.Test": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Local"
+      }
+    }
+  }
+}

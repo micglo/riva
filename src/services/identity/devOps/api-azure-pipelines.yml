@@ -1,0 +1,78 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/src/*'
+      - 'src/services/identity/*'
+      - 'infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/identityWebApi/*'
+    exclude:
+      - 'src/services/identity/devOps/web-azure-pipelines.yml'
+      - 'src/services/identity/src/Riva.Identity.Web/*'
+      - 'src/services/identity/tests/Riva.Identity.Web.Test/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'Global variables'
+  - group: 'Dev stage variables'
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Test_Application
+    displayName: 'Test application'
+    jobs:
+    - job: Test_Application
+      displayName: 'Test application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Identity.Web.Api.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/identity/tests/Riva.Identity.Web.Api.Test/Riva.Identity.Web.Api.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Identity.Web.Api.Test tests'
+
+  - stage: Build_And_Push_Docker_Image_For_Develop
+    displayName: 'Build and push docker image for develop'
+    dependsOn: Test_Application
+    condition: and(succeeded('Test_Application'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: 'Dev stage variables'
+    jobs:
+    - job: Build_And_Push_Docker_Image
+      displayName: 'Build and push docker image'
+      steps:
+      - task: Docker@2
+        displayName: 'Run docker build and push'
+        inputs:
+          containerRegistry: '$(ServiceConnection.Azure.ContainerRegistry)'
+          repository: '$(Image.RivaIdentityWebApi)'
+          command: 'buildAndPush'
+          Dockerfile: 'src/services/identity/src/Riva.Identity.Web.Api/Dockerfile.Develop'
+          buildContext: '$(System.DefaultWorkingDirectory)'
+          tags: '$(Image.Tag)'
+
+  - stage: Push_Infrastructure_Scripts
+    displayName: 'Push infrastructure scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+    - job: Push_Infrastructure_Scripts
+      displayName: 'Push infrastructure scripts'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/identityWebApi'
+          ArtifactName: 'Infrastructure'
+          publishLocation: 'Container'

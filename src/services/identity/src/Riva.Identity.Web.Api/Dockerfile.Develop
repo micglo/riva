@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Core/Riva.BuildingBlocks.Core.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Core/Riva.BuildingBlocks.Core.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Domain/Riva.BuildingBlocks.Domain.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Domain/Riva.BuildingBlocks.Domain.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Infrastructure/Riva.BuildingBlocks.Infrastructure.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Infrastructure/Riva.BuildingBlocks.Infrastructure.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.WebApi/Riva.BuildingBlocks.WebApi.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.WebApi/Riva.BuildingBlocks.WebApi.csproj"]
+COPY ["src/services/identity/src/Riva.Identity.Core/Riva.Identity.Core.csproj", "src/services/identity/src/Riva.Identity.Core/Riva.Identity.Core.csproj"]
+COPY ["src/services/identity/src/Riva.Identity.Domain/Riva.Identity.Domain.csproj", "src/services/identity/src/Riva.Identity.Domain/Riva.Identity.Domain.csproj"]
+COPY ["src/services/identity/src/Riva.Identity.Infrastructure/Riva.Identity.Infrastructure.csproj", "src/services/identity/src/Riva.Identity.Infrastructure/Riva.Identity.Infrastructure.csproj"]
+COPY ["src/services/identity/src/Riva.Identity.Web.Api/Riva.Identity.Web.Api.csproj", "src/services/identity/src/Riva.Identity.Web.Api/Riva.Identity.Web.Api.csproj"]
+
+RUN dotnet restore src/services/identity/src/Riva.Identity.Web.Api/Riva.Identity.Web.Api.csproj
+
+COPY . .
+
+WORKDIR "/src/services/identity/src/Riva.Identity.Web.Api"
+RUN dotnet build --no-restore -c Release
+
+FROM build AS publish
+RUN dotnet publish "Riva.Identity.Web.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Riva.Identity.Web.Api.dll"]

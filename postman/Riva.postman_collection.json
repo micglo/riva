@@ -1,0 +1,1314 @@
+{
+	"info": {
+		"_postman_id": "801fae88-8d1a-44d1-9fb3-e6f56783346e",
+		"name": "Riva",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "identity",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "Create account",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "8150d668-703f-463f-a8f2-fa67a6eb4bc6",
+										"exec": [
+											"pm.environment.set(\"account.email\", \"michalglowaczewski@gmail.com\");",
+											"pm.environment.set(\"account.password\", \"Password1234\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "3a2b1de7-0d5a-4437-be86-d158e27e760a",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"    ",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    var baseAddress = pm.variables.get(\"identityBaseInsecureUrl\");",
+											"    var lastIndexOfResourceAddress = baseAddress.length + 14;",
+											"    var accountId = locationHeader.substring(lastIndexOfResourceAddress);",
+											"    pm.environment.set(\"account.id\", accountId);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get account",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d55fbc0a-781f-4aab-89a1-7ac87da3d5f2",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"{{account.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete account",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3d42b1ee-2212-4569-b17a-5a6032a2fc56",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"{{account.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update account",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "33de1598-b3f3-4dd1-93f2-942a3a83c68e",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "571dcd91-aad5-46b6-8956-578216c04486",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{account.id}}\",\n\t\"roles\": [\"766FFB44-2A23-4C3E-B526-CCDA53F138F5\", \"C5CFC569-CA50-4F7A-8A94-B9B2908A15FA\"]\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"{{account.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get accounts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d4c04817-9593-462d-8a86-49ddfa3c20b7",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "email:asc",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "100",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "emailConfirmed",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request account confirmation token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "43882fe3-7825-417a-ba21-9fbf8b11486e",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "fb7bf6b4-bfb1-4ece-971b-97d325413e65",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"{{account.email}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/confirmations/tokens",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"confirmations",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Confirm account",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e7969d4f-1c71-40ad-8385-5c8628cd7a2f",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "60f63b8b-1e6f-4b29-afb3-35dcc2f0b3cd",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"code\": \"\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/confirmations",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"confirmations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request password reset token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a151219f-44e6-41ff-8fbe-8741aef1f021",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3fcd3cc2-2eac-49a2-ae29-970505baea42",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"{{account.email}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/passwords/tokens",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"passwords",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cb0cede2-222b-46c9-a19c-872bbea1c807",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "49fff6c5-e9f8-4b36-a4e2-04b311e6b1c0",
+										"exec": [
+											"pm.environment.set(\"account.password\", \"Password12345\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\",\n\t\"code\": \"\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/passwords/resets",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"passwords",
+										"resets"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e1991072-356f-4537-92d5-f1074b048ad1",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "38c57ed8-5e02-488b-8828-008e5595c42e",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"oldPassword\": \"{{account.password}}\",\n\t\"newPassword\": \"{{account.password}}\",\n\t\"confirmNewPassword\": \"{{account.password}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}//passwords/changes",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"{{account.id}}",
+										"",
+										"passwords",
+										"changes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ef8d5939-787c-4474-8c65-4b960808afc3",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "29596b66-bd1d-4737-a40f-bf713aa75c3e",
+										"exec": [
+											"pm.environment.set(\"account.password\", \"Password1234\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}/passwords/assignments",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"accounts",
+										"{{account.id}}",
+										"passwords",
+										"assignments"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "roles",
+					"item": [
+						{
+							"name": "Create role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8e858a00-197d-4d09-9ced-d901a4ff7757",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var roleName = pm.environment.get(\"role.name\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(roleName);",
+											"    ",
+											"    pm.environment.set(\"role.id\", responseData.id);",
+											"    pm.environment.set(\"role.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "85098756-56fb-4e27-8fa4-5030151af685",
+										"exec": [
+											"pm.environment.set(\"role.name\", \"testRole\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{role.name}}\"\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/roles",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "18604f05-19ab-4012-afec-e4fa7689b574",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.environment.set(\"role.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roles",
+										"{{role.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update role",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "900736f7-fdb7-4e2f-a3df-0aad16cff0b3",
+										"exec": [
+											"pm.environment.set(\"role.name\", \"testRoleNewName\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "438d9be2-2f1b-4662-82ad-310e89dbbd76",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.environment.set(\"role.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "If-Match",
+										"value": "\"{{role.rowVersion}}\"",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\": \"{{role.id}}\",\r\n\t\"name\": \"{{role.name}}\"\r\n}"
+								},
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roles",
+										"{{role.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get roles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "56777857-385b-4902-aa96-a0c60dbb9ae1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/roles",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete role",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "46fd429f-25f1-4efb-987d-2648e120fba0",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "If-Match",
+										"value": "\"{{role.rowVersion}}\"",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"host": [
+										"{{identityApiBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roles",
+										"{{role.id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Get token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "{{account.email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{account.password}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{ropcClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{ropcClientSecret}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "openid profile offline_access RivaIdentity",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{identityBaseInsecureUrl}}/connect/token",
+									"host": [
+										"{{identityBaseInsecureUrl}}"
+									],
+									"path": [
+										"connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Identity web Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{identityBaseInsecureUrl}}/hc",
+							"host": [
+								"{{identityBaseInsecureUrl}}"
+							],
+							"path": [
+								"hc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Identity API Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{identityApiBaseInsecureUrl}}/hc",
+							"host": [
+								"{{identityApiBaseInsecureUrl}}"
+							],
+							"path": [
+								"hc"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9188c0aa-88c2-4944-be1c-3db7a223dea9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "92a8dfbc-12b0-451d-a763-8676da823666",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "191d4dd9-a053-4df7-aa9c-6c6865b87fc8",
+			"key": "identityBaseInsecureUrl",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"id": "08792332-a80b-414d-be93-2c0fc42a8fef",
+			"key": "ropcClientId",
+			"value": "c7c8a345-770b-4cdf-927c-2b35879394a2",
+			"type": "string"
+		},
+		{
+			"id": "48584487-b2e1-4ab9-9ef0-45b3a5c60a56",
+			"key": "ropcClientSecret",
+			"value": "secret",
+			"type": "string"
+		},
+		{
+			"id": "5aa97266-42ad-42f2-a4c5-ab68c449728a",
+			"key": "postmanClientId",
+			"value": "0cf7dfaa-d296-4a8d-8f3c-4da799ddc526",
+			"type": "string"
+		},
+		{
+			"id": "4c6245c4-93a8-4350-b8c4-fe8e3bfdef94",
+			"key": "identityApiBaseInsecureUrl",
+			"value": "http://localhost:5001",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

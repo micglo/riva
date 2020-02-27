@@ -1,0 +1,121 @@
+﻿@using Riva.Identity.Web.ServiceCollectionExtensions
+@model Riva.Identity.Web.Models.ViewModels.LocalLoginViewModel
+@{
+    Layout = "_EmptyLayout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1>Login</h1>
+    </div>
+</div>
+
+@if (Model.LocalLoginEnabled)
+{
+    <div class="row">
+        <div class="col-12">
+            <form asp-controller="LocalLogin" asp-action="Login" method="post" novalidate>
+                <input asp-for="ReturnUrl" type="hidden" />
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Email" autofocus required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" placeholder="Password" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                @if (Model.HasError)
+                {
+                    @foreach (var error in Model.Errors)
+                    {
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger text-center">
+                                    <strong> @error </strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <div class="form-check">
+                                <input asp-for="RememberLogin" class="form-check-input" type="checkbox">
+                                <label asp-for="RememberLogin" class="form-check-label">
+                                    <strong>Remember My Login</strong>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group float-right">
+                            <button class="btn btn-primary" name="button" type="submit">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@if (Model.GoogleLoginEnabled || Model.FacebookLoginEnabled)
+{
+    <div class="row">
+        <div class="col-12 text-center">
+            @if (Model.GoogleLoginEnabled)
+            {
+                <a asp-controller="ExternalLogin"
+                   asp-action="Challenge"
+                   asp-route-provider=@AuthenticationExtension.GoogleAuthScheme
+                   asp-route-returnUrl="@Model.ReturnUrl"
+                   class="btn btn-outline-dark btn-logo" role="button">
+                    <img width="20px" alt="Google sign-in" src="~/assets/google_logo.svg" class="logo" />
+                    Login with Google
+                </a>
+            }
+            @if (Model.FacebookLoginEnabled)
+            {
+                <a asp-controller="ExternalLogin"
+                   asp-action="Challenge"
+                   asp-route-provider=@AuthenticationExtension.FacebookAuthScheme
+                   asp-route-returnUrl="@Model.ReturnUrl"
+                   class="btn btn-outline-dark btn-logo" role="button">
+                    <img width="20px" alt="Facebook sign-in" src="~/assets/facebook_logo.svg" class="logo" />
+                    Login with Facebook
+                </a>
+            }
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-12">
+        <a href="@Model.RivaWebRegistrationUrl">Register</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a href="@Model.RivaWebRequestPasswordResetEmailUrl">Forgot Password?</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a href="@Model.RivaWebRequestRegistrationConfirmationEmailUrl">Resent account confirmation email</a>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
