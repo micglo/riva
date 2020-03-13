@@ -116,6 +116,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postman", "postman", "{F96D
 		postman\Riva.postman_environment.json = postman\Riva.postman_environment.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "administrativeDivisions", "administrativeDivisions", "{2131249D-92F8-49F4-B7AE-841182E69BE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{4A3D07F7-3920-41B1-B26A-7DD718BB9DD9}"
+	ProjectSection(SolutionItems) = preProject
+		src\services\administrativeDivisions\devOps\azure-pipelines-release.json = src\services\administrativeDivisions\devOps\azure-pipelines-release.json
+		src\services\administrativeDivisions\devOps\azure-pipelines.yml = src\services\administrativeDivisions\devOps\azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{461C794C-4E67-42CD-899A-B06922466B92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D9B2C90D-1715-4206-BB88-4563807B8829}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Core", "src\services\administrativeDivisions\src\Riva.AdministrativeDivisions.Core\Riva.AdministrativeDivisions.Core.csproj", "{0FFF6284-AC54-4689-BD97-3E1151873C20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Domain", "src\services\administrativeDivisions\src\Riva.AdministrativeDivisions.Domain\Riva.AdministrativeDivisions.Domain.csproj", "{CC6680F2-6544-43D9-A994-FDEC1AEB9561}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Infrastructure", "src\services\administrativeDivisions\src\Riva.AdministrativeDivisions.Infrastructure\Riva.AdministrativeDivisions.Infrastructure.csproj", "{12E93D14-92A0-4114-9BB2-6222ED8D0A6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Web.Api", "src\services\administrativeDivisions\src\Riva.AdministrativeDivisions.Web.Api\Riva.AdministrativeDivisions.Web.Api.csproj", "{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Core.Test", "src\services\administrativeDivisions\tests\Riva.AdministrativeDivisions.Core.Test\Riva.AdministrativeDivisions.Core.Test.csproj", "{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Domain.Test", "src\services\administrativeDivisions\tests\Riva.AdministrativeDivisions.Domain.Test\Riva.AdministrativeDivisions.Domain.Test.csproj", "{8E45B559-7FBF-48CB-80F5-A2D1892C1558}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Infrastructure.Test", "src\services\administrativeDivisions\tests\Riva.AdministrativeDivisions.Infrastructure.Test\Riva.AdministrativeDivisions.Infrastructure.Test.csproj", "{0E28A889-8CA0-4604-9542-ED9709D55E8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AdministrativeDivisions.Web.Api.Test", "src\services\administrativeDivisions\tests\Riva.AdministrativeDivisions.Web.Api.Test\Riva.AdministrativeDivisions.Web.Api.Test.csproj", "{838B6765-8306-41DE-9D9C-2BAFF13A2946}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,6 +218,38 @@ Global
 		{D2C75684-2986-46A5-ABF1-1CC128BB7A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C75684-2986-46A5-ABF1-1CC128BB7A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C75684-2986-46A5-ABF1-1CC128BB7A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FFF6284-AC54-4689-BD97-3E1151873C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFF6284-AC54-4689-BD97-3E1151873C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFF6284-AC54-4689-BD97-3E1151873C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFF6284-AC54-4689-BD97-3E1151873C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6680F2-6544-43D9-A994-FDEC1AEB9561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6680F2-6544-43D9-A994-FDEC1AEB9561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6680F2-6544-43D9-A994-FDEC1AEB9561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6680F2-6544-43D9-A994-FDEC1AEB9561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E93D14-92A0-4114-9BB2-6222ED8D0A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E93D14-92A0-4114-9BB2-6222ED8D0A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E93D14-92A0-4114-9BB2-6222ED8D0A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E93D14-92A0-4114-9BB2-6222ED8D0A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E45B559-7FBF-48CB-80F5-A2D1892C1558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E45B559-7FBF-48CB-80F5-A2D1892C1558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E45B559-7FBF-48CB-80F5-A2D1892C1558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E45B559-7FBF-48CB-80F5-A2D1892C1558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E28A889-8CA0-4604-9542-ED9709D55E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E28A889-8CA0-4604-9542-ED9709D55E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E28A889-8CA0-4604-9542-ED9709D55E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E28A889-8CA0-4604-9542-ED9709D55E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{838B6765-8306-41DE-9D9C-2BAFF13A2946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838B6765-8306-41DE-9D9C-2BAFF13A2946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838B6765-8306-41DE-9D9C-2BAFF13A2946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838B6765-8306-41DE-9D9C-2BAFF13A2946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,6 +288,18 @@ Global
 		{9C4FFF98-6890-4235-B688-57443A566BA3} = {0AFC274A-5E7C-4BA7-B807-F2DF3BDD515F}
 		{118BA338-2A0B-4F20-97C0-FC8D9021388E} = {0AFC274A-5E7C-4BA7-B807-F2DF3BDD515F}
 		{D2C75684-2986-46A5-ABF1-1CC128BB7A95} = {0AFC274A-5E7C-4BA7-B807-F2DF3BDD515F}
+		{2131249D-92F8-49F4-B7AE-841182E69BE1} = {2009E535-9DE3-4D3B-B9FB-97BC32D67536}
+		{4A3D07F7-3920-41B1-B26A-7DD718BB9DD9} = {2131249D-92F8-49F4-B7AE-841182E69BE1}
+		{461C794C-4E67-42CD-899A-B06922466B92} = {2131249D-92F8-49F4-B7AE-841182E69BE1}
+		{D9B2C90D-1715-4206-BB88-4563807B8829} = {2131249D-92F8-49F4-B7AE-841182E69BE1}
+		{0FFF6284-AC54-4689-BD97-3E1151873C20} = {461C794C-4E67-42CD-899A-B06922466B92}
+		{CC6680F2-6544-43D9-A994-FDEC1AEB9561} = {461C794C-4E67-42CD-899A-B06922466B92}
+		{12E93D14-92A0-4114-9BB2-6222ED8D0A6C} = {461C794C-4E67-42CD-899A-B06922466B92}
+		{98B5B713-1AD3-4EBC-9BBB-CB3B90E30E1C} = {461C794C-4E67-42CD-899A-B06922466B92}
+		{EAE8AE8D-F103-40C3-BED7-AD88E0F5A2EF} = {D9B2C90D-1715-4206-BB88-4563807B8829}
+		{8E45B559-7FBF-48CB-80F5-A2D1892C1558} = {D9B2C90D-1715-4206-BB88-4563807B8829}
+		{0E28A889-8CA0-4604-9542-ED9709D55E8E} = {D9B2C90D-1715-4206-BB88-4563807B8829}
+		{838B6765-8306-41DE-9D9C-2BAFF13A2946} = {D9B2C90D-1715-4206-BB88-4563807B8829}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}

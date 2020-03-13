@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "801fae88-8d1a-44d1-9fb3-e6f56783346e",
+		"_postman_id": "b93631e3-e0a4-4dff-a113-c365d9154d68",
 		"name": "Riva",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "8150d668-703f-463f-a8f2-fa67a6eb4bc6",
+										"id": "04155299-f881-417b-8fb1-0fd7de55451f",
 										"exec": [
 											"pm.environment.set(\"account.email\", \"michalglowaczewski@gmail.com\");",
 											"pm.environment.set(\"account.password\", \"Password1234\");"
@@ -28,7 +28,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3a2b1de7-0d5a-4437-be86-d158e27e760a",
+										"id": "3de01c6b-f26c-4cb0-b1b8-367cbd4981ef",
 										"exec": [
 											"pm.test(\"Status code is 202\", function () {",
 											"    pm.response.to.have.status(202);",
@@ -85,7 +85,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d55fbc0a-781f-4aab-89a1-7ac87da3d5f2",
+										"id": "d19dc66f-1c36-480d-bba2-e6778aa16055",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -144,7 +144,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3d42b1ee-2212-4569-b17a-5a6032a2fc56",
+										"id": "fcf511b1-bb7c-4b7f-bd76-19b8406dce2b",
 										"exec": [
 											"pm.test(\"Status code is 202\", function () {",
 											"    pm.response.to.have.status(202);",
@@ -203,7 +203,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "33de1598-b3f3-4dd1-93f2-942a3a83c68e",
+										"id": "85c56a6d-f775-408b-b632-ac84589b6fa4",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -215,7 +215,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "571dcd91-aad5-46b6-8956-578216c04486",
+										"id": "6162f359-38a9-4923-a2a9-7fa573f10cae",
 										"exec": [
 											""
 										],
@@ -282,7 +282,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d4c04817-9593-462d-8a86-49ddfa3c20b7",
+										"id": "23567e60-d541-4540-aee0-d7b5ed28e16e",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -367,7 +367,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "43882fe3-7825-417a-ba21-9fbf8b11486e",
+										"id": "a16490fd-523e-4ee3-94d2-fc52e867dbe9",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -379,7 +379,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "fb7bf6b4-bfb1-4ece-971b-97d325413e65",
+										"id": "b1a33929-fc8f-40f1-bc16-d1f09fc93abf",
 										"exec": [
 											""
 										],
@@ -430,7 +430,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e7969d4f-1c71-40ad-8385-5c8628cd7a2f",
+										"id": "625f919b-5c3d-48b1-8b74-89fc16120298",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -442,7 +442,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "60f63b8b-1e6f-4b29-afb3-35dcc2f0b3cd",
+										"id": "10c11213-8572-40ec-bd0e-02f48fe4a955",
 										"exec": [
 											""
 										],
@@ -489,7 +489,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a151219f-44e6-41ff-8fbe-8741aef1f021",
+										"id": "0ab54feb-7a27-4ab7-bd9a-fc1be8c84be5",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -501,7 +501,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "3fcd3cc2-2eac-49a2-ae29-970505baea42",
+										"id": "363edcf4-f17f-41fb-b232-f68263a4c8e4",
 										"exec": [
 											""
 										],
@@ -549,7 +549,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cb0cede2-222b-46c9-a19c-872bbea1c807",
+										"id": "d7a2a690-c7dd-4d5f-b107-d5cbfd4382d0",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -561,7 +561,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "49fff6c5-e9f8-4b36-a4e2-04b311e6b1c0",
+										"id": "6e9cb352-1d3d-4314-bb1c-91735317e682",
 										"exec": [
 											"pm.environment.set(\"account.password\", \"Password12345\");"
 										],
@@ -609,7 +609,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e1991072-356f-4537-92d5-f1074b048ad1",
+										"id": "471af57b-8f82-4c37-983f-e84500858d9d",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -621,7 +621,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "38c57ed8-5e02-488b-8828-008e5595c42e",
+										"id": "2d9ee519-56b0-4c6f-b7b9-04c9b8e323a0",
 										"exec": [
 											""
 										],
@@ -691,7 +691,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ef8d5939-787c-4474-8c65-4b960808afc3",
+										"id": "59a8f73a-9dd4-419e-8c96-5dc76f446cc5",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -703,7 +703,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "29596b66-bd1d-4737-a40f-bf713aa75c3e",
+										"id": "39826e3a-3b91-4a75-92ea-a1cad271b800",
 										"exec": [
 											"pm.environment.set(\"account.password\", \"Password1234\");"
 										],
@@ -779,7 +779,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8e858a00-197d-4d09-9ced-d901a4ff7757",
+										"id": "5c4a9a03-292c-4617-8054-d503fcbb856c",
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -799,7 +799,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "85098756-56fb-4e27-8fa4-5030151af685",
+										"id": "79dc90dc-52ec-4d92-8180-2abff690173d",
 										"exec": [
 											"pm.environment.set(\"role.name\", \"testRole\");"
 										],
@@ -865,7 +865,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "18604f05-19ab-4012-afec-e4fa7689b574",
+										"id": "44eb7f08-1ad0-4f6b-862f-603b925fcfcf",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -928,7 +928,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "900736f7-fdb7-4e2f-a3df-0aad16cff0b3",
+										"id": "c9a60956-5234-4ed6-8be4-36548e6cfe1a",
 										"exec": [
 											"pm.environment.set(\"role.name\", \"testRoleNewName\");"
 										],
@@ -938,7 +938,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "438d9be2-2f1b-4662-82ad-310e89dbbd76",
+										"id": "f0a58b1d-9c7d-427d-9c80-1e21a0565be0",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1016,7 +1016,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "56777857-385b-4902-aa96-a0c60dbb9ae1",
+										"id": "bd85bed3-c93d-4f3c-ba6c-7a2928253d4e",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1074,7 +1074,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "46fd429f-25f1-4efb-987d-2648e120fba0",
+										"id": "aa27a649-8724-4be1-aaa0-b88b30f1bbc4",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1244,6 +1244,1327 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "administrativeDivisions",
+			"item": [
+				{
+					"name": "states",
+					"item": [
+						{
+							"name": "Create state",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b89a2774-cbba-4467-9d2f-270627405718",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var name = pm.environment.get(\"state.name\");",
+											"    var polishName = pm.environment.get(\"state.polishName\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    ",
+											"    pm.environment.set(\"state.id\", responseData.id);",
+											"    pm.environment.set(\"state.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "35672fa9-716d-49b9-b613-07f702b7a966",
+										"exec": [
+											"pm.environment.set(\"state.name\", \"testName\");",
+											"pm.environment.set(\"state.polishName\", \"testPolishName\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{state.name}}\",\n\t\"polishName\": \"{{state.polishName}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"states"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get state",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0d8d1163-4fed-4772-a73c-ed2651a67e09",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.environment.set(\"state.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"states",
+										"{{state.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update state",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "322d76e8-e906-4098-a147-aa9f2595cdab",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var name = pm.environment.get(\"state.name\");",
+											"    var polishName = pm.environment.get(\"state.polishName\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    ",
+											"    pm.environment.set(\"state.id\", responseData.id);",
+											"    pm.environment.set(\"state.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "566e77f3-e993-4973-bdfe-e62ecd55f66c",
+										"exec": [
+											"pm.environment.set(\"state.name\", \"testName\");",
+											"pm.environment.set(\"state.polishName\", \"testPolishName\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"value": "{{state.rowVersion}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{state.id}}\",\n\t\"name\": \"{{state.name}}\",\n\t\"polishName\": \"{{state.polishName}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"states",
+										"{{state.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete state",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0860167f-5b6b-4f2b-b0eb-329b20d2e37a",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a74fe8dc-9166-44eb-bde9-f8abefd73047",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"type": "text",
+										"value": "{{state.rowVersion}}"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"states",
+										"{{state.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get states",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b7e0b3d3-60a5-45ff-bb0f-8a1ba5054871",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states?",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"states"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "polishName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "cities",
+					"item": [
+						{
+							"name": "Create city",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5ed48677-6b20-462c-ac79-412b9db66d68",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var name = pm.environment.get(\"city.name\");",
+											"    var polishName = pm.environment.get(\"city.polishName\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    ",
+											"    pm.environment.set(\"city.id\", responseData.id);",
+											"    pm.environment.set(\"city.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "17cdebf6-38f7-4265-81d1-3997de0c70d2",
+										"exec": [
+											"pm.environment.set(\"city.name\", \"testName\");",
+											"pm.environment.set(\"city.polishName\", \"testPolishName\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{city.name}}\",\n\t\"polishName\": \"{{city.polishName}}\",\n\t\"stateId\": \"{{state.id}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get city",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f25e5072-267a-4ecb-ae3d-f99063935749",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.environment.set(\"city.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cities",
+										"{{city.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update city",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "48b6c222-e852-47c2-975e-3fd82a5ff0f6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var name = pm.environment.get(\"city.name\");",
+											"    var polishName = pm.environment.get(\"city.polishName\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    ",
+											"    pm.environment.set(\"city.id\", responseData.id);",
+											"    pm.environment.set(\"city.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e2cec9a4-9e93-436d-973c-579433d8ef17",
+										"exec": [
+											"pm.environment.set(\"city.name\", \"testName\");",
+											"pm.environment.set(\"city.polishName\", \"testPolishName\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"type": "text",
+										"value": "{{city.rowVersion}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{city.id}}\",\n\t\"name\": \"{{city.name}}\",\n\t\"polishName\": \"{{city.polishName}}\",\n\t\"stateId\": \"{{state.id}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cities",
+										"{{city.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete city",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "702d1081-9bff-421a-9800-94374b4dc4f2",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1c740383-297e-4eba-894f-c50b614b08e4",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"type": "text",
+										"value": "{{city.rowVersion}}"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cities",
+										"{{city.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get cities",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "113c7c04-86db-47eb-9b8a-df618b207f9e",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cities"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "polishName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "stateId",
+											"value": "{{state.id}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "citiyDistricts",
+					"item": [
+						{
+							"name": "Create city district",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "efff58c7-f37f-41f8-bb80-e2b698bb3f58",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var name = pm.environment.get(\"cityDistrict.name\");",
+											"    var polishName = pm.environment.get(\"cityDistrict.polishName\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var parentId = pm.environment.get(\"cityDistrict.parentId\");",
+											"    var nameVariants = [name, polishName];",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.parentId).to.eql(parentId);",
+											"    pm.expect(responseData.nameVariants).to.eql(nameVariants);",
+											"    ",
+											"    pm.environment.set(\"cityDistrict.id\", responseData.id);",
+											"    pm.environment.set(\"cityDistrict.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "bf35e557-c548-4c22-84d4-04f33d44ef22",
+										"exec": [
+											"pm.environment.set(\"cityDistrict.name\", \"testName\");",
+											"pm.environment.set(\"cityDistrict.polishName\", \"testPolishName\");",
+											"pm.environment.set(\"cityDistrict.parentId\", null);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{city.name}}\",\n\t\"polishName\": \"{{city.polishName}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"parentId\": \"{{cityDistrict.parentId}}\",\n\t\"nameVariants\": [\"{{cityDistrict.name}}\", \"{{cityDistrict.polishName}}\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cityDistricts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get city district",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c04648b1-758d-4141-902e-9d8e59e369bd",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.environment.set(\"cityDistrict.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cityDistricts",
+										"{{cityDistrict.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update city district",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f70e7370-dcbd-4ccd-97d6-023e3ae59c6c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var name = pm.environment.get(\"cityDistrict.name\");",
+											"    var polishName = pm.environment.get(\"cityDistrict.polishName\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var parentId = pm.environment.get(\"cityDistrict.parentId\");",
+											"    var nameVariants = [name, polishName];",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.name).to.eql(name);",
+											"    pm.expect(responseData.polishName).to.eql(polishName);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.parentId).to.eql(parentId);",
+											"    pm.expect(responseData.nameVariants).to.eql(nameVariants);",
+											"    ",
+											"    pm.environment.set(\"cityDistrict.id\", responseData.id);",
+											"    pm.environment.set(\"cityDistrict.rowVersion\", responseData.rowVersion);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "1385b37e-9f6f-4abb-a455-553d5f227f9b",
+										"exec": [
+											"pm.environment.set(\"cityDistrict.name\", \"testName\");",
+											"pm.environment.set(\"cityDistrict.polishName\", \"testPolishName\");",
+											"pm.environment.set(\"cityDistrict.parentId\", null);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"type": "text",
+										"value": "{{cityDistrict.rowVersion}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{cityDistrict.id}}\",\n\t\"name\": \"{{cityDistrict.name}}\",\n\t\"polishName\": \"{{cityDistrict.polishName}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"parentId\": \"{{cityDistrict.parentId}}\",\n\t\"nameVariants\": [\"{{cityDistrict.name}}\", \"{{cityDistrict.polishName}}\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cityDistricts",
+										"{{cityDistrict.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete city district",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8a36b76-0001-4aad-be54-3358babece26",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "bc0bcd13-3d1e-43ef-afa7-19461915b9b0",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "If-Match",
+										"type": "text",
+										"value": "{{cityDistrict.rowVersion}}"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cityDistricts",
+										"{{cityDistrict.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get cities district",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eae412d3-d1c2-4364-a323-ea50fd10c935",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts",
+									"host": [
+										"{{administrativeDivisionsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"cityDistricts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "polishName",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "cityId",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
@@ -1260,7 +2581,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9188c0aa-88c2-4944-be1c-3db7a223dea9",
+				"id": "c137fe93-876e-43fe-a63b-c51acb960309",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1270,7 +2591,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "92a8dfbc-12b0-451d-a763-8676da823666",
+				"id": "653e04d0-cb5c-442a-b983-f7a09b29a85a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1280,33 +2601,39 @@
 	],
 	"variable": [
 		{
-			"id": "191d4dd9-a053-4df7-aa9c-6c6865b87fc8",
+			"id": "ecf1eb7d-8680-461b-a103-1db9b49e50ac",
 			"key": "identityBaseInsecureUrl",
 			"value": "http://localhost:5000",
 			"type": "string"
 		},
 		{
-			"id": "08792332-a80b-414d-be93-2c0fc42a8fef",
+			"id": "438d83d4-ddde-4758-a8ae-375499cf5d09",
 			"key": "ropcClientId",
 			"value": "c7c8a345-770b-4cdf-927c-2b35879394a2",
 			"type": "string"
 		},
 		{
-			"id": "48584487-b2e1-4ab9-9ef0-45b3a5c60a56",
+			"id": "090c9ba5-ba30-4ecb-b992-eee727091857",
 			"key": "ropcClientSecret",
 			"value": "secret",
 			"type": "string"
 		},
 		{
-			"id": "5aa97266-42ad-42f2-a4c5-ab68c449728a",
+			"id": "964352f1-488c-4726-b54c-98a45a30595c",
 			"key": "postmanClientId",
 			"value": "0cf7dfaa-d296-4a8d-8f3c-4da799ddc526",
 			"type": "string"
 		},
 		{
-			"id": "4c6245c4-93a8-4350-b8c4-fe8e3bfdef94",
+			"id": "d38f7d69-d980-42bc-8f33-6adc03f31661",
 			"key": "identityApiBaseInsecureUrl",
 			"value": "http://localhost:5001",
+			"type": "string"
+		},
+		{
+			"id": "8914fced-bf28-46bb-bef7-62a5e8539cf1",
+			"key": "administrativeDivisionsBaseInsecureUrl",
+			"value": "http://localhost:5002",
 			"type": "string"
 		}
 	],

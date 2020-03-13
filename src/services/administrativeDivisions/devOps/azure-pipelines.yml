@@ -1,0 +1,124 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/src/*'
+      - 'src/services/administrativeDivisions/*'
+      - 'infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/administrativeDivisions/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'Global variables'
+  - group: 'Dev stage variables'
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Test_Application
+    displayName: 'Test application'
+    jobs:
+    - job: Test_Application
+      displayName: 'Test application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AdministrativeDivisions.Domain.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/administrativeDivisions/tests/Riva.AdministrativeDivisions.Domain.Test/Riva.AdministrativeDivisions.Domain.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AdministrativeDivisions.Domain.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AdministrativeDivisions.Core.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/administrativeDivisions/tests/Riva.AdministrativeDivisions.Core.Test/Riva.AdministrativeDivisions.Core.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AdministrativeDivisions.Core.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AdministrativeDivisions.Infrastructure.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/administrativeDivisions/tests/Riva.AdministrativeDivisions.Infrastructure.Test/Riva.AdministrativeDivisions.Infrastructure.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AdministrativeDivisions.Infrastructure.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AdministrativeDivisions.WebApi.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/administrativeDivisions/tests/Riva.AdministrativeDivisions.Web.Api.Test/Riva.AdministrativeDivisions.Web.Api.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AdministrativeDivisions.Web.Api.Test tests'
+
+  - stage: Build_And_Push_Docker_Image_For_Develop
+    displayName: 'Build and push docker image for develop'
+    dependsOn: Test_Application
+    condition: and(succeeded('Test_Application'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: 'Dev stage variables'
+    jobs:
+    - job: Build_And_Push_Docker_Image
+      displayName: 'Build and push docker image'
+      steps:
+      - task: Docker@2
+        displayName: 'Run docker build and push'
+        inputs:
+          containerRegistry: '$(ServiceConnection.Azure.ContainerRegistry)'
+          repository: '$(Image.RivaAdministrativeDivisionsWebApi)'
+          command: 'buildAndPush'
+          Dockerfile: 'src/services/administrativeDivisions/src/Riva.AdministrativeDivisions.Web.Api/Dockerfile.Develop'
+          buildContext: '$(System.DefaultWorkingDirectory)'
+          tags: '$(Image.Tag)'
+
+  - stage: Push_Infrastructure_Scripts
+    displayName: 'Push infrastructure scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+    - job: Push_Infrastructure_Scripts
+      displayName: 'Push infrastructure scripts'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/administrativeDivisions'
+          ArtifactName: 'Infrastructure'
+          publishLocation: 'Container'
+
+  - stage: Push_Database_Migration_Scripts
+    displayName: 'Push database migration scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+    - job: Push_Database_Migration_Scripts
+      displayName: 'Push database migration scripts'
+      steps:
+      - task: DotNetCoreCLI@2
+        displayName: "Install dotnet ef"
+        inputs:
+          command: custom
+          custom: tool
+          arguments: install --global dotnet-ef --version 3.1.1
+      - task: CmdLine@2
+        displayName: "Create migratio script for RivaAdministrativeDivisionsDbContext"
+        inputs:
+          script: |
+            set ASPNETCORE_ENVIRONMENT=Local
+            dotnet ef migrations script --project $(system.defaultWorkingDirectory)/src/services/administrativeDivisions/src/Riva.AdministrativeDivisions.Infrastructure/Riva.AdministrativeDivisions.Infrastructure.csproj --startup-project $(system.defaultWorkingDirectory)/src/services/administrativeDivisions/src/Riva.AdministrativeDivisions.Web.Api/Riva.AdministrativeDivisions.Web.Api.csproj --context RivaAdministrativeDivisionsDbContext --configuration Release --output $(build.artifactstagingdirectory)/migrations/rivaAdministrativeDivisionsDbMigration.sql --idempotent
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish build artifact'
+        inputs:
+          PathtoPublish: '$(build.artifactstagingdirectory)/migrations'
+          ArtifactName: 'RivaAdministrativeDivisionsDatabaseMigrations'
+          publishLocation: 'Container'
