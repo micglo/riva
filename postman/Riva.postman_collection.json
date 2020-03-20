@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b93631e3-e0a4-4dff-a113-c365d9154d68",
+		"_postman_id": "d087a5d1-2c37-497b-aa6a-b0eecebf2455",
 		"name": "Riva",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "04155299-f881-417b-8fb1-0fd7de55451f",
+										"id": "e95b6fb1-c46d-419a-bf59-841c45a61e1e",
 										"exec": [
 											"pm.environment.set(\"account.email\", \"michalglowaczewski@gmail.com\");",
 											"pm.environment.set(\"account.password\", \"Password1234\");"
@@ -28,7 +28,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3de01c6b-f26c-4cb0-b1b8-367cbd4981ef",
+										"id": "5e9746b2-6a3c-4f77-a3f3-d6adcd174570",
 										"exec": [
 											"pm.test(\"Status code is 202\", function () {",
 											"    pm.response.to.have.status(202);",
@@ -85,7 +85,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d19dc66f-1c36-480d-bba2-e6778aa16055",
+										"id": "1a4c38f7-6120-49ad-8034-1cc854607a07",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -144,7 +144,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fcf511b1-bb7c-4b7f-bd76-19b8406dce2b",
+										"id": "09e8d203-6396-4c6f-b4e3-56d36f01268e",
 										"exec": [
 											"pm.test(\"Status code is 202\", function () {",
 											"    pm.response.to.have.status(202);",
@@ -203,7 +203,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "85c56a6d-f775-408b-b632-ac84589b6fa4",
+										"id": "adce8ff3-e38c-43a8-981d-15b753a7f425",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -215,7 +215,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "6162f359-38a9-4923-a2a9-7fa573f10cae",
+										"id": "37f8b8bc-808f-476d-b5dc-ca9b454c5bd6",
 										"exec": [
 											""
 										],
@@ -282,7 +282,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "23567e60-d541-4540-aee0-d7b5ed28e16e",
+										"id": "3fbd5769-73e9-4387-9879-53459f17f52d",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -367,7 +367,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a16490fd-523e-4ee3-94d2-fc52e867dbe9",
+										"id": "fb3a1860-a379-4fde-917a-470248cb50f5",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -379,7 +379,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "b1a33929-fc8f-40f1-bc16-d1f09fc93abf",
+										"id": "b6dcbd84-929e-4822-add9-d82ef0baee50",
 										"exec": [
 											""
 										],
@@ -430,7 +430,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "625f919b-5c3d-48b1-8b74-89fc16120298",
+										"id": "b17c1aba-fa74-4fd9-8b9f-78a5842c7315",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -442,7 +442,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "10c11213-8572-40ec-bd0e-02f48fe4a955",
+										"id": "42da7d30-711f-4280-8286-2f8006eb7748",
 										"exec": [
 											""
 										],
@@ -489,7 +489,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0ab54feb-7a27-4ab7-bd9a-fc1be8c84be5",
+										"id": "34888071-64ea-4438-893e-fb0addb0d28b",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -501,7 +501,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "363edcf4-f17f-41fb-b232-f68263a4c8e4",
+										"id": "eabe08c2-d01d-4386-8c05-a371d559b6bc",
 										"exec": [
 											""
 										],
@@ -549,7 +549,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d7a2a690-c7dd-4d5f-b107-d5cbfd4382d0",
+										"id": "4d1dc5b9-dab7-4ab8-9895-071646f84740",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -561,7 +561,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "6e9cb352-1d3d-4314-bb1c-91735317e682",
+										"id": "5f7e78d2-d230-4294-b533-796f7e879c60",
 										"exec": [
 											"pm.environment.set(\"account.password\", \"Password12345\");"
 										],
@@ -609,7 +609,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "471af57b-8f82-4c37-983f-e84500858d9d",
+										"id": "cdc12864-3862-42da-a662-5cdf4fc63e85",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -621,7 +621,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "2d9ee519-56b0-4c6f-b7b9-04c9b8e323a0",
+										"id": "688691e4-500a-4ac9-8387-a91e6b0c97a1",
 										"exec": [
 											""
 										],
@@ -691,7 +691,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "59a8f73a-9dd4-419e-8c96-5dc76f446cc5",
+										"id": "64cf4cc7-c853-4e80-8ac2-a0517a53c438",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -703,7 +703,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "39826e3a-3b91-4a75-92ea-a1cad271b800",
+										"id": "01ed788c-9053-4d7e-882f-d54547c118b5",
 										"exec": [
 											"pm.environment.set(\"account.password\", \"Password1234\");"
 										],
@@ -779,7 +779,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5c4a9a03-292c-4617-8054-d503fcbb856c",
+										"id": "f1a9f588-9d92-4b0a-803c-ce0b87a42a7f",
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -799,7 +799,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "79dc90dc-52ec-4d92-8180-2abff690173d",
+										"id": "cea7f085-6769-4780-bd5b-80451e86530c",
 										"exec": [
 											"pm.environment.set(\"role.name\", \"testRole\");"
 										],
@@ -865,7 +865,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "44eb7f08-1ad0-4f6b-862f-603b925fcfcf",
+										"id": "5070e45c-4487-49c8-8ca2-4f6161a9017c",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -928,7 +928,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "c9a60956-5234-4ed6-8be4-36548e6cfe1a",
+										"id": "197eb48a-d72f-4f9d-bf2a-947cadfeafa2",
 										"exec": [
 											"pm.environment.set(\"role.name\", \"testRoleNewName\");"
 										],
@@ -938,7 +938,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f0a58b1d-9c7d-427d-9c80-1e21a0565be0",
+										"id": "4edaa0cb-d7c6-4a57-b001-499c487e7f17",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1016,7 +1016,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bd85bed3-c93d-4f3c-ba6c-7a2928253d4e",
+										"id": "6df1b28b-b825-4696-8f7c-2b791bd3d426",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1074,7 +1074,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "aa27a649-8724-4be1-aaa0-b88b30f1bbc4",
+										"id": "f7109da4-bdc4-40ae-875f-294b0fa74511",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1257,7 +1257,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b89a2774-cbba-4467-9d2f-270627405718",
+										"id": "b2ffbb2c-8893-4c3b-8d51-8c2d55791df3",
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1279,7 +1279,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "35672fa9-716d-49b9-b613-07f702b7a966",
+										"id": "c2212a28-4196-4f66-8116-c07ac66fed1b",
 										"exec": [
 											"pm.environment.set(\"state.name\", \"testName\");",
 											"pm.environment.set(\"state.polishName\", \"testPolishName\");"
@@ -1351,7 +1351,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0d8d1163-4fed-4772-a73c-ed2651a67e09",
+										"id": "41815c58-aff2-41ae-9e52-f0b49e04e497",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1414,7 +1414,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "322d76e8-e906-4098-a147-aa9f2595cdab",
+										"id": "1b86fa90-22f2-41d1-b082-2686bf82d9fb",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1436,7 +1436,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "566e77f3-e993-4973-bdfe-e62ecd55f66c",
+										"id": "a015f5f8-6f57-4163-8ab3-5657cf000008",
 										"exec": [
 											"pm.environment.set(\"state.name\", \"testName\");",
 											"pm.environment.set(\"state.polishName\", \"testPolishName\");"
@@ -1514,7 +1514,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0860167f-5b6b-4f2b-b0eb-329b20d2e37a",
+										"id": "8176166f-d33d-4655-b237-cb859f71999c",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1526,7 +1526,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "a74fe8dc-9166-44eb-bde9-f8abefd73047",
+										"id": "b283b772-5e4d-46ac-874f-127dfe91bd12",
 										"exec": [
 											""
 										],
@@ -1594,7 +1594,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b7e0b3d3-60a5-45ff-bb0f-8a1ba5054871",
+										"id": "b280d06f-30e9-49eb-9496-2cc53a424425",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1690,7 +1690,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5ed48677-6b20-462c-ac79-412b9db66d68",
+										"id": "26ade5e5-81c3-4e48-873d-ee10520bb3d0",
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1712,7 +1712,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "17cdebf6-38f7-4265-81d1-3997de0c70d2",
+										"id": "901337d1-8b5e-49f4-a7fc-15fed1df458a",
 										"exec": [
 											"pm.environment.set(\"city.name\", \"testName\");",
 											"pm.environment.set(\"city.polishName\", \"testPolishName\");"
@@ -1784,7 +1784,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f25e5072-267a-4ecb-ae3d-f99063935749",
+										"id": "7c223fbf-46d4-4043-b20f-715135439cff",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1847,7 +1847,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "48b6c222-e852-47c2-975e-3fd82a5ff0f6",
+										"id": "d055511c-0202-48c3-99c6-d1e69a6d9283",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1869,7 +1869,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "e2cec9a4-9e93-436d-973c-579433d8ef17",
+										"id": "e9a4653b-f973-48e5-bdc3-51fd5a23f021",
 										"exec": [
 											"pm.environment.set(\"city.name\", \"testName\");",
 											"pm.environment.set(\"city.polishName\", \"testPolishName\");"
@@ -1947,7 +1947,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "702d1081-9bff-421a-9800-94374b4dc4f2",
+										"id": "82a42226-4dda-46a3-a5f5-57102db27e98",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1959,7 +1959,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1c740383-297e-4eba-894f-c50b614b08e4",
+										"id": "2151a3c5-9fbb-4238-bb30-45d0cde4552e",
 										"exec": [
 											""
 										],
@@ -2027,7 +2027,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "113c7c04-86db-47eb-9b8a-df618b207f9e",
+										"id": "5b57ba2e-e6eb-45fb-a28e-19d7d9facd06",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2124,7 +2124,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "efff58c7-f37f-41f8-bb80-e2b698bb3f58",
+										"id": "3d4188de-5361-424e-ad35-fe279dff7342",
 										"exec": [
 											"pm.test(\"Status code is 201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -2133,14 +2133,14 @@
 											"    var polishName = pm.environment.get(\"cityDistrict.polishName\");",
 											"    var cityId = pm.environment.get(\"city.id\");",
 											"    var parentId = pm.environment.get(\"cityDistrict.parentId\");",
-											"    var nameVariants = [name, polishName];",
 											"    var responseData = JSON.parse(responseBody);",
 											"    ",
 											"    pm.expect(responseData.name).to.eql(name);",
 											"    pm.expect(responseData.polishName).to.eql(polishName);",
 											"    pm.expect(responseData.cityId).to.eql(cityId);",
 											"    pm.expect(responseData.parentId).to.eql(parentId);",
-											"    pm.expect(responseData.nameVariants).to.eql(nameVariants);",
+											"    pm.expect(responseData.nameVariants).to.include(name);",
+											"    pm.expect(responseData.nameVariants).to.include(polishName);",
 											"    ",
 											"    pm.environment.set(\"cityDistrict.id\", responseData.id);",
 											"    pm.environment.set(\"cityDistrict.rowVersion\", responseData.rowVersion);",
@@ -2152,7 +2152,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "bf35e557-c548-4c22-84d4-04f33d44ef22",
+										"id": "6699ca7c-791f-4a4b-a9f9-58110349c05b",
 										"exec": [
 											"pm.environment.set(\"cityDistrict.name\", \"testName\");",
 											"pm.environment.set(\"cityDistrict.polishName\", \"testPolishName\");",
@@ -2225,7 +2225,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c04648b1-758d-4141-902e-9d8e59e369bd",
+										"id": "f1757059-74a8-4f56-9de5-f784a5761871",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2288,7 +2288,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f70e7370-dcbd-4ccd-97d6-023e3ae59c6c",
+										"id": "3c3f2c40-b0f2-473c-8889-481363afdfa8",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2297,14 +2297,14 @@
 											"    var polishName = pm.environment.get(\"cityDistrict.polishName\");",
 											"    var cityId = pm.environment.get(\"city.id\");",
 											"    var parentId = pm.environment.get(\"cityDistrict.parentId\");",
-											"    var nameVariants = [name, polishName];",
 											"    var responseData = JSON.parse(responseBody);",
 											"    ",
 											"    pm.expect(responseData.name).to.eql(name);",
 											"    pm.expect(responseData.polishName).to.eql(polishName);",
 											"    pm.expect(responseData.cityId).to.eql(cityId);",
 											"    pm.expect(responseData.parentId).to.eql(parentId);",
-											"    pm.expect(responseData.nameVariants).to.eql(nameVariants);",
+											"    pm.expect(responseData.nameVariants).to.include(name);",
+											"    pm.expect(responseData.nameVariants).to.include(polishName);",
 											"    ",
 											"    pm.environment.set(\"cityDistrict.id\", responseData.id);",
 											"    pm.environment.set(\"cityDistrict.rowVersion\", responseData.rowVersion);",
@@ -2316,7 +2316,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1385b37e-9f6f-4abb-a455-553d5f227f9b",
+										"id": "d4429242-63cf-46ff-8d5c-92241651abc7",
 										"exec": [
 											"pm.environment.set(\"cityDistrict.name\", \"testName\");",
 											"pm.environment.set(\"cityDistrict.polishName\", \"testPolishName\");",
@@ -2395,7 +2395,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f8a36b76-0001-4aad-be54-3358babece26",
+										"id": "1abe1414-e0ea-4469-b0d9-2e485f364d4a",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -2407,7 +2407,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "bc0bcd13-3d1e-43ef-afa7-19461915b9b0",
+										"id": "437c7d7f-5766-4c7d-8934-c2e364f490bd",
 										"exec": [
 											""
 										],
@@ -2475,7 +2475,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "eae412d3-d1c2-4364-a323-ea50fd10c935",
+										"id": "d9382aa1-2fc1-4e8e-bf1b-80209457fd1e",
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2565,11 +2565,933 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "announcements",
+			"item": [
+				{
+					"name": "roomForRentAnnouncements",
+					"item": [
+						{
+							"name": "Create new room for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "12c51b69-a7d2-4a50-8a22-b947a4950731",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncement.title\", \"title\");",
+											"pm.environment.set(\"roomForRentAnnouncement.sourceUrl\", \"http://otodom.pl\");",
+											"pm.environment.set(\"roomForRentAnnouncement.description\", \"description\");",
+											"pm.environment.set(\"roomForRentAnnouncement.price\", 1000);",
+											"pm.environment.set(\"roomForRentAnnouncement.roomType\", \"Single\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "4777dcd5-87dd-4bd3-9beb-e559ad5fea44",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var title = pm.environment.get(\"roomForRentAnnouncement.title\");",
+											"    var sourceUrl = pm.environment.get(\"roomForRentAnnouncement.sourceUrl\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var description = pm.environment.get(\"roomForRentAnnouncement.description\");",
+											"    var price = pm.environment.get(\"roomForRentAnnouncement.price\");",
+											"    var cityDistrict = pm.environment.get(\"cityDistrict.id\");",
+											"    var roomType = pm.environment.get(\"roomForRentAnnouncement.roomType\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.title).to.eql(title);",
+											"    pm.expect(responseData.sourceUrl).to.eql(sourceUrl);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.description).to.eql(description);",
+											"    pm.expect(responseData.price).to.eql(price);",
+											"    pm.expect(responseData.cityDistricts).to.include(cityDistrict);",
+											"    pm.expect(responseData.roomTypes).to.include(roomType);",
+											"    ",
+											"    pm.environment.set(\"roomForRentAnnouncement.id\", responseData.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"{{roomForRentAnnouncement.title}}\",\n\t\"sourceUrl\": \"{{roomForRentAnnouncement.sourceUrl}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"description\": \"{{roomForRentAnnouncement.description}}\",\n\t\"price\": \"{{roomForRentAnnouncement.price}}\",\n\t\"cityDistricts\": [\"{{cityDistrict.id}}\"], \n\t\"roomTypes\": [\"{{roomForRentAnnouncement.roomType}}\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roomForRentAnnouncements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get room for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6a31a6ba-d0c9-4f1c-8268-c087697d0b4c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b59a4c4b-a0ee-4bcd-b34e-b0909079c0d7",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roomForRentAnnouncements",
+										"{{roomForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update new room for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c897ca0c-9de6-47f5-965a-000b44395ea4",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncement.title\", \"title\");",
+											"pm.environment.set(\"roomForRentAnnouncement.sourceUrl\", \"http://otodom.pl\");",
+											"pm.environment.set(\"roomForRentAnnouncement.description\", \"description\");",
+											"pm.environment.set(\"roomForRentAnnouncement.price\", 1000);",
+											"pm.environment.set(\"roomForRentAnnouncement.roomType\", \"Single\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca41c8af-51bf-477f-8585-2e9e6b021179",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var title = pm.environment.get(\"roomForRentAnnouncement.title\");",
+											"    var sourceUrl = pm.environment.get(\"roomForRentAnnouncement.sourceUrl\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var description = pm.environment.get(\"roomForRentAnnouncement.description\");",
+											"    var price = pm.environment.get(\"roomForRentAnnouncement.price\");",
+											"    var cityDistrict = pm.environment.get(\"cityDistrict.id\");",
+											"    var roomType = pm.environment.get(\"roomForRentAnnouncement.roomType\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.title).to.eql(title);",
+											"    pm.expect(responseData.sourceUrl).to.eql(sourceUrl);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.description).to.eql(description);",
+											"    pm.expect(responseData.price).to.eql(price);",
+											"    pm.expect(responseData.cityDistricts).to.include(cityDistrict);",
+											"    pm.expect(responseData.roomTypes).to.include(roomType);",
+											"    ",
+											"    pm.environment.set(\"roomForRentAnnouncement.id\", responseData.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{roomForRentAnnouncement.id}}\",\n\t\"title\": \"{{roomForRentAnnouncement.title}}\",\n\t\"sourceUrl\": \"{{roomForRentAnnouncement.sourceUrl}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"description\": \"{{roomForRentAnnouncement.description}}\",\n\t\"price\": \"{{roomForRentAnnouncement.price}}\",\n\t\"cityDistricts\": [\"{{cityDistrict.id}}\"], \n\t\"roomTypes\": [\"{{roomForRentAnnouncement.roomType}}\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roomForRentAnnouncements",
+										"{{roomForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete room for rent announcements",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0824d079-517d-4718-a4ba-a0b0309e3779",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roomForRentAnnouncements",
+										"{{roomForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get room for rent announcements",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"roomForRentAnnouncements"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "createdFrom",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "createdTo",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "cityId",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "priceFrom",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "priceTo",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "roomType",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "cityDistrict",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "flatForRentAnnouncements",
+					"item": [
+						{
+							"name": "Create new flat for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d5e67772-2643-4d52-bf36-1f1cc7a571a9",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncement.title\", \"title\");",
+											"pm.environment.set(\"flatForRentAnnouncement.sourceUrl\", \"http://otodom.pl\");",
+											"pm.environment.set(\"flatForRentAnnouncement.description\", \"description\");",
+											"pm.environment.set(\"flatForRentAnnouncement.price\", 1000);",
+											"pm.environment.set(\"flatForRentAnnouncement.numberOfRooms\", \"One\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "ce303b1c-9fd8-421c-9e12-668bf43247a1",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var title = pm.environment.get(\"flatForRentAnnouncement.title\");",
+											"    var sourceUrl = pm.environment.get(\"flatForRentAnnouncement.sourceUrl\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var description = pm.environment.get(\"flatForRentAnnouncement.description\");",
+											"    var price = pm.environment.get(\"flatForRentAnnouncement.price\");",
+											"    var cityDistrict = pm.environment.get(\"cityDistrict.id\");",
+											"    var numberOfRooms = pm.environment.get(\"flatForRentAnnouncement.numberOfRooms\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.title).to.eql(title);",
+											"    pm.expect(responseData.sourceUrl).to.eql(sourceUrl);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.description).to.eql(description);",
+											"    pm.expect(responseData.price).to.eql(price);",
+											"    pm.expect(responseData.cityDistricts).to.include(cityDistrict);",
+											"    pm.expect(responseData.numberOfRooms).to.eql(numberOfRooms);",
+											"    ",
+											"    pm.environment.set(\"flatForRentAnnouncement.id\", responseData.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"{{flatForRentAnnouncement.title}}\",\n\t\"sourceUrl\": \"{{flatForRentAnnouncement.sourceUrl}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"description\": \"{{flatForRentAnnouncement.description}}\",\n\t\"price\": \"{{flatForRentAnnouncement.price}}\",\n\t\"cityDistricts\": [\"{{cityDistrict.id}}\"], \n\t\"numberOfRooms\": \"{{flatForRentAnnouncement.numberOfRooms}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"flatForRentAnnouncements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get flat for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d4625282-98e6-45c0-8692-78080efcd23b",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "f3eb3875-f55b-4f7f-9a99-66e89cba29d1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"flatForRentAnnouncements",
+										"{{flatForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update new flat for rent announcements",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "62bd4fc7-fc80-462e-94d5-759c7a8d6cf7",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncement.title\", \"title\");",
+											"pm.environment.set(\"flatForRentAnnouncement.sourceUrl\", \"http://otodom.pl\");",
+											"pm.environment.set(\"flatForRentAnnouncement.description\", \"description\");",
+											"pm.environment.set(\"flatForRentAnnouncement.price\", 1000);",
+											"pm.environment.set(\"flatForRentAnnouncement.numberOfRooms\", \"One\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "7b06b5b1-efd4-4d46-b6b7-77cfab0b1b0b",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var title = pm.environment.get(\"flatForRentAnnouncement.title\");",
+											"    var sourceUrl = pm.environment.get(\"flatForRentAnnouncement.sourceUrl\");",
+											"    var cityId = pm.environment.get(\"city.id\");",
+											"    var description = pm.environment.get(\"flatForRentAnnouncement.description\");",
+											"    var price = pm.environment.get(\"flatForRentAnnouncement.price\");",
+											"    var cityDistrict = pm.environment.get(\"cityDistrict.id\");",
+											"    var numberOfRooms = pm.environment.get(\"flatForRentAnnouncement.numberOfRooms\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.title).to.eql(title);",
+											"    pm.expect(responseData.sourceUrl).to.eql(sourceUrl);",
+											"    pm.expect(responseData.cityId).to.eql(cityId);",
+											"    pm.expect(responseData.description).to.eql(description);",
+											"    pm.expect(responseData.price).to.eql(price);",
+											"    pm.expect(responseData.cityDistricts).to.include(cityDistrict);",
+											"    pm.expect(responseData.numberOfRooms).to.eql(numberOfRooms);",
+											"    ",
+											"    pm.environment.set(\"flatForRentAnnouncement.id\", responseData.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"{{flatForRentAnnouncement.id}}\",\n\t\"title\": \"{{flatForRentAnnouncement.title}}\",\n\t\"sourceUrl\": \"{{flatForRentAnnouncement.sourceUrl}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"description\": \"{{flatForRentAnnouncement.description}}\",\n\t\"price\": \"{{flatForRentAnnouncement.price}}\",\n\t\"cityDistricts\": [\"{{cityDistrict.id}}\"], \n\t\"numberOfRooms\": \"{{flatForRentAnnouncement.numberOfRooms}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"flatForRentAnnouncements",
+										"{{flatForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete flat for rent announcements",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0eac3e4c-4a43-46ec-a2b0-eaef6456234f",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"flatForRentAnnouncements",
+										"{{flatForRentAnnouncement.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get flat for rent announcements",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements",
+									"host": [
+										"{{announcementsBaseInsecureUrl}}"
+									],
+									"path": [
+										"api",
+										"flatForRentAnnouncements"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "createdFrom",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "createdTo",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "cityId",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "priceFrom",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "priceTo",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "roomType",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "cityDistrict",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
 		"type": "oauth2",
 		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImllVVBaNVc0NFd5THZQWHBIQ0hESnciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1ODY5MDUxNjUsImV4cCI6MTU4NjkwODc2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjpbIlJpdmFJZGVudGl0eSIsIlJpdmFBbm5vdW5jZW1lbnQiLCJSaXZhQWRtaW5pc3RyYXRpdmVEaXZpc2lvbiJdLCJjbGllbnRfaWQiOiIwY2Y3ZGZhYS1kMjk2LTRhOGQtOGYzYy00ZGE3OTlkZGM1MjYiLCJzdWIiOiI1NzRmYmQ3YS0zYjE1LTRiOWEtOTAxMC0yYmE2NGFjN2U2NzMiLCJhdXRoX3RpbWUiOjE1ODY5MDUxNjUsImlkcCI6ImxvY2FsIiwicm9sZSI6WyJBZG1pbmlzdHJhdG9yIiwiVXNlciJdLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW5pc3RyYXRvciIsIlVzZXIiXSwiZW1haWwiOiJtaWNoYWxnbG93YWN6ZXdza2lAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibWljaGFsZ2xvd2FjemV3c2tpQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWljaGFsZ2xvd2FjemV3c2tpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNTc0ZmJkN2EtM2IxNS00YjlhLTkwMTAtMmJhNjRhYzdlNjczIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIlJpdmFJZGVudGl0eSIsIlJpdmFBbm5vdW5jZW1lbnQiLCJSaXZhQWRtaW5pc3RyYXRpdmVEaXZpc2lvbiIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJwd2QiXX0.qJSG-xg2Ua6Xyfume_F3Lw9s89mYbQiu_CdzZfFp-Y4VX3-s8Q2W2IPF0NEJwEtIYQJkdCtyNFBNWbbX3K7_QjqSqxJIUA-wJEyiXO2b2BBK2UgK24YjmmEKS1gKbYoAg4wy5XmZ1dBe-niae3VwaMMnd-rT-5i7Ru63NTuInhWsivm6NlVc0BcCLHj2TtBk7I2Obfx-mXN-dKfpmbF_eIPMES06umJlpPpQsKRE03xi2z7TXxuo0uXiB4MbZidctLykaIpdsE3ikkMWjzQgBhcQQwS7mJQSUT0lMT-ha_PawRCWrIA_DeaQHR39iFIxAfwjOF_HUrU01AlWXROOYQ",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "Bearer",
+				"type": "string"
+			},
 			{
 				"key": "addTokenTo",
 				"value": "header",
@@ -2581,7 +3503,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c137fe93-876e-43fe-a63b-c51acb960309",
+				"id": "6e522455-ceec-4a1a-9b54-528c9a1251af",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2591,7 +3513,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "653e04d0-cb5c-442a-b983-f7a09b29a85a",
+				"id": "3444b9a7-ba78-49c2-a9c2-05e0948df314",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2634,6 +3556,12 @@
 			"id": "8914fced-bf28-46bb-bef7-62a5e8539cf1",
 			"key": "administrativeDivisionsBaseInsecureUrl",
 			"value": "http://localhost:5002",
+			"type": "string"
+		},
+		{
+			"id": "d208dd6e-7080-468d-8563-1e05321c013e",
+			"key": "announcementsBaseInsecureUrl",
+			"value": "http://localhost:5003",
 			"type": "string"
 		}
 	],

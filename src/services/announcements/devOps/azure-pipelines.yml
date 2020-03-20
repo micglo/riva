@@ -1,0 +1,100 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/src/*'
+      - 'src/services/announcements/*'
+      - 'infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/announcements/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'Global variables'
+  - group: 'Dev stage variables'
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Test_Application
+    displayName: 'Test application'
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+    - job: Test_Application
+      displayName: 'Test application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Announcements.Domain.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/announcements/tests/Riva.Announcements.Domain.Test/Riva.Announcements.Domain.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Announcements.Domain.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Announcements.Core.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/announcements/tests/Riva.Announcements.Core.Test/Riva.Announcements.Core.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Announcements.Core.Test tests'
+        - task: PowerShell@2
+          inputs:
+            filePath: '$(System.DefaultWorkingDirectory)/devOps/scripts/RunCosmosDbEmulator.ps1'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Announcements.Infrastructure.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/announcements/tests/Riva.Announcements.Infrastructure.Test/Riva.Announcements.Infrastructure.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Announcements.Infrastructure.Test tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Announcements.Web.Api.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/announcements/tests/Riva.Announcements.Web.Api.Test/Riva.Announcements.Web.Api.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.Announcements.Web.Api.Test tests'
+
+  - stage: Build_And_Push_Docker_Image_For_Develop
+    displayName: 'Build and push docker image for develop'
+    dependsOn: Test_Application
+    condition: and(succeeded('Test_Application'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: 'Dev stage variables'
+    jobs:
+    - job: Build_And_Push_Docker_Image
+      displayName: 'Build and push docker image'
+      steps:
+      - task: Docker@2
+        displayName: 'Run docker build and push'
+        inputs:
+          containerRegistry: '$(ServiceConnection.Azure.ContainerRegistry)'
+          repository: '$(Image.RivaAnnouncementsWebApi)'
+          command: 'buildAndPush'
+          Dockerfile: 'src/services/announcements/src/Riva.Announcements.Web.Api/Dockerfile.Develop'
+          buildContext: '$(System.DefaultWorkingDirectory)'
+          tags: '$(Image.Tag)'
+
+  - stage: Push_Infrastructure_Scripts
+    displayName: 'Push infrastructure scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+    - job: Push_Infrastructure_Scripts
+      displayName: 'Push infrastructure scripts'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/announcements'
+          ArtifactName: 'Infrastructure'
+          publishLocation: 'Container'

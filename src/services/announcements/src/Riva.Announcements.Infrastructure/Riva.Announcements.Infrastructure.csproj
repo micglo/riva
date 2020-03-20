@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cosmonaut" Version="2.11.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\buildingBlocks\src\Riva.BuildingBlocks.Infrastructure\Riva.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\Riva.Announcements.Core\Riva.Announcements.Core.csproj" />
+  </ItemGroup>
+
+</Project>
