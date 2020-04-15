@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Core/Riva.BuildingBlocks.Core.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Core/Riva.BuildingBlocks.Core.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Domain/Riva.BuildingBlocks.Domain.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Domain/Riva.BuildingBlocks.Domain.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.Infrastructure/Riva.BuildingBlocks.Infrastructure.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.Infrastructure/Riva.BuildingBlocks.Infrastructure.csproj"]
+COPY ["src/buildingBlocks/src/Riva.BuildingBlocks.WebApi/Riva.BuildingBlocks.WebApi.csproj", "src/buildingBlocks/src/Riva.BuildingBlocks.WebApi/Riva.BuildingBlocks.WebApi.csproj"]
+COPY ["src/services/users/src/Riva.Users.Core/Riva.Users.Core.csproj", "src/services/users/src/Riva.Users.Core/Riva.Users.Core.csproj"]
+COPY ["src/services/users/src/Riva.Users.Domain/Riva.Users.Domain.csproj", "src/services/users/src/Riva.Users.Domain/Riva.Users.Domain.csproj"]
+COPY ["src/services/users/src/Riva.Users.Infrastructure/Riva.Users.Infrastructure.csproj", "src/services/users/src/Riva.Users.Infrastructure/Riva.Users.Infrastructure.csproj"]
+COPY ["src/services/users/src/Riva.Users.Web.Api/Riva.Users.Web.Api.csproj", "src/services/users/src/Riva.Users.Web.Api/Riva.Users.Web.Api.csproj"]
+
+RUN dotnet restore src/services/users/src/Riva.Users.Web.Api/Riva.Users.Web.Api.csproj
+
+COPY . .
+
+WORKDIR "/src/services/users/src/Riva.Users.Web.Api"
+RUN dotnet build --no-restore -c Release
+
+FROM build AS publish
+RUN dotnet publish "Riva.Users.Web.Api.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Riva.Users.Web.Api.dll"]

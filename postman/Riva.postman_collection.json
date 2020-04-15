@@ -67,9 +67,9 @@
 									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts",
+									"raw": "{{identityApiBaseUrl}}/api/accounts",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -125,9 +125,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/{{account.id}}",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -184,9 +184,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/{{account.id}}",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -198,7 +198,7 @@
 							"response": []
 						},
 						{
-							"name": "Update account",
+							"name": "Update account roles",
 							"event": [
 								{
 									"listen": "test",
@@ -260,17 +260,18 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"{{account.id}}\",\n\t\"roles\": [\"766FFB44-2A23-4C3E-B526-CCDA53F138F5\", \"C5CFC569-CA50-4F7A-8A94-B9B2908A15FA\"]\n}"
+									"raw": "{\n\t\"roles\": [\"0F7FC90E-1D6E-4C56-9EF4-24A79CBFD3FB\", \"2740765F-DB34-40CA-B620-3DB34E527E5B\"]\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/{{account.id}}/roles",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
 										"accounts",
-										"{{account.id}}"
+										"{{account.id}}",
+										"roles"
 									]
 								}
 							},
@@ -322,9 +323,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts",
+									"raw": "{{identityApiBaseUrl}}/api/accounts",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -410,9 +411,9 @@
 									"raw": "{\n\t\"email\": \"{{account.email}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/confirmations/tokens",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/confirmations/tokens",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -470,9 +471,9 @@
 									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"code\": \"\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/confirmations",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/confirmations",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -529,9 +530,9 @@
 									"raw": "{\n\t\"email\": \"{{account.email}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/passwords/tokens",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/passwords/tokens",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -589,9 +590,9 @@
 									"raw": "{\n\t\"email\": \"{{account.email}}\",\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\",\n\t\"code\": \"\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/passwords/resets",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/passwords/resets",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -669,9 +670,9 @@
 									"raw": "{\n\t\"oldPassword\": \"{{account.password}}\",\n\t\"newPassword\": \"{{account.password}}\",\n\t\"confirmNewPassword\": \"{{account.password}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}//passwords/changes",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/{{account.id}}//passwords/changes",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -751,9 +752,9 @@
 									"raw": "{\n\t\"password\": \"{{account.password}}\",\n\t\"confirmPassword\": \"{{account.password}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/accounts/{{account.id}}/passwords/assignments",
+									"raw": "{{identityApiBaseUrl}}/api/accounts/{{account.id}}/passwords/assignments",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -847,9 +848,9 @@
 									"raw": "{\n\t\"name\": \"{{role.name}}\"\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/roles",
+									"raw": "{{identityApiBaseUrl}}/api/roles",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -909,9 +910,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/roles/{{role.id}}",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -997,9 +998,9 @@
 									"raw": "{\r\n\t\"id\": \"{{role.id}}\",\r\n\t\"name\": \"{{role.name}}\"\r\n}"
 								},
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/roles/{{role.id}}",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1056,9 +1057,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/roles",
+									"raw": "{{identityApiBaseUrl}}/api/roles",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1119,9 +1120,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{identityApiBaseInsecureUrl}}/api/roles/{{role.id}}",
+									"raw": "{{identityApiBaseUrl}}/api/roles/{{role.id}}",
 									"host": [
-										"{{identityApiBaseInsecureUrl}}"
+										"{{identityApiBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1192,9 +1193,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{identityBaseInsecureUrl}}/connect/token",
+									"raw": "{{identityAppBaseUrl}}/connect/token",
 									"host": [
-										"{{identityBaseInsecureUrl}}"
+										"{{identityAppBaseUrl}}"
 									],
 									"path": [
 										"connect",
@@ -1214,9 +1215,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{identityBaseInsecureUrl}}/hc",
+							"raw": "{{identityAppBaseUrl}}/hc",
 							"host": [
-								"{{identityBaseInsecureUrl}}"
+								"{{identityAppBaseUrl}}"
 							],
 							"path": [
 								"hc"
@@ -1231,9 +1232,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{identityApiBaseInsecureUrl}}/hc",
+							"raw": "{{identityApiBaseUrl}}/hc",
 							"host": [
-								"{{identityApiBaseInsecureUrl}}"
+								"{{identityApiBaseUrl}}"
 							],
 							"path": [
 								"hc"
@@ -1333,9 +1334,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/states",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1395,9 +1396,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/states/{{state.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1495,9 +1496,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/states/{{state.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1575,9 +1576,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states/{{state.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/states/{{state.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1634,9 +1635,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/states?",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/states?",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1766,9 +1767,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cities",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1828,9 +1829,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cities/{{city.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -1928,9 +1929,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cities/{{city.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2008,9 +2009,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities/{{city.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cities/{{city.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2067,9 +2068,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cities",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cities",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2199,7 +2200,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"{{city.name}}\",\n\t\"polishName\": \"{{city.polishName}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t\"parentId\": \"{{cityDistrict.parentId}}\",\n\t\"nameVariants\": [\"{{cityDistrict.name}}\", \"{{cityDistrict.polishName}}\"]\n}",
+									"raw": "{\n\t\"name\": \"{{cityDistrict.name}}\",\n\t\"polishName\": \"{{cityDistrict.polishName}}\",\n\t\"cityId\": \"{{city.id}}\",\n\t// \"parentId\": \"{{cityDistrict.parentId}}\",\n\t\"nameVariants\": [\"{{cityDistrict.name}}\", \"{{cityDistrict.polishName}}\"]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2207,9 +2208,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cityDistricts",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2269,9 +2270,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cityDistricts/{{cityDistrict.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2376,9 +2377,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cityDistricts/{{cityDistrict.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2456,9 +2457,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts/{{cityDistrict.id}}",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cityDistricts/{{cityDistrict.id}}",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2515,9 +2516,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{administrativeDivisionsBaseInsecureUrl}}/api/cityDistricts",
+									"raw": "{{administrativeDivisionsBaseUrl}}/api/cityDistricts",
 									"host": [
-										"{{administrativeDivisionsBaseInsecureUrl}}"
+										"{{administrativeDivisionsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2562,6 +2563,23 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{administrativeDivisionsBaseUrl}}/hc",
+							"host": [
+								"{{administrativeDivisionsBaseUrl}}"
+							],
+							"path": [
+								"hc"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -2660,9 +2678,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements",
+									"raw": "{{announcementsBaseUrl}}/api/roomForRentAnnouncements",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2728,9 +2746,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2829,9 +2847,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2897,9 +2915,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/roomForRentAnnouncements/{{roomForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -2954,9 +2972,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/roomForRentAnnouncements",
+									"raw": "{{announcementsBaseUrl}}/api/roomForRentAnnouncements",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3113,9 +3131,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements",
+									"raw": "{{announcementsBaseUrl}}/api/flatForRentAnnouncements",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3181,9 +3199,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3282,9 +3300,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3350,9 +3368,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
+									"raw": "{{announcementsBaseUrl}}/api/flatForRentAnnouncements/{{flatForRentAnnouncement.id}}",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3407,9 +3425,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{announcementsBaseInsecureUrl}}/api/flatForRentAnnouncements",
+									"raw": "{{announcementsBaseUrl}}/api/flatForRentAnnouncements",
 									"host": [
-										"{{announcementsBaseInsecureUrl}}"
+										"{{announcementsBaseUrl}}"
 									],
 									"path": [
 										"api",
@@ -3474,6 +3492,1117 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{announcementsBaseUrl}}/hc",
+							"host": [
+								"{{announcementsBaseUrl}}"
+							],
+							"path": [
+								"hc"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "flatForRentAnnouncementPreferences",
+					"item": [
+						{
+							"name": "Create flatForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "75de6591-a038-4d76-868a-611ffeab6776",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncementPreference.cityId\", \"1D02CE58-3BFE-46BC-AA61-D2DE1C1690C1\");",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.priceMin\", 1);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.priceMax\", 1800);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.roomNumbersMin\", 1);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.roomNumbersMax\", 1);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "0f71d79f-9739-4d9b-8200-93860b2c1de2",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cityId\": \"{{flatForRentAnnouncementPreference.cityId}}\",\r\n  \"priceMin\": \"{{flatForRentAnnouncementPreference.priceMin}}\",\r\n  \"priceMax\": \"{{flatForRentAnnouncementPreference.priceMax}}\",\r\n  \"roomNumbersMin\": \"{{flatForRentAnnouncementPreference.roomNumbersMin}}\",\r\n  \"roomNumbersMax\": \"{{flatForRentAnnouncementPreference.roomNumbersMax}}\",\r\n  \"cityDistricts\": [\"A63D5148-471B-422C-B016-0317C9689CD3\", \"F6C8B915-38CD-44D8-878D-115CC440C5D3\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/flatForRentAnnouncementPreferences",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"flatForRentAnnouncementPreferences"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get flatForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "75de6591-a038-4d76-868a-611ffeab6776",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncementPreference.id\", \"\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "0f71d79f-9739-4d9b-8200-93860b2c1de2",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var id = pm.environment.get(\"flatForRentAnnouncementPreference.id\").toLowerCase();",
+											"    var cityId = pm.environment.get(\"flatForRentAnnouncementPreference.cityId\").toLowerCase();",
+											"    var priceMin = pm.environment.get(\"flatForRentAnnouncementPreference.priceMin\");",
+											"    var priceMax = pm.environment.get(\"flatForRentAnnouncementPreference.priceMax\");",
+											"    var roomNumbersMin = pm.environment.get(\"flatForRentAnnouncementPreference.roomNumbersMin\");",
+											"    var roomNumbersMax = pm.environment.get(\"flatForRentAnnouncementPreference.roomNumbersMax\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.id.toLowerCase()).to.eql(id);",
+											"    pm.expect(responseData.cityId.toLowerCase()).to.eql(cityId);",
+											"    pm.expect(responseData.priceMin).to.eql(priceMin);",
+											"    pm.expect(responseData.priceMax).to.eql(priceMax);",
+											"    pm.expect(responseData.roomNumbersMin).to.eql(roomNumbersMin);",
+											"    pm.expect(responseData.roomNumbersMax).to.eql(roomNumbersMax);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/flatForRentAnnouncementPreferences/{{flatForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"flatForRentAnnouncementPreferences",
+										"{{flatForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update flatForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "75de6591-a038-4d76-868a-611ffeab6776",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncementPreference.id\", \"\");",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.cityId\", \"1D02CE58-3BFE-46BC-AA61-D2DE1C1690C1\");",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.priceMin\", 1);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.priceMax\", 1800);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.roomNumbersMin\", 1);",
+											"pm.environment.set(\"flatForRentAnnouncementPreference.roomNumbersMax\", 1);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "0f71d79f-9739-4d9b-8200-93860b2c1de2",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{flatForRentAnnouncementPreference.id}}\",\r\n  \"cityId\": \"{{flatForRentAnnouncementPreference.cityId}}\",\r\n  \"priceMin\": \"{{flatForRentAnnouncementPreference.priceMin}}\",\r\n  \"priceMax\": \"{{flatForRentAnnouncementPreference.priceMax}}\",\r\n  \"roomNumbersMin\": \"{{flatForRentAnnouncementPreference.roomNumbersMin}}\",\r\n  \"roomNumbersMax\": \"{{flatForRentAnnouncementPreference.roomNumbersMax}}\",\r\n  \"cityDistricts\": [\"AC5D8893-9370-4546-BBB5-51EDC01A442C\", \"7930362C-3810-43D6-A8A6-61F7BEE04846\", \"88DD1FFD-00F4-469B-AE94-745E2A336DDB\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/flatForRentAnnouncementPreferences/{{flatForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"flatForRentAnnouncementPreferences",
+										"{{flatForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete flatForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "75de6591-a038-4d76-868a-611ffeab6776",
+										"exec": [
+											"pm.environment.set(\"flatForRentAnnouncementPreference.id\", \"\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "0f71d79f-9739-4d9b-8200-93860b2c1de2",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/flatForRentAnnouncementPreferences/{{flatForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"flatForRentAnnouncementPreferences",
+										"{{flatForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "roomForRentAnnouncementPreferences",
+					"item": [
+						{
+							"name": "Create roomForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "97645ef5-4b76-4ed1-8041-021f563497e8",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncementPreference.cityId\", \"1D02CE58-3BFE-46BC-AA61-D2DE1C1690C1\");",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.priceMin\", 1);",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.priceMax\", 1800);",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.roomType\", \"Single\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "c4763cf0-5ff4-4026-9599-1b8734093b44",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cityId\": \"{{roomForRentAnnouncementPreference.cityId}}\",\r\n  \"priceMin\": \"{{roomForRentAnnouncementPreference.priceMin}}\",\r\n  \"priceMax\": \"{{roomForRentAnnouncementPreference.priceMax}}\",\r\n  \"roomNumbersMin\": \"{{roomForRentAnnouncementPreference.roomType}}\",\r\n  \"cityDistricts\": [\"A63D5148-471B-422C-B016-0317C9689CD3\", \"F6C8B915-38CD-44D8-878D-115CC440C5D3\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/roomForRentAnnouncementPreferences",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"roomForRentAnnouncementPreferences"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get roomForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ee596160-2262-4df9-9a5a-602c303cb089",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncementPreference.id\", \"\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "d49ff32f-ccb1-4583-95f5-e11e7c8b353b",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var id = pm.environment.get(\"flatForRentAnnouncementPreference.id\").toLowerCase();",
+											"    var cityId = pm.environment.get(\"flatForRentAnnouncementPreference.cityId\").toLowerCase();",
+											"    var priceMin = pm.environment.get(\"flatForRentAnnouncementPreference.priceMin\");",
+											"    var priceMax = pm.environment.get(\"flatForRentAnnouncementPreference.priceMax\");",
+											"    var roomNumbersMin = pm.environment.get(\"flatForRentAnnouncementPreference.roomNumbersMin\");",
+											"    var roomNumbersMax = pm.environment.get(\"flatForRentAnnouncementPreference.roomNumbersMax\");",
+											"    var responseData = JSON.parse(responseBody);",
+											"    ",
+											"    pm.expect(responseData.id.toLowerCase()).to.eql(id);",
+											"    pm.expect(responseData.cityId.toLowerCase()).to.eql(cityId);",
+											"    pm.expect(responseData.priceMin).to.eql(priceMin);",
+											"    pm.expect(responseData.priceMax).to.eql(priceMax);",
+											"    pm.expect(responseData.roomNumbersMin).to.eql(roomNumbersMin);",
+											"    pm.expect(responseData.roomNumbersMax).to.eql(roomNumbersMax);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/roomForRentAnnouncementPreferences/{{roomForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"roomForRentAnnouncementPreferences",
+										"{{roomForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update roomForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ce4ea423-2762-4185-84dc-62b577f17378",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncementPreference.id\", \"\");",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.cityId\", \"1D02CE58-3BFE-46BC-AA61-D2DE1C1690C1\");",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.priceMin\", 1);",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.priceMax\", 1800);",
+											"pm.environment.set(\"roomForRentAnnouncementPreference.roomType\", \"Single\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "492d0227-d1b3-4d64-bb22-cb1b6fba96c3",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"{{roomForRentAnnouncementPreference.id}}\",\r\n  \"cityId\": \"{{roomForRentAnnouncementPreference.cityId}}\",\r\n  \"priceMin\": \"{{roomForRentAnnouncementPreference.priceMin}}\",\r\n  \"priceMax\": \"{{roomForRentAnnouncementPreference.priceMax}}\",\r\n  \"roomNumbersMin\": \"{{roomForRentAnnouncementPreference.roomType}}\",\r\n  \"cityDistricts\": [\"A63D5148-471B-422C-B016-0317C9689CD3\", \"F6C8B915-38CD-44D8-878D-115CC440C5D3\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/roomForRentAnnouncementPreferences/{{roomForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"roomForRentAnnouncementPreferences",
+										"{{roomForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete roomForRentAnnouncementPreference",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "2deff4e5-a6c2-4d96-aaa4-8f5fd9c51fef",
+										"exec": [
+											"pm.environment.set(\"roomForRentAnnouncementPreference.id\", \"\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "a157ccde-d07f-427d-bfc3-110da455a04c",
+										"exec": [
+											"pm.test(\"Status code is 202\", function () {",
+											"    pm.response.to.have.status(202);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "api-version",
+										"type": "text",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{usersBaseUrl}}/api/users/{{user.id}}/roomForRentAnnouncementPreferences/{{roomForRentAnnouncementPreference.id}}",
+									"host": [
+										"{{usersBaseUrl}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{user.id}}",
+										"roomForRentAnnouncementPreferences",
+										"{{roomForRentAnnouncementPreference.id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d419f81c-69f8-4367-844a-518f0ea68df0",
+								"exec": [
+									"pm.environment.set(\"user.serviceActive\", true);",
+									"pm.environment.set(\"user.announcementPreferenceLimit\", 2);",
+									"pm.environment.set(\"user.announcementSendingFrequency\", \"EveryFourHours\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "48a7f144-2597-4417-a6a3-4078b0dd2f53",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    ",
+									"    var id = pm.environment.get(\"account.id\");",
+									"    var email = pm.environment.get(\"account.email\");",
+									"    var serviceActive = pm.environment.get(\"user.serviceActive\");",
+									"    var announcementPreferenceLimit = pm.environment.get(\"user.announcementPreferenceLimit\");",
+									"    var announcementSendingFrequency = pm.environment.get(\"user.announcementSendingFrequency\");",
+									"    var responseData = JSON.parse(responseBody);",
+									"    ",
+									"    pm.expect(responseData.id).to.eql(id);",
+									"    pm.expect(responseData.email).to.eql(email);",
+									"    pm.expect(responseData.serviceActive).to.eql(serviceActive);",
+									"    pm.expect(responseData.announcementPreferenceLimit).to.eql(announcementPreferenceLimit);",
+									"    pm.expect(responseData.announcementSendingFrequency).to.eql(announcementSendingFrequency);",
+									"    ",
+									"    pm.environment.set(\"user.id\", responseData.id);",
+									"    pm.environment.set(\"user.email\", responseData.email);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-version",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"{{account.id}}\",\r\n  \"email\": \"{{account.email}}\",\r\n  \"serviceActive\": \"{{user.serviceActive}}\",\r\n  \"announcementPreferenceLimit\": \"{{user.announcementPreferenceLimit}}\",\r\n  \"announcementSendingFrequency\": \"{{user.announcementSendingFrequency}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersBaseUrl}}/api/users",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05c15435-84d4-4b4d-9e02-b838eb02cc9c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    ",
+									"    var id = pm.environment.get(\"account.id\").toLowerCase();",
+									"    var email = pm.environment.get(\"account.email\").toLowerCase();",
+									"    var serviceActive = pm.environment.get(\"user.serviceActive\");",
+									"    var announcementPreferenceLimit = pm.environment.get(\"user.announcementPreferenceLimit\");",
+									"    var announcementSendingFrequency = pm.environment.get(\"user.announcementSendingFrequency\").toLowerCase();",
+									"    var responseData = JSON.parse(responseBody);",
+									"    ",
+									"    pm.expect(responseData.id.toLowerCase()).to.eql(id);",
+									"    pm.expect(responseData.email.toLowerCase()).to.eql(email);",
+									"    pm.expect(responseData.serviceActive).to.eql(serviceActive);",
+									"    pm.expect(responseData.announcementPreferenceLimit).to.eql(announcementPreferenceLimit);",
+									"    pm.expect(responseData.announcementSendingFrequency.toLowerCase()).to.eql(announcementSendingFrequency);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-version",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{usersBaseUrl}}/api/users/{{user.id}}",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user.id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ea230ff-7f20-4ce0-8d5d-243f1bed8e6c",
+								"exec": [
+									"pm.environment.set(\"user.serviceActive\", true);",
+									"pm.environment.set(\"user.announcementPreferenceLimit\", 2);",
+									"pm.environment.set(\"user.announcementSendingFrequency\", \"EveryFourHours\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "dfffc6dc-fa53-44d3-a7e4-3de70586af47",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "{{user.id}}",
+									"type": "text"
+								},
+								{
+									"key": "serviceActive",
+									"value": "{{user.serviceActive}}",
+									"type": "text"
+								},
+								{
+									"key": "announcementPreferenceLimit",
+									"value": "{{user.announcementPreferenceLimit}}",
+									"type": "text"
+								},
+								{
+									"key": "announcementSendingFrequency",
+									"value": "{{user.announcementSendingFrequency}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{usersBaseUrl}}/api/users/{{user.id}}",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user.id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "298fc70b-3734-4591-8632-7193f364a167",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api-version",
+								"type": "text",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "{{usersBaseUrl}}/api/users/{{user.id}}",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user.id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b0bfc69-73aa-43d8-ac54-267197705205",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-version",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{usersBaseUrl}}/api/users",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{usersBaseUrl}}/hc",
+							"host": [
+								"{{usersBaseUrl}}"
+							],
+							"path": [
+								"hc"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -3484,7 +4613,7 @@
 		"oauth2": [
 			{
 				"key": "accessToken",
-				"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImllVVBaNVc0NFd5THZQWHBIQ0hESnciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1ODY5MDUxNjUsImV4cCI6MTU4NjkwODc2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjpbIlJpdmFJZGVudGl0eSIsIlJpdmFBbm5vdW5jZW1lbnQiLCJSaXZhQWRtaW5pc3RyYXRpdmVEaXZpc2lvbiJdLCJjbGllbnRfaWQiOiIwY2Y3ZGZhYS1kMjk2LTRhOGQtOGYzYy00ZGE3OTlkZGM1MjYiLCJzdWIiOiI1NzRmYmQ3YS0zYjE1LTRiOWEtOTAxMC0yYmE2NGFjN2U2NzMiLCJhdXRoX3RpbWUiOjE1ODY5MDUxNjUsImlkcCI6ImxvY2FsIiwicm9sZSI6WyJBZG1pbmlzdHJhdG9yIiwiVXNlciJdLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW5pc3RyYXRvciIsIlVzZXIiXSwiZW1haWwiOiJtaWNoYWxnbG93YWN6ZXdza2lAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoibWljaGFsZ2xvd2FjemV3c2tpQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWljaGFsZ2xvd2FjemV3c2tpQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNTc0ZmJkN2EtM2IxNS00YjlhLTkwMTAtMmJhNjRhYzdlNjczIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIlJpdmFJZGVudGl0eSIsIlJpdmFBbm5vdW5jZW1lbnQiLCJSaXZhQWRtaW5pc3RyYXRpdmVEaXZpc2lvbiIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJwd2QiXX0.qJSG-xg2Ua6Xyfume_F3Lw9s89mYbQiu_CdzZfFp-Y4VX3-s8Q2W2IPF0NEJwEtIYQJkdCtyNFBNWbbX3K7_QjqSqxJIUA-wJEyiXO2b2BBK2UgK24YjmmEKS1gKbYoAg4wy5XmZ1dBe-niae3VwaMMnd-rT-5i7Ru63NTuInhWsivm6NlVc0BcCLHj2TtBk7I2Obfx-mXN-dKfpmbF_eIPMES06umJlpPpQsKRE03xi2z7TXxuo0uXiB4MbZidctLykaIpdsE3ikkMWjzQgBhcQQwS7mJQSUT0lMT-ha_PawRCWrIA_DeaQHR39iFIxAfwjOF_HUrU01AlWXROOYQ",
+				"value": "",
 				"type": "string"
 			},
 			{
@@ -3519,50 +4648,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"id": "ecf1eb7d-8680-461b-a103-1db9b49e50ac",
-			"key": "identityBaseInsecureUrl",
-			"value": "http://localhost:5000",
-			"type": "string"
-		},
-		{
-			"id": "438d83d4-ddde-4758-a8ae-375499cf5d09",
-			"key": "ropcClientId",
-			"value": "c7c8a345-770b-4cdf-927c-2b35879394a2",
-			"type": "string"
-		},
-		{
-			"id": "090c9ba5-ba30-4ecb-b992-eee727091857",
-			"key": "ropcClientSecret",
-			"value": "secret",
-			"type": "string"
-		},
-		{
-			"id": "964352f1-488c-4726-b54c-98a45a30595c",
-			"key": "postmanClientId",
-			"value": "0cf7dfaa-d296-4a8d-8f3c-4da799ddc526",
-			"type": "string"
-		},
-		{
-			"id": "d38f7d69-d980-42bc-8f33-6adc03f31661",
-			"key": "identityApiBaseInsecureUrl",
-			"value": "http://localhost:5001",
-			"type": "string"
-		},
-		{
-			"id": "8914fced-bf28-46bb-bef7-62a5e8539cf1",
-			"key": "administrativeDivisionsBaseInsecureUrl",
-			"value": "http://localhost:5002",
-			"type": "string"
-		},
-		{
-			"id": "d208dd6e-7080-468d-8563-1e05321c013e",
-			"key": "announcementsBaseInsecureUrl",
-			"value": "http://localhost:5003",
-			"type": "string"
 		}
 	],
 	"protocolProfileBehavior": {}
