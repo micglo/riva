@@ -1,0 +1,174 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "acrSku": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "acrAdminUserEnabled": {
+      "type": "bool"
+    },
+    "functionsStorageAccountSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Standard_ZRS",
+        "Premium_LRS",
+        "Premium_ZRS",
+        "Standard_GZRS",
+        "Standard_RAGZRS"
+      ]
+    },
+    "hotStorageAccountSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Standard_ZRS",
+        "Premium_LRS",
+        "Premium_ZRS",
+        "Standard_GZRS",
+        "Standard_RAGZRS"
+      ]
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "containerRegistry": "ContainerRegistry",
+        "functionsStorageAccount": "FnStorage",
+        "hotStorageAccount": "HotStorage"
+      }
+    },
+    "acrName": "[concat(replace(variables('resourceNameConvention').prefix, '-', ''), variables('resourceNameConvention').suffix.containerRegistry)]",
+    "acrApiVersion": "2019-05-01",
+    "storageAccountApiVersion": "2019-06-01",
+    "functionsStorageAccountName": "[concat(toLower(parameters('projectName')), toLower(variables('resourceNameConvention').suffix.functionsStorageAccount))]",
+    "hotStorageAccountName": "[concat(toLower(parameters('projectName')), toLower(variables('resourceNameConvention').suffix.hotStorageAccount))]",
+    "userPicturesContainerName": "userpictures"
+  },
+  "resources": [
+    {
+      "name": "[variables('acrName')]",
+      "type": "Microsoft.ContainerRegistry/registries",
+      "apiVersion": "[variables('acrApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('acrSku')]"
+      },
+      "properties": {
+        "adminUserEnabled": "[parameters('acrAdminUserEnabled')]"
+      }
+    },
+    {
+      "name": "[variables('functionsStorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "[variables('storageAccountApiVersion')]",
+      "sku": {
+        "name": "[parameters('functionsStorageAccountSkuName')]"
+      },
+      "kind": "StorageV2",
+      "location": "[resourceGroup().location]"
+    },
+    {
+      "name": "[variables('hotStorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "[variables('storageAccountApiVersion')]",
+      "sku": {
+        "name": "[parameters('hotStorageAccountSkuName')]"
+      },
+      "kind": "StorageV2",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "minimumTlsVersion": "TLS1_2",
+        "allowBlobPublicAccess": true,
+        "supportsHttpsTrafficOnly": true,
+        "accessTier": "Hot"
+      },
+      "resources": [
+        {
+          "name": "[concat(variables('hotStorageAccountName'), '/default')]",
+          "type": "Microsoft.Storage/storageAccounts/blobServices",
+          "apiVersion": "[variables('storageAccountApiVersion')]",
+          "sku": {
+            "name": "[parameters('hotStorageAccountSkuName')]"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts', variables('hotStorageAccountName'))]"
+          ],
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+              "apiVersion": "[variables('storageAccountApiVersion')]",
+              "name": "[concat(variables('hotStorageAccountName'), '/default/', variables('userPicturesContainerName'))]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('hotStorageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('hotStorageAccountName'))]"
+              ],
+              "properties": {
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "Blob"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "acrName": {
+      "value": "[variables('acrName')]",
+      "type": "string"
+    },
+    "acrLoginServer": {
+      "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries', variables('acrName')), variables('acrApiVersion')).loginServer]",
+      "type": "string"
+    },
+    "functionsStorageAccountName": {
+      "value": "[variables('functionsStorageAccountName')]",
+      "type": "string"
+    },
+    "functionsStorageAccountKey": {
+      "value": "[listKeys(variables('functionsStorageAccountName'), variables('storageAccountApiVersion')).keys[0].value]",
+      "type": "string"
+    },
+    "hotStorageAccountConnectionString": {
+      "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('hotStorageAccountName'), ';AccountKey=', listKeys(variables('hotStorageAccountName'), variables('storageAccountApiVersion')).keys[0].value, ';EndpointSuffix=core.windows.net')]",
+      "type": "string"
+    },
+    "hotStorageAccountUserPicturesContainerName": {
+      "value": "[variables('userPicturesContainerName')]",
+      "type": "string"
+    }
+  }
+}

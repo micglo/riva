@@ -1,0 +1,406 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "storageAccountName": {
+      "type": "string"
+    },
+    "storageAccountKey": {
+      "type": "string"
+    },
+    "rivaMessagesFunctionsAppServicePlanResourceId": {
+      "type": "string"
+    },
+    "rivaAnnouncementPreferencesFunctionsAppServicePlanResourceId": {
+      "type": "string"
+    },
+    "rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanResourceId": {
+      "type": "string"
+    },
+    "rivaAnnouncementPreferenceSendersFunctionsAppServicePlanResourceId": {
+      "type": "string"
+    },
+    "rivaAnnouncementsFunctionsAppServicePlanResourceId": {
+      "type": "string"
+    },
+    "appInsightsInstrumentationKey": {
+      "type": "string"
+    },
+    "serviceBusConnectionString": {
+      "type": "string"
+    },
+    "cosmosDbUri": {
+      "type": "string"
+    },
+    "cosmosDbPrimaryMasterKey": {
+      "type": "string"
+    },
+    "cosmosDbPrimaryConnectionString": {
+      "type": "string"
+    },
+    "sendGridApiKey": {
+      "type": "string"
+    },
+    "cosmosDbAnnouncementPreferencesDatabaseName": {
+      "type": "string"
+    },
+    "cosmosDbAnnouncementPreferencesContainerThroughput": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "functions": "Fn"
+      }
+    },
+    "rivaMessagesFunctionsName": "[concat(variables('resourceNameConvention').prefix, 'Messages-', variables('resourceNameConvention').suffix.functions)]",
+    "rivaAnnouncementPreferencesFunctionsName": "[concat(variables('resourceNameConvention').prefix, 'AnnouncementPreferences-', variables('resourceNameConvention').suffix.functions)]",
+    "rivaAnnouncementPreferenceMatchersFunctionsName": "[concat(variables('resourceNameConvention').prefix, 'AnnouncementPreferenceMatchers-', variables('resourceNameConvention').suffix.functions)]",
+    "rivaAnnouncementPreferenceMatchersFunctionsMaxDegreeOfParallelism": "2",
+    "rivaAnnouncementPreferenceSendersFunctionsName": "[concat(variables('resourceNameConvention').prefix, 'AnnouncementPreferenceSenders-', variables('resourceNameConvention').suffix.functions)]",
+    "rivaAnnouncementPreferenceSendersFunctionsMaxDegreeOfParallelism": "2",
+    "rivaAnnouncementsFunctionsName": "[concat(variables('resourceNameConvention').prefix, 'Announcements-', variables('resourceNameConvention').suffix.functions)]",
+    "webSiteApiVersion": "2019-08-01"
+  },
+  "resources": [
+    {
+      "name": "[variables('rivaMessagesFunctionsName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "[variables('webSiteApiVersion')]",
+      "kind": "functionapp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "serverFarmId": "[parameters('rivaMessagesFunctionsAppServicePlanResourceId')]",
+        "siteConfig": {
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=', parameters('appInsightsInstrumentationKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('rivaMessagesFunctionsName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ServiceBusConnectionString",
+              "value": "[parameters('serviceBusConnectionString')]"
+            },
+            {
+              "name": "SendGridApiKey",
+              "value": "[parameters('sendGridApiKey')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferencesFunctionsName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "[variables('webSiteApiVersion')]",
+      "kind": "functionapp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "serverFarmId": "[parameters('rivaAnnouncementPreferencesFunctionsAppServicePlanResourceId')]",
+        "siteConfig": {
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=', parameters('appInsightsInstrumentationKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('rivaMessagesFunctionsName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ServiceBusConnectionString",
+              "value": "[parameters('serviceBusConnectionString')]"
+            },
+            {
+              "name": "CosmosDbDatabaseName",
+              "value": "[parameters('cosmosDbAnnouncementPreferencesDatabaseName')]"
+            },
+            {
+              "name": "CosmosDbUri",
+              "value": "[parameters('cosmosDbUri')]"
+            },
+            {
+              "name": "CosmosDbAuthKey",
+              "value": "[parameters('cosmosDbPrimaryMasterKey')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferenceMatchersFunctionsName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "[variables('webSiteApiVersion')]",
+      "kind": "functionapp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "serverFarmId": "[parameters('rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanResourceId')]",
+        "siteConfig": {
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=', parameters('appInsightsInstrumentationKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('rivaMessagesFunctionsName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ServiceBusConnectionString",
+              "value": "[parameters('serviceBusConnectionString')]"
+            },
+            {
+              "name": "CosmosDbDatabaseName",
+              "value": "[parameters('cosmosDbAnnouncementPreferencesDatabaseName')]"
+            },
+            {
+              "name": "CosmosDbUri",
+              "value": "[parameters('cosmosDbUri')]"
+            },
+            {
+              "name": "CosmosDbAuthKey",
+              "value": "[parameters('cosmosDbPrimaryMasterKey')]"
+            },
+            {
+              "name": "CosmosDbCollectionThroughput",
+              "value": "[parameters('cosmosDbAnnouncementPreferencesContainerThroughput')]"
+            },
+            {
+              "name": "MaxDegreeOfParallelism",
+              "value": "[variables('rivaAnnouncementPreferenceMatchersFunctionsMaxDegreeOfParallelism')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferenceSendersFunctionsName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "[variables('webSiteApiVersion')]",
+      "kind": "functionapp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "serverFarmId": "[parameters('rivaAnnouncementPreferenceSendersFunctionsAppServicePlanResourceId')]",
+        "siteConfig": {
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=', parameters('appInsightsInstrumentationKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('rivaMessagesFunctionsName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ServiceBusConnectionString",
+              "value": "[parameters('serviceBusConnectionString')]"
+            },
+            {
+              "name": "CosmosDbDatabaseName",
+              "value": "[parameters('cosmosDbAnnouncementPreferencesDatabaseName')]"
+            },
+            {
+              "name": "CosmosDbUri",
+              "value": "[parameters('cosmosDbUri')]"
+            },
+            {
+              "name": "CosmosDbAuthKey",
+              "value": "[parameters('cosmosDbPrimaryMasterKey')]"
+            },
+            {
+              "name": "CosmosDbCollectionThroughput",
+              "value": "[parameters('cosmosDbAnnouncementPreferencesContainerThroughput')]"
+            },
+            {
+              "name": "MaxDegreeOfParallelism",
+              "value": "[variables('rivaAnnouncementPreferenceSendersFunctionsMaxDegreeOfParallelism')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementsFunctionsName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "[variables('webSiteApiVersion')]",
+      "kind": "functionapp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "serverFarmId": "[parameters('rivaAnnouncementsFunctionsAppServicePlanResourceId')]",
+        "siteConfig": {
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', parameters('storageAccountKey'))]"
+            },
+            {
+              "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+              "value": "[concat('InstrumentationKey=', parameters('appInsightsInstrumentationKey'))]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('rivaMessagesFunctionsName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~3"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ServiceBusConnectionString",
+              "value": "[parameters('serviceBusConnectionString')]"
+            },
+            {
+              "name": "CosmosDbConnectionString",
+              "value": "[parameters('cosmosDbPrimaryConnectionString')]"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "rivaMessagesFunctionsName": {
+      "type": "string",
+      "value": "[variables('rivaMessagesFunctionsName')]"
+    },
+    "rivaAnnouncementPreferencesFunctionsName": {
+      "type": "string",
+      "value": "[variables('rivaAnnouncementPreferencesFunctionsName')]"
+    },
+    "rivaAnnouncementPreferenceMatchersFunctionsName": {
+      "type": "string",
+      "value": "[variables('rivaAnnouncementPreferenceMatchersFunctionsName')]"
+    },
+    "rivaAnnouncementPreferenceSendersFunctionsName": {
+      "type": "string",
+      "value": "[variables('rivaAnnouncementPreferenceSendersFunctionsName')]"
+    },
+    "rivaAnnouncementsFunctionsName": {
+      "type": "string",
+      "value": "[variables('rivaAnnouncementsFunctionsName')]"
+    }
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod",
+        "Local",
+        "Docker"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "serviceBusSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "serviceBusDefaultMessageTimeToLive": {
+      "type": "string"
+    },
+    "serviceBusDuplicateDetectionHistoryTimeWindow": {
+      "type": "string"
+    },
+    "serviceBusLockDuration": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "serviceBus": "ServiceBus",
+        "topic": "Topic",
+        "subscription": "Subscription"
+      }
+    },
+    "serviceBusNamespaceName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.serviceBus)]",
+    "serviceBusApiVersion": "2017-04-01",
+    "serviceBusSharedAccessKeyName": "RootManageSharedAccessKey",
+    "serviceBusAuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', variables('serviceBusNamespaceName'), variables('serviceBusSharedAccessKeyName'))]",
+    "serviceBusTopicName": "[concat(toLower(parameters('projectName')), '-', toLower(variables('resourceNameConvention').suffix.topic))]",
+    "serviceBusRivaMessagesMessageBroadcasterSubscriptionName": "[concat(toLower(parameters('projectName')), '-messages-message-broadcaster-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaIdentitySubscriptionName": "[concat(toLower(parameters('projectName')), '-identity-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaUsersSubscriptionName": "[concat(toLower(parameters('projectName')), '-users-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesCreateFlatForRentAnnouncementPreferenceSubscriptionName": "[concat('create-flat-announcement-preference-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesUpdateFlatForRentAnnouncementPreferenceSubscriptionName": "[concat('update-flat-announcement-preference-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesCreateRoomForRentAnnouncementPreferenceSubscriptionName": "[concat('create-room-announcement-preference-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesUpdateRoomForRentAnnouncementPreferenceSubscriptionName": "[concat('update-room-announcement-preference-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferenceSubscriptionName": "[concat('delete-announcement-preference-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesUpdateAnnouncementPreferencesSubscriptionName": "[concat('update-announcement-preferences-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferencesSubscriptionName": "[concat('delete-announcement-preferences-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesMatchFlatForRentAnnouncementsSubscriptionName": "[concat(toLower(parameters('projectName')), '-match-flat-announcements-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementPreferencesMatchRoomForRentAnnouncementsSubscriptionName": "[concat(toLower(parameters('projectName')), '-match-room-announcements-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName": "[concat(toLower(parameters('projectName')), '-create-announcement-', toLower(variables('resourceNameConvention').suffix.subscription))]",
+    "serviceBusRivaSignalRSubscriptionName": "[concat(toLower(parameters('projectName')), '-signalr-', toLower(variables('resourceNameConvention').suffix.subscription))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('serviceBusNamespaceName')]",
+      "type": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "[variables('serviceBusApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('serviceBusSkuName')]"
+      },
+      "resources": [
+        {
+          "name": "[variables('serviceBusTopicName')]",
+          "type": "topics",
+          "apiVersion": "[variables('serviceBusApiVersion')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.ServiceBus/namespaces/', variables('serviceBusNamespaceName'))]"
+          ],
+          "properties": {
+            "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]",
+            "duplicateDetectionHistoryTimeWindow": "[parameters('serviceBusDuplicateDetectionHistoryTimeWindow')]"
+          },
+          "resources": [
+            {
+              "name": "[variables('serviceBusRivaMessagesMessageBroadcasterSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "AccountConfirmationRequested",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaMessagesMessageBroadcasterSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "AccountConfirmationRequested"
+                    }
+                  }
+                },
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "PasswordResetRequested",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaMessagesMessageBroadcasterSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "PasswordResetRequested"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaIdentitySubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              }
+            },
+            {
+              "name": "[variables('serviceBusRivaUsersSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              }
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesCreateFlatForRentAnnouncementPreferenceSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserFlatForRentAnnouncementPreferenceCreated",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesCreateFlatForRentAnnouncementPreferenceSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserFlatForRentAnnouncementPreferenceCreated"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesUpdateFlatForRentAnnouncementPreferenceSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserFlatForRentAnnouncementPreferenceUpdated",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesUpdateFlatForRentAnnouncementPreferenceSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserFlatForRentAnnouncementPreferenceUpdated"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesCreateRoomForRentAnnouncementPreferenceSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserRoomForRentAnnouncementPreferenceCreated",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesCreateRoomForRentAnnouncementPreferenceSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserRoomForRentAnnouncementPreferenceCreated"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesUpdateRoomForRentAnnouncementPreferenceSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserRoomForRentAnnouncementPreferenceUpdated",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesUpdateRoomForRentAnnouncementPreferenceSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserRoomForRentAnnouncementPreferenceUpdated"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferenceSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserAnnouncementPreferenceDeleted",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferenceSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserAnnouncementPreferenceDeleted"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesUpdateAnnouncementPreferencesSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserUpdated",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesUpdateAnnouncementPreferencesSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserUpdated"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferencesSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "UserDeleted",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferencesSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "UserDeleted"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesMatchFlatForRentAnnouncementsSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "FlatForRentAnnouncements",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesMatchFlatForRentAnnouncementsSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "FlatForRentAnnouncements"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementPreferencesMatchRoomForRentAnnouncementsSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "RoomForRentAnnouncements",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementPreferencesMatchRoomForRentAnnouncementsSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "RoomForRentAnnouncements"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              },
+              "resources": [
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "FlatForRentAnnouncement",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "FlatForRentAnnouncement"
+                    }
+                  }
+                },
+                {
+                  "type": "rules",
+                  "apiVersion": "[variables('serviceBusApiVersion')]",
+                  "name": "RoomForRentAnnouncement",
+                  "dependsOn": [
+                    "[resourceId('Microsoft.ServiceBus/namespaces/topics/subscriptions', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'), variables('serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName'))]"
+                  ],
+                  "properties": {
+                    "filterType": "CorrelationFilter",
+                    "correlationFilter": {
+                      "label": "RoomForRentAnnouncement"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "[variables('serviceBusRivaSignalRSubscriptionName')]",
+              "type": "subscriptions",
+              "apiVersion": "[variables('serviceBusApiVersion')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', variables('serviceBusNamespaceName'), variables('serviceBusTopicName'))]"
+              ],
+              "properties": {
+                "lockDuration": "[parameters('serviceBusLockDuration')]",
+                "defaultMessageTimeToLive": "[parameters('serviceBusDefaultMessageTimeToLive')]"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "serviceBusConnectionString": {
+      "type": "string",
+      "value": "[concat(listkeys(variables('serviceBusAuthRuleResourceId'), variables('serviceBusApiVersion')).primaryConnectionString)]"
+    },
+    "serviceBusConnectionStringWithEntityPath": {
+      "type": "string",
+      "value": "[concat(listkeys(variables('serviceBusAuthRuleResourceId'), variables('serviceBusApiVersion')).primaryConnectionString, ';EntityPath=', variables('serviceBusTopicName'), ';TransportType=AMQP')]"
+    },
+    "serviceBusPrimaryKey": {
+      "type": "string",
+      "value": "[listkeys(variables('serviceBusAuthRuleResourceId'), variables('serviceBusApiVersion')).primaryKey]"
+    },
+    "serviceBusTopicName": {
+      "type": "string",
+      "value": "[variables('serviceBusTopicName')]"
+    },
+    "serviceBusRivaMessagesMessageBroadcasterSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaMessagesMessageBroadcasterSubscriptionName')]"
+    },
+    "serviceBusRivaIdentitySubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaIdentitySubscriptionName')]"
+    },
+    "serviceBusRivaUsersSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaUsersSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesCreateFlatForRentAnnouncementPreferenceSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesCreateFlatForRentAnnouncementPreferenceSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesUpdateFlatForRentAnnouncementPreferenceSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesUpdateFlatForRentAnnouncementPreferenceSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesCreateRoomForRentAnnouncementPreferenceSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesCreateRoomForRentAnnouncementPreferenceSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesUpdateRoomForRentAnnouncementPreferenceSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesUpdateRoomForRentAnnouncementPreferenceSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferenceSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferenceSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesUpdateAnnouncementPreferencesSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesUpdateAnnouncementPreferencesSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferencesSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesDeleteAnnouncementPreferencesSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesMatchFlatForRentAnnouncementsSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesMatchFlatForRentAnnouncementsSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementPreferencesMatchRoomForRentAnnouncementsSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementPreferencesMatchRoomForRentAnnouncementsSubscriptionName')]"
+    },
+    "serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaAnnouncementsFunctionsCreateAnnouncementSubscriptionName')]"
+    },
+    "serviceBusRivaSignalRSubscriptionName": {
+      "type": "string",
+      "value": "[variables('serviceBusRivaSignalRSubscriptionName')]"
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "appServicePlanSkuName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "webAppServicePlan": "WebAppServicePlan",
+        "functionsAppServicePlan": "FnAppServicePlan",
+        "identityWeb": "IdentityWeb-",
+        "identityWebApi": "IdentityWebApi-",
+        "administrativeDivisions": "AdministrativeDivisions-",
+        "announcements": "Announcements-",
+        "users": "Users-",
+        "signalR": "SignalR-",
+        "webApiGateway": "WebApiGateway-",
+        "messages": "Messages-",
+        "announcementPreferences": "AnnouncementPreferences-",
+        "announcementPreferenceMatchers": "AnnouncementPreferenceMatchers-",
+        "announcementPreferenceSenders": "AnnouncementPreferenceSenders-"
+      }
+    },
+    "rivaIdentityWebAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.identityWeb, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaIdentityWebApiAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.identityWebApi, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaAdministrativeDivisionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.administrativeDivisions, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaAnnouncementsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcements, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaUsersAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.users, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaSignalRAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.signalR, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaWebApiGatewayAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.webApiGateway, variables('resourceNameConvention').suffix.webAppServicePlan)]",
+    "rivaMessagesFunctionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.messages, variables('resourceNameConvention').suffix.functionsAppServicePlan)]",
+    "rivaAnnouncementPreferencesFunctionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcementPreferences, variables('resourceNameConvention').suffix.functionsAppServicePlan)]",
+    "rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcementPreferenceMatchers, variables('resourceNameConvention').suffix.functionsAppServicePlan)]",
+    "rivaAnnouncementPreferenceSendersFunctionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcementPreferenceSenders, variables('resourceNameConvention').suffix.functionsAppServicePlan)]",
+    "rivaAnnouncementsFunctionsAppServicePlanName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcements, variables('resourceNameConvention').suffix.functionsAppServicePlan)]",
+    "appServicePlanApiVersion": "2019-08-01"
+  },
+  "resources": [
+    {
+      "name": "[variables('rivaIdentityWebAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaIdentityWebApiAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAdministrativeDivisionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2018-02-01",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaUsersAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaSignalRAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaWebApiGatewayAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "kind": "linux",
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaMessagesFunctionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "kind": "linux",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferencesFunctionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "kind": "linux",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "kind": "linux",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementPreferenceSendersFunctionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "kind": "linux",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[variables('rivaAnnouncementsFunctionsAppServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "[variables('appServicePlanApiVersion')]",
+      "kind": "linux",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('appServicePlanSkuName')]"
+      },
+      "properties": {
+        "reserved": true
+      }
+    }
+  ],
+  "outputs": {
+    "rivaIdentityWebAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaIdentityWebAppServicePlanName'))]"
+    },
+    "rivaIdentityWebApiAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaIdentityWebApiAppServicePlanName'))]"
+    },
+    "rivaAdministrativeDivisionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAdministrativeDivisionsAppServicePlanName'))]"
+    },
+    "rivaAnnouncementsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAnnouncementsAppServicePlanName'))]"
+    },
+    "rivaUsersAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaUsersAppServicePlanName'))]"
+    },
+    "rivaSignalRAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaSignalRAppServicePlanName'))]"
+    },
+    "rivaWebApiGatewayAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaWebApiGatewayAppServicePlanName'))]"
+    },
+    "rivaMessagesFunctionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaMessagesFunctionsAppServicePlanName'))]"
+    },
+    "rivaAnnouncementPreferencesFunctionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAnnouncementPreferencesFunctionsAppServicePlanName'))]"
+    },
+    "rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAnnouncementPreferenceMatchersFunctionsAppServicePlanName'))]"
+    },
+    "rivaAnnouncementPreferenceSendersFunctionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAnnouncementPreferenceSendersFunctionsAppServicePlanName'))]"
+    },
+    "rivaAnnouncementsFunctionsAppServicePlanResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', variables('rivaAnnouncementsFunctionsAppServicePlanName'))]"
+    }
+  }
+}

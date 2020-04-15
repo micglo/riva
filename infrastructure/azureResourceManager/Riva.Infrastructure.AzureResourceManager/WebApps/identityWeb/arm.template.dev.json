@@ -1,0 +1,222 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "aspNetCoreEnvironment": {
+      "type": "string"
+    },
+    "acrLoginServer": {
+      "type": "string"
+    },
+    "acrUsername": {
+      "type": "string"
+    },
+    "acrPassword": {
+      "type": "string"
+    },
+    "imageName": {
+      "type": "string"
+    },
+    "imageTag": {
+      "type": "string"
+    },
+    "appServicePlanResourceId": {
+      "type": "string"
+    },
+    "appInsightsInstrumentationKey": {
+      "type": "string"
+    },
+    "keyVaultName": {
+      "type": "string"
+    },
+    "signingCredentialCertificateName": {
+      "type": "string"
+    },
+    "serviceBusConnectionStringWithEntityPath": {
+      "type": "string"
+    },
+    "serviceBusTopicName": {
+      "type": "string"
+    },
+    "googleClientId": {
+      "type": "string"
+    },
+    "googleClientSecret": {
+      "type": "string"
+    },
+    "facebookAppId": {
+      "type": "string"
+    },
+    "facebookAppSecret": {
+      "type": "string"
+    },
+    "sqlServerDatabaseConnectionString": {
+      "type": "string"
+    },
+    "rivaWebPortalUrl": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "webApp": "WebApp",
+        "identity": "Identity-"
+      }
+    },
+    "webAppName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.identity, variables('resourceNameConvention').suffix.webApp)]",
+    "webAppUrl": "[concat('https://', toLower(variables('webAppName')), '.azurewebsites.net')]",
+    "image": "[concat(parameters('acrLoginServer'), '/', parameters('imageName'), ':', parameters('imageTag'))]",
+    "rivaWebRegistrationUrl": "[concat(parameters('rivaWebPortalUrl'), '/account/registration')]",
+    "rivaWebRequestRegistrationConfirmationEmailUrl": "[concat(parameters('rivaWebPortalUrl'), '/account/request-registration-confirmation-email')]",
+    "rivaWebRequestPasswordResetEmailUrl": "[concat(parameters('rivaWebPortalUrl'), '/account/request-password-reset-email')]"
+  },
+  "resources": [
+    {
+      "name": "[variables('webAppName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2019-08-01",
+      "location": "[resourceGroup().location]",
+      "kind": "app,linux,container",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[variables('webAppUrl')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(toLower(variables('webAppName')), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[parameters('appServicePlanResourceId')]",
+        "siteConfig": {
+          "linuxFxVersion": "[concat('DOCKER|', variables('image'))]",
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "DOCKER_CUSTOM_IMAGE_NAME",
+              "value": "[variables('image')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_URL",
+              "value": "[concat('https://', parameters('acrLoginServer'))]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+              "value": "[parameters('acrUsername')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+              "value": "[parameters('acrPassword')]"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ASPNETCORE_ENVIRONMENT",
+              "value": "[parameters('aspNetCoreEnvironment')]"
+            },
+            {
+              "name": "Auth__GoogleClientId",
+              "value": "[parameters('googleClientId')]"
+            },
+            {
+              "name": "Auth__GoogleClientSecret",
+              "value": "[parameters('googleClientSecret')]"
+            },
+            {
+              "name": "Auth__FacebookAppId",
+              "value": "[parameters('facebookAppId')]"
+            },
+            {
+              "name": "Auth__FacebookAppSecret",
+              "value": "[parameters('facebookAppSecret')]"
+            },
+            {
+              "name": "ApplicationInsights__InstrumentationKey",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "KeyVault__Name",
+              "value": "[parameters('keyVaultName')]"
+            },
+            {
+              "name": "KeyVault__SigningCredentialCertificateName",
+              "value": "[parameters('signingCredentialCertificateName')]"
+            },
+            {
+              "name": "CentralServiceBus__TopicName",
+              "value": "[parameters('serviceBusTopicName')]"
+            },
+            {
+              "name": "ApplicationUrls__RivaWebRegistrationUrl",
+              "value": "[variables('rivaWebRegistrationUrl')]"
+            },
+            {
+              "name": "ApplicationUrls__RivaWebRequestRegistrationConfirmationEmailUrl",
+              "value": "[variables('rivaWebRequestRegistrationConfirmationEmailUrl')]"
+            },
+            {
+              "name": "ApplicationUrls__RivaWebRequestPasswordResetEmailUrl",
+              "value": "[variables('rivaWebRequestPasswordResetEmailUrl')]"
+            }
+          ],
+          "connectionStrings": [
+            {
+              "name": "RivaIdentitySQLServerDatabaseConnectionString",
+              "connectionString": "[parameters('sqlServerDatabaseConnectionString')]",
+              "type": "SQLServer"
+            },
+            {
+              "name": "CentralServiceBusConnectionString",
+              "connectionString": "[parameters('serviceBusConnectionStringWithEntityPath')]",
+              "type": "Custom"
+            }
+          ],
+          "cors": {
+            "allowedOrigins": [
+              "*"
+            ]
+          }
+        },
+        "httpsOnly": true
+      }
+    }
+  ],
+  "outputs": {
+    "rivaIdentityWebApplicationName": {
+      "type": "string",
+      "value": "[variables('webAppName')]"
+    },
+    "rivaIdentityWebApplicationUrl": {
+      "type": "string",
+      "value": "[variables('webAppUrl')]"
+    }
+  }
+}

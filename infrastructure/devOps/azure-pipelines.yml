@@ -1,0 +1,28 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'infrastructure/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Publish_Artifact_With_ARM_Files
+    displayName: 'Publish artifact with ARM files'
+    jobs:
+    - job: Publish_Artifact_With_ARM_Files
+      displayName: 'Publish artifact with ARM files'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager'
+          ArtifactName: 'RivaInfrastructureArm'
+          publishLocation: 'Container'

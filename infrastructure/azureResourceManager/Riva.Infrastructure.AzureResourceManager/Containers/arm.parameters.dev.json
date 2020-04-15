@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "value": "Riva"
+    },
+    "environment": {
+      "value": "Dev"
+    },
+    "locationShort": {
+      "value": "WE"
+    },
+    "acrSku": {
+      "value": "Basic"
+    },
+    "acrAdminUserEnabled": {
+      "value": true
+    },
+    "functionsStorageAccountSkuName": {
+      "value": "Standard_LRS"
+    },
+    "hotStorageAccountSkuName": {
+      "value": "Standard_LRS"
+    }
+  }
+}

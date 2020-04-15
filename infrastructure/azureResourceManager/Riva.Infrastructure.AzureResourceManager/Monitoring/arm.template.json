@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "logAnalyticsSkuName": {
+      "type": "string"
+    } 
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "applicationInsights": "AppInsights",
+        "logAnalytics": "LogAnalytics"
+      }
+    },
+    "applicationInsightsName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.applicationInsights)]",
+    "logAnalyticsName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.logAnalytics)]"
+  },
+  "resources": [
+    {
+      "name": "[variables('applicationInsightsName')]",
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2015-05-01",
+      "location": "[resourceGroup().location]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web"
+      }
+    },
+    {
+      "name": "[variables('logAnalyticsName')]",
+      "type": "microsoft.operationalinsights/workspaces",
+      "apiVersion": "2020-03-01-preview",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": {
+          "name": "[parameters('logAnalyticsSkuName')]"
+        },
+        "retentionInDays": 30,
+        "publicNetworkAccessForIngestion": "Enabled",
+        "publicNetworkAccessForQuery": "Enabled"
+      }
+    }
+  ],
+  "outputs": {
+    "appInsightsInstrumentationKey": {
+      "type": "string",
+      "value": "[reference(concat('microsoft.insights/components/',variables('applicationInsightsName'))).InstrumentationKey]"
+    }
+  }
+}

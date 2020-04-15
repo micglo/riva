@@ -1,0 +1,379 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "sqlServerDatabaseSkuName": {
+      "type": "string"
+    },
+    "sqlServerAdministratorLogin": {
+      "type": "string"
+    },
+    "sqlServerAdministratorLoginPassword": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "sqlServer": "SQLServer",
+        "sqlServerDatabase": "SQLServerDatabase",
+        "cosmosDb": "CosmosDb",
+        "identity": "Identity-",
+        "administrativeDivisions": "AdministrativeDivisions-",
+        "users": "Users-"
+      }
+    },
+    "sqlServerName": "[concat(toLower(variables('resourceNameConvention').prefix), toLower(variables('resourceNameConvention').suffix.sqlServer))]",
+    "sqlServerFirewallRulesName": "AllowAllWindowsAzureIps",
+    "sqlServerDatabaseApiVersion": "2017-10-01-preview",
+    "sqlServerIdentityDatabaseName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.identity, variables('resourceNameConvention').suffix.sqlServerDatabase)]",
+    "sqlServerAdministrativeDivisionDatabaseName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.administrativeDivisions, variables('resourceNameConvention').suffix.sqlServerDatabase)]",
+    "sqlServerUsersDatabaseName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.users, variables('resourceNameConvention').suffix.sqlServerDatabase)]",
+    "cosmosDbAccountName": "[concat(toLower(variables('resourceNameConvention').prefix), toLower(variables('resourceNameConvention').suffix.cosmosDb))]",
+    "cosmosDbApiVersion": "2020-03-01",
+    "cosmosDbAnnouncementsDatabaseName": "RivaAnnouncements",
+    "cosmosDbAnnouncementsContainerName": "announcements",
+    "cosmosDbAnnouncementsContainerThroughput": 400,
+    "cosmosDbAnnouncementPreferencesDatabaseName": "RivaAnnouncementPreferences",
+    "cosmosDbAnnouncementPreferencesContainerName": "announcementPreferences",
+    "cosmosDbAnnouncementPreferencesContainerThroughput": 400
+  },
+  "resources": [
+    {
+      "name": "[variables('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2019-06-01-preview",
+      "location": "[resourceGroup().location]",
+      "kind": "v12.0",
+      "properties": {
+        "administratorLogin": "[parameters('sqlServerAdministratorLogin')]",
+        "administratorLoginPassword": "[parameters('sqlServerAdministratorLoginPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "[variables('sqlServerIdentityDatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "[variables('sqlServerDatabaseApiVersion')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+          ],
+          "sku": {
+            "name": "[parameters('sqlServerDatabaseSkuName')]"
+          }
+        },
+        {
+          "name": "[variables('sqlServerAdministrativeDivisionDatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "[variables('sqlServerDatabaseApiVersion')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+          ],
+          "sku": {
+            "name": "[parameters('sqlServerDatabaseSkuName')]"
+          }
+        },
+        {
+          "name": "[variables('sqlServerUsersDatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "[variables('sqlServerDatabaseApiVersion')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+          ],
+          "sku": {
+            "name": "[parameters('sqlServerDatabaseSkuName')]"
+          }
+        },
+        {
+          "name": "[variables('sqlServerFirewallRulesName')]",
+          "type": "firewallRules",
+          "apiVersion": "2015-05-01-preview",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "[variables('cosmosDbAccountName')]",
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "kind": "GlobalDocumentDB",
+      "location": "East US",
+      "tags": {
+        "defaultExperience": "Core (SQL)",
+        "hidden-cosmos-mmspecial": "",
+        "CosmosAccountType": "Non-Production"
+      },
+      "properties": {
+        "publicNetworkAccess": "Enabled",
+        "enableAutomaticFailover": false,
+        "enableMultipleWriteLocations": false,
+        "isVirtualNetworkFilterEnabled": false,
+        "virtualNetworkRules": [],
+        "disableKeyBasedMetadataWriteAccess": false,
+        "databaseAccountOfferType": "Standard",
+        "consistencyPolicy": {
+          "defaultConsistencyLevel": "Eventual",
+          "maxIntervalInSeconds": 5,
+          "maxStalenessPrefix": 100
+        },
+        "locations": [
+          {
+            "locationName": "East US",
+            "provisioningState": "Succeeded",
+            "failoverPriority": 0,
+            "isZoneRedundant": false
+          }
+        ],
+        "capabilities": []
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementsDatabaseName'))]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "[variables('cosmosDbAnnouncementsDatabaseName')]"
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementsDatabaseName'), '/', variables('cosmosDbAnnouncementsContainerName'))]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('cosmosDbAccountName'), variables('cosmosDbAnnouncementsDatabaseName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "[variables('cosmosDbAnnouncementsContainerName')]",
+          "indexingPolicy": {
+            "indexingMode": "consistent",
+            "automatic": true,
+            "includedPaths": [
+              {
+                "path": "/*"
+              }
+            ],
+            "excludedPaths": [
+              {
+                "path": "/\"_etag\"/?"
+              }
+            ],
+            "spatialIndexes": [
+              {
+                "path": "/*",
+                "types": [
+                  "Point",
+                  "LineString",
+                  "Polygon",
+                  "MultiPolygon"
+                ]
+              }
+            ]
+          },
+          "partitionKey": {
+            "paths": [
+              "/_partitionKey"
+            ],
+            "kind": "Hash"
+          },
+          "uniqueKeyPolicy": {
+            "uniqueKeys": []
+          },
+          "conflictResolutionPolicy": {
+            "mode": "LastWriterWins",
+            "conflictResolutionPath": "/_ts"
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementsDatabaseName'), '/', variables('cosmosDbAnnouncementsContainerName'), '/default')]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/throughputSettings",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', variables('cosmosDbAccountName'), variables('cosmosDbAnnouncementsDatabaseName'), variables('cosmosDbAnnouncementsContainerName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "throughput": "[variables('cosmosDbAnnouncementsContainerThroughput')]"
+        }
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementPreferencesDatabaseName'))]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('cosmosDbAccountName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "[variables('cosmosDbAnnouncementPreferencesDatabaseName')]"
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementPreferencesDatabaseName'), '/', variables('cosmosDbAnnouncementPreferencesContainerName'))]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('cosmosDbAccountName'), variables('cosmosDbAnnouncementPreferencesDatabaseName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "id": "[variables('cosmosDbAnnouncementPreferencesContainerName')]",
+          "indexingPolicy": {
+            "indexingMode": "consistent",
+            "automatic": true,
+            "includedPaths": [
+              {
+                "path": "/*"
+              }
+            ],
+            "excludedPaths": [
+              {
+                "path": "/\"_etag\"/?"
+              }
+            ],
+            "spatialIndexes": [
+              {
+                "path": "/*",
+                "types": [
+                  "Point",
+                  "LineString",
+                  "Polygon",
+                  "MultiPolygon"
+                ]
+              }
+            ]
+          },
+          "partitionKey": {
+            "paths": [
+              "/_partitionKey"
+            ],
+            "kind": "Hash"
+          },
+          "uniqueKeyPolicy": {
+            "uniqueKeys": []
+          },
+          "conflictResolutionPolicy": {
+            "mode": "LastWriterWins",
+            "conflictResolutionPath": "/_ts"
+          }
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "[concat(variables('cosmosDbAccountName'), '/', variables('cosmosDbAnnouncementPreferencesDatabaseName'), '/', variables('cosmosDbAnnouncementPreferencesContainerName'), '/default')]",
+      "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/throughputSettings",
+      "apiVersion": "[variables('cosmosDbApiVersion')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', variables('cosmosDbAccountName'), variables('cosmosDbAnnouncementPreferencesDatabaseName'), variables('cosmosDbAnnouncementPreferencesContainerName'))]"
+      ],
+      "properties": {
+        "resource": {
+          "throughput": "[variables('cosmosDbAnnouncementPreferencesContainerThroughput')]"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "sqlServerIdentityDatabaseConnectionString": {
+      "type": "string",
+      "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('sqlServerIdentityDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerAdministratorLogin'), ';Password=', parameters('sqlServerAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+    },
+    "sqlServerAdministrativeDivisionsDatabaseConnectionString": {
+      "type": "string",
+      "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('sqlServerAdministrativeDivisionDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerAdministratorLogin'), ';Password=', parameters('sqlServerAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+    },
+    "sqlServerUsersDatabaseConnectionString": {
+      "type": "string",
+      "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', variables('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('sqlServerUsersDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerAdministratorLogin'), ';Password=', parameters('sqlServerAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+    },
+    "cosmosDbAccountName": {
+      "type": "string",
+      "value": "[variables('cosmosDbAccountName')]"
+    },
+    "cosmosDbPrimaryMasterKey": {
+      "type": "string",
+      "value": "[listKeys(variables('cosmosDbAccountName'), variables('cosmosDbApiVersion')).primaryMasterKey]"
+    },
+    "cosmosDbPrimaryConnectionString": {
+      "type": "string",
+      "value": "[listConnectionStrings(variables('cosmosDbAccountName'), variables('cosmosDbApiVersion')).connectionStrings[0].connectionString]"
+    },
+    "cosmosDbUri": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.DocumentDb/databaseAccounts/', variables('cosmosDbAccountName'))).documentEndpoint]"
+    },
+    "cosmosDbAnnouncementsDatabaseName": {
+      "type": "string",
+      "value": "[variables('cosmosDbAnnouncementsDatabaseName')]"
+    },
+    "cosmosDbAnnouncementsContainerName": {
+      "type": "string",
+      "value": "[variables('cosmosDbAnnouncementsContainerName')]"
+    },
+    "cosmosDbAnnouncementPreferencesDatabaseName": {
+      "type": "string",
+      "value": "[variables('cosmosDbAnnouncementPreferencesDatabaseName')]"
+    },
+    "cosmosDbAnnouncementPreferencesContainerName": {
+      "type": "string",
+      "value": "[variables('cosmosDbAnnouncementPreferencesContainerName')]"
+    },
+    "cosmosDbAnnouncementPreferencesContainerThroughput": {
+      "type": "string",
+      "value": "[string(variables('cosmosDbAnnouncementPreferencesContainerThroughput'))]"
+    }
+  }
+}

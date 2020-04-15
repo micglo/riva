@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "keyVaultSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "Standard",
+        "Premium"
+      ]
+    },
+    "keyVaultSkuFamily": {
+      "type": "string"
+    },
+    "keyVaultAccessPolicyObjectId": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "keyVault": "Vault"
+      }
+    },
+    "keyVaultName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.keyVault)]",
+    "keyVaultAccessPolicies": [
+      {
+        "tenantId": "[subscription().tenantId]",
+        "objectId": "[parameters('keyVaultAccessPolicyObjectId')]",
+        "permissions": {
+          "keys": [ "Get", "List", "Update", "Create", "Delete" ],
+          "secrets": [ "Get", "List", "Set", "Delete" ],
+          "certificates": [ "Get", "List", "Update", "Create" ]
+        }
+      }
+    ]
+  },
+  "resources": [
+    {
+      "name": "[variables('keyVaultName')]",
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2019-09-01",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": {
+          "name": "[parameters('keyVaultSkuName')]",
+          "family": "[parameters('keyVaultSkuFamily')]"
+        },
+        "tenantId": "[subscription().tenantId]",
+        "accessPolicies": "[variables('keyVaultAccessPolicies')]",
+        "enabledForDeployment": true,
+        "enabledForTemplateDeployment": true,
+        "enableSoftDelete": true
+      }
+    }
+  ],
+  "outputs": {
+    "keyVaultName": {
+      "type": "string",
+      "value": "[variables('keyVaultName')]"
+    }
+  }
+}

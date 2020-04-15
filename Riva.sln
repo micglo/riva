@@ -276,6 +276,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Web.Api.Gateway", "src
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "src\docker-compose.dcproj", "{8123DFCF-538A-44FA-B2AF-F810262E6DC0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{DDDF142B-6817-4BEF-A912-4018CE917C1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azureResourceManager", "azureResourceManager", "{B5ECA274-FEB9-4EED-BB63-720DC974FB39}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Riva.Infrastructure.AzureResourceManager", "infrastructure\azureResourceManager\Riva.Infrastructure.AzureResourceManager\Riva.Infrastructure.AzureResourceManager.deployproj", "{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{F1BF499A-4B29-4843-9D4A-D6A7DAC0295D}"
+	ProjectSection(SolutionItems) = preProject
+		infrastructure\devOps\azure-pipelines-release.json = infrastructure\devOps\azure-pipelines-release.json
+		infrastructure\devOps\azure-pipelines.yml = infrastructure\devOps\azure-pipelines.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -498,6 +510,10 @@ Global
 		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -600,6 +616,9 @@ Global
 		{3BF165E1-D01D-4B22-B507-FB080FA29F7E} = {C554861C-AA04-4B79-9AD6-7650F7DDBB56}
 		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B} = {C25F5173-E73F-452A-A8F5-C53F9616C90C}
 		{8123DFCF-538A-44FA-B2AF-F810262E6DC0} = {FB2EB21A-1C64-4041-A402-4BBE9196D2A9}
+		{B5ECA274-FEB9-4EED-BB63-720DC974FB39} = {DDDF142B-6817-4BEF-A912-4018CE917C1C}
+		{E15D2BDE-54F8-4C77-9C8F-1D4115B23F74} = {B5ECA274-FEB9-4EED-BB63-720DC974FB39}
+		{F1BF499A-4B29-4843-9D4A-D6A7DAC0295D} = {DDDF142B-6817-4BEF-A912-4018CE917C1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}

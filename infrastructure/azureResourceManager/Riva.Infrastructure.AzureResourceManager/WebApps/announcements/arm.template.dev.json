@@ -1,0 +1,200 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "allowedValues": [
+        "Riva"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Dev",
+        "Test",
+        "Prod"
+      ]
+    },
+    "locationShort": {
+      "type": "string",
+      "allowedValues": [
+        "WE"
+      ]
+    },
+    "aspNetCoreEnvironment": {
+      "type": "string"
+    },
+    "acrLoginServer": {
+      "type": "string"
+    },
+    "acrUsername": {
+      "type": "string"
+    },
+    "acrPassword": {
+      "type": "string"
+    },
+    "imageName": {
+      "type": "string"
+    },
+    "imageTag": {
+      "type": "string"
+    },
+    "appServicePlanResourceId": {
+      "type": "string"
+    },
+    "appInsightsInstrumentationKey": {
+      "type": "string"
+    },
+    "keyVaultName": {
+      "type": "string"
+    },
+    "signingCredentialCertificateName": {
+      "type": "string"
+    },
+    "rivaIdentityWebAppUrl": {
+      "type": "string"
+    },
+    "cosmosDbUri": {
+      "type": "string"
+    },
+    "cosmosDbPrimaryConnectionString": {
+      "type": "string"
+    },
+    "cosmosDbPrimaryMasterKey": {
+      "type": "string"
+    },
+    "cosmosDbDatabaseName": {
+      "type": "string"
+    },
+    "rivaAdministrativeDivisionsWebAppUrl": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "resourceNameConvention": {
+      "prefix": "[concat(parameters('projectName'), '-', parameters('environment'), '-', parameters('locationShort'), '-')]",
+      "suffix": {
+        "webApi": "WebApi",
+        "announcements": "Announcements-"
+      }
+    },
+    "webAppName": "[concat(variables('resourceNameConvention').prefix, variables('resourceNameConvention').suffix.announcements, variables('resourceNameConvention').suffix.webApi)]",
+    "webAppUrl": "[concat('https://', toLower(variables('webAppName')), '.azurewebsites.net')]",
+    "image": "[concat(parameters('acrLoginServer'), '/', parameters('imageName'), ':', parameters('imageTag'))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('webAppName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2019-08-01",
+      "location": "[resourceGroup().location]",
+      "kind": "app,linux,container",
+      "properties": {
+        "enabled": true,
+        "hostNameSslStates": [
+          {
+            "name": "[variables('webAppUrl')]",
+            "sslState": "Disabled",
+            "hostType": "Standard"
+          },
+          {
+            "name": "[concat(toLower(variables('webAppName')), '.scm.azurewebsites.net')]",
+            "sslState": "Disabled",
+            "hostType": "Repository"
+          }
+        ],
+        "serverFarmId": "[parameters('appServicePlanResourceId')]",
+        "siteConfig": {
+          "linuxFxVersion": "[[concat('DOCKER|', variables('image'))]]",
+          "alwaysOn": true,
+          "appSettings": [
+            {
+              "name": "DOCKER_CUSTOM_IMAGE_NAME",
+              "value": "[variables('image')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_URL",
+              "value": "[concat('https://', parameters('acrLoginServer'))]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+              "value": "[parameters('acrUsername')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+              "value": "[parameters('acrPassword')]"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "ASPNETCORE_ENVIRONMENT",
+              "value": "[parameters('aspNetCoreEnvironment')]"
+            },
+            {
+              "name": "Auth__Authority",
+              "value": "[parameters('rivaIdentityWebAppUrl')]"
+            },
+            {
+              "name": "ApplicationInsights__InstrumentationKey",
+              "value": "[parameters('appInsightsInstrumentationKey')]"
+            },
+            {
+              "name": "KeyVault__Name",
+              "value": "[parameters('keyVaultName')]"
+            },
+            {
+              "name": "KeyVault__SigningCredentialCertificateName",
+              "value": "[parameters('signingCredentialCertificateName')]"
+            },
+            {
+              "name": "Swagger__IdentityUrl",
+              "value": "[parameters('rivaIdentityWebAppUrl')]"
+            },
+            {
+              "name": "CosmosDb__DatabaseName",
+              "value": "[parameters('cosmosDbDatabaseName')]"
+            },
+            {
+              "name": "CosmosDb__Uri",
+              "value": "[parameters('cosmosDbUri')]"
+            },
+            {
+              "name": "CosmosDb__AuthKey",
+              "value": "[parameters('cosmosDbPrimaryMasterKey')]"
+            },
+            {
+              "name": "ApiClient__RivaAdministrativeDivisionsApiUrl",
+              "value": "[parameters('rivaAdministrativeDivisionsWebAppUrl')]"
+            }
+          ],
+          "connectionStrings": [
+            {
+              "name": "RivaAnnouncementsCosmosDbConnectionString",
+              "value": "[parameters('cosmosDbPrimaryConnectionString')]",
+              "type": "Custom"
+            }
+          ],
+          "cors": {
+            "allowedOrigins": [
+              "*"
+            ]
+          }
+        },
+        "httpsOnly": true
+      }
+    }
+  ],
+  "outputs": {
+    "rivaAnnouncementsWebApplicationName": {
+      "type": "string",
+      "value": "[variables('webAppName')]"
+    },
+    "rivaAnnouncementsWebApplicationUrl": {
+      "type": "string",
+      "value": "[variables('webAppUrl')]"
+    }
+  }
+}

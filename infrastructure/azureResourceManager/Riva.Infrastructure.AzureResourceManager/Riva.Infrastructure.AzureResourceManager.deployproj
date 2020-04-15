@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>e15d2bde-54f8-4c77-9c8f-1d4115b23f74</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <Content Include="Aks\arm.parameters.dev.json" />
+    <Content Include="Aks\arm.template.json" />
+    <Content Include="AppServices\arm.parameters.dev.json" />
+    <Content Include="AppServices\arm.template.dev.json" />
+    <Content Include="FunctionApps\arm.parameters.dev.json" />
+    <Content Include="FunctionApps\arm.template.dev.json" />
+    <Content Include="Integrations\arm.parameters.docker.json" />
+    <Content Include="Integrations\arm.parameters.local.json" />
+    <Content Include="Monitoring\arm.parameters.dev.json" />
+    <Content Include="Monitoring\arm.template.json" />
+    <Content Include="Containers\arm.parameters.dev.json" />
+    <Content Include="Containers\arm.template.json" />
+    <Content Include="Databases\arm.parameters.dev.json" />
+    <Content Include="Databases\arm.template.json" />
+    <Content Include="Integrations\arm.parameters.dev.json" />
+    <Content Include="Integrations\arm.template.json" />
+    <Content Include="Security\arm.parameters.dev.json" />
+    <Content Include="Security\arm.template.json" />
+    <Content Include="WebApps\administrativeDivisions\arm.parameters.dev.json" />
+    <Content Include="WebApps\administrativeDivisions\arm.template.dev.json" />
+    <Content Include="WebApps\announcements\arm.parameters.dev.json" />
+    <Content Include="WebApps\announcements\arm.template.dev.json" />
+    <Content Include="WebApps\apiGateways\web\arm.parameters.dev.json" />
+    <Content Include="WebApps\apiGateways\web\arm.template.dev.json" />
+    <Content Include="WebApps\identityWebApi\arm.parameters.dev.json" />
+    <Content Include="WebApps\identityWebApi\arm.template.dev.json" />
+    <Content Include="WebApps\identityWeb\arm.parameters.dev.json" />
+    <Content Include="WebApps\identityWeb\arm.template.dev.json" />
+    <Content Include="WebApps\signalR\arm.parameters.dev.json" />
+    <Content Include="WebApps\signalR\arm.template.dev.json" />
+    <Content Include="WebApps\users\arm.parameters.dev.json" />
+    <Content Include="WebApps\users\arm.template.dev.json" />
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>
