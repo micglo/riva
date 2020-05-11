@@ -200,6 +200,38 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Users.Infrastructure.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Users.Web.Api.Test", "src\services\users\tests\Riva.Users.Web.Api.Test\Riva.Users.Web.Api.Test.csproj", "{DCB38465-0A5C-4BC4-AB5F-4C7CEB095C3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "announcementPreferences", "announcementPreferences", "{720E5F2D-BBAB-4427-B324-BA16EE092BA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{EBFFA602-A61F-4F2C-A913-88AB5BF42816}"
+	ProjectSection(SolutionItems) = preProject
+		src\azureFunctions\announcementPreferences\devOps\functions-azure-pipelines-release.json = src\azureFunctions\announcementPreferences\devOps\functions-azure-pipelines-release.json
+		src\azureFunctions\announcementPreferences\devOps\functions-azure-pipelines.yml = src\azureFunctions\announcementPreferences\devOps\functions-azure-pipelines.yml
+		src\azureFunctions\announcementPreferences\devOps\functions-matchers-azure-pipelines-release.json = src\azureFunctions\announcementPreferences\devOps\functions-matchers-azure-pipelines-release.json
+		src\azureFunctions\announcementPreferences\devOps\functions-matchers-azure-pipelines.yml = src\azureFunctions\announcementPreferences\devOps\functions-matchers-azure-pipelines.yml
+		src\azureFunctions\announcementPreferences\devOps\functions-senders-azure-pipelines-release.json = src\azureFunctions\announcementPreferences\devOps\functions-senders-azure-pipelines-release.json
+		src\azureFunctions\announcementPreferences\devOps\functions-senders-azure-pipelines.yml = src\azureFunctions\announcementPreferences\devOps\functions-senders-azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{942A13ED-2B26-4532-8F7A-B09F7DF36AC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions", "src\azureFunctions\announcementPreferences\src\Riva.AnnouncementPreferences.Functions\Riva.AnnouncementPreferences.Functions.csproj", "{46F67B46-B750-48F0-991B-CC3337D0B779}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Core", "src\azureFunctions\announcementPreferences\src\Riva.AnnouncementPreferences.Core\Riva.AnnouncementPreferences.Core.csproj", "{233B66F9-ECEE-45F6-98E2-19C39787B992}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Matchers", "src\azureFunctions\announcementPreferences\src\Riva.AnnouncementPreferences.Functions.Matchers\Riva.AnnouncementPreferences.Functions.Matchers.csproj", "{8482B4FF-36E5-45CC-965F-2EE3E160912A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Senders", "src\azureFunctions\announcementPreferences\src\Riva.AnnouncementPreferences.Functions.Senders\Riva.AnnouncementPreferences.Functions.Senders.csproj", "{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{66E717FB-D574-437F-9976-A59154A82C2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Core.Test", "src\azureFunctions\announcementPreferences\tests\Riva.AnnouncementPreferences.Core.Test\Riva.AnnouncementPreferences.Core.Test.csproj", "{AE1582D3-5381-43B0-9FD1-672993DBE978}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Test", "src\azureFunctions\announcementPreferences\tests\Riva.AnnouncementPreferences.Functions.Test\Riva.AnnouncementPreferences.Functions.Test.csproj", "{851B02FD-863E-40BC-9E68-BD9549E16AE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Matchers.Test", "src\azureFunctions\announcementPreferences\tests\Riva.AnnouncementPreferences.Functions.Matchers.Test\Riva.AnnouncementPreferences.Functions.Matchers.Test.csproj", "{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Senders.Test", "src\azureFunctions\announcementPreferences\tests\Riva.AnnouncementPreferences.Functions.Senders.Test\Riva.AnnouncementPreferences.Functions.Senders.Test.csproj", "{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -370,6 +402,38 @@ Global
 		{DCB38465-0A5C-4BC4-AB5F-4C7CEB095C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB38465-0A5C-4BC4-AB5F-4C7CEB095C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB38465-0A5C-4BC4-AB5F-4C7CEB095C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46F67B46-B750-48F0-991B-CC3337D0B779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46F67B46-B750-48F0-991B-CC3337D0B779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46F67B46-B750-48F0-991B-CC3337D0B779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46F67B46-B750-48F0-991B-CC3337D0B779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233B66F9-ECEE-45F6-98E2-19C39787B992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233B66F9-ECEE-45F6-98E2-19C39787B992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233B66F9-ECEE-45F6-98E2-19C39787B992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233B66F9-ECEE-45F6-98E2-19C39787B992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8482B4FF-36E5-45CC-965F-2EE3E160912A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8482B4FF-36E5-45CC-965F-2EE3E160912A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8482B4FF-36E5-45CC-965F-2EE3E160912A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8482B4FF-36E5-45CC-965F-2EE3E160912A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1582D3-5381-43B0-9FD1-672993DBE978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1582D3-5381-43B0-9FD1-672993DBE978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1582D3-5381-43B0-9FD1-672993DBE978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1582D3-5381-43B0-9FD1-672993DBE978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{851B02FD-863E-40BC-9E68-BD9549E16AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851B02FD-863E-40BC-9E68-BD9549E16AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851B02FD-863E-40BC-9E68-BD9549E16AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{851B02FD-863E-40BC-9E68-BD9549E16AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -444,6 +508,18 @@ Global
 		{C5D21F18-C9BA-4245-AAEA-9F9D4E4ECB24} = {FE33F75F-E7A5-4F5F-80C4-FC60EBE65323}
 		{26D8E8EC-E90D-4410-BD5D-A56CC114C2EE} = {FE33F75F-E7A5-4F5F-80C4-FC60EBE65323}
 		{DCB38465-0A5C-4BC4-AB5F-4C7CEB095C3E} = {FE33F75F-E7A5-4F5F-80C4-FC60EBE65323}
+		{720E5F2D-BBAB-4427-B324-BA16EE092BA2} = {F884222C-B258-4607-94FB-F9B4318D4AA0}
+		{EBFFA602-A61F-4F2C-A913-88AB5BF42816} = {720E5F2D-BBAB-4427-B324-BA16EE092BA2}
+		{942A13ED-2B26-4532-8F7A-B09F7DF36AC1} = {720E5F2D-BBAB-4427-B324-BA16EE092BA2}
+		{46F67B46-B750-48F0-991B-CC3337D0B779} = {942A13ED-2B26-4532-8F7A-B09F7DF36AC1}
+		{233B66F9-ECEE-45F6-98E2-19C39787B992} = {942A13ED-2B26-4532-8F7A-B09F7DF36AC1}
+		{8482B4FF-36E5-45CC-965F-2EE3E160912A} = {942A13ED-2B26-4532-8F7A-B09F7DF36AC1}
+		{B3C6CB6F-DD7A-4EDF-B973-A467E5C53ADD} = {942A13ED-2B26-4532-8F7A-B09F7DF36AC1}
+		{66E717FB-D574-437F-9976-A59154A82C2F} = {720E5F2D-BBAB-4427-B324-BA16EE092BA2}
+		{AE1582D3-5381-43B0-9FD1-672993DBE978} = {66E717FB-D574-437F-9976-A59154A82C2F}
+		{851B02FD-863E-40BC-9E68-BD9549E16AE8} = {66E717FB-D574-437F-9976-A59154A82C2F}
+		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB} = {66E717FB-D574-437F-9976-A59154A82C2F}
+		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F} = {66E717FB-D574-437F-9976-A59154A82C2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}

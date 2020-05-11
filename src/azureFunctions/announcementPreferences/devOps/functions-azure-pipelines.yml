@@ -1,0 +1,62 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Core/*'
+      - 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Functions/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Core/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Domain/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Build_Riva_AnnouncementPreferences_Functions_Application
+    displayName: 'Build Riva AnnouncementPreferences Functions application'
+    jobs:
+    - job: Build_Riva_AnnouncementPreferences_Functions_Applications
+      displayName: 'Build Riva AnnouncementPreferences Functions application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet restore'
+          inputs:
+            command: 'restore'
+            projects: 'src/azureFunctions/announcementPreferences/tests/Riva.AnnouncementPreferences.Functions.Test/Riva.AnnouncementPreferences.Functions.Test.csproj'
+            verbosityRestore: 'Normal'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet publish'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Functions/Riva.AnnouncementPreferences.Functions.csproj'
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish build artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'RivaAnnouncementPreferencesFunctionsApp'
+            publishLocation: 'Container'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AnnouncementPreferences.Core test'
+          inputs:
+            command: 'test'
+            projects: 'src/azureFunctions/announcementPreferences/tests/Riva.AnnouncementPreferences.Core.Test/Riva.AnnouncementPreferences.Core.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AnnouncementPreferences.Core tests'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AnnouncementPreferences.Functions test'
+          inputs:
+            command: 'test'
+            projects: 'src/azureFunctions/announcementPreferences/tests/Riva.AnnouncementPreferences.Functions.Test/Riva.AnnouncementPreferences.Functions.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AnnouncementPreferences.Functions tests'

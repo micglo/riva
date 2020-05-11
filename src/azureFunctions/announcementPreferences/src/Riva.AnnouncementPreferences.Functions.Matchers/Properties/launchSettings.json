@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Riva.AnnouncementPreferences.Functions.Matchers": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --port 7073"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 7073,
+      "useSSL": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cosmonaut" Version="2.11.3" />
+    <PackageReference Include="Cosmonaut.Extensions.Microsoft.DependencyInjection" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Azure.CosmosDB.BulkExecutor" Version="2.4.1-preview" />
+    <PackageReference Include="SendGrid" Version="9.21.0" />
+    <PackageReference Include="System.Threading.Tasks.Dataflow" Version="4.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\buildingBlocks\src\Riva.BuildingBlocks.Core\Riva.BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\buildingBlocks\src\Riva.BuildingBlocks.Infrastructure\Riva.BuildingBlocks.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

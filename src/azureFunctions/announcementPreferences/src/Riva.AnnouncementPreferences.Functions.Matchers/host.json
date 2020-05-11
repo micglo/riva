@@ -1,0 +1,28 @@
+{
+  "version": "2.0",
+  "functionTimeout": null,
+  "healthMonitor": {
+    "enabled": true,
+    "healthCheckInterval": "00:00:10",
+    "healthCheckWindow": "00:02:00",
+    "healthCheckThreshold": 6,
+    "counterThreshold": 0.80
+  },
+  "logging": {
+    "fileLoggingMode": "debugOnly",
+    "logLevel": {
+      "default": "Error",
+      "Host.Results": "Information",
+      "Host.Aggregator": "Information"
+    },
+    "console": {
+      "isEnabled": "false"
+    },
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "maxTelemetryItemsPerSecond": 20
+      }
+    }
+  }
+}

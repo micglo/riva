@@ -1,0 +1,55 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Core/*'
+      - 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Functions.Matchers/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Core/*'
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.Domain/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Build_Riva_AnnouncementPreferences_Functions_Matchers_Application
+    displayName: 'Build Riva AnnouncementPreferences Functions Matchers application'
+    jobs:
+    - job: Build_Riva_AnnouncementPreferences_Functions_Matchers_Applications
+      displayName: 'Build Riva AnnouncementPreferences Functions Matchers application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet restore'
+          inputs:
+            command: 'restore'
+            projects: 'src/azureFunctions/announcementPreferences/tests/Riva.AnnouncementPreferences.Functions.Matchers.Test/Riva.AnnouncementPreferences.Functions.Matchers.Test.csproj'
+            verbosityRestore: 'Normal'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet publish'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'src/azureFunctions/announcementPreferences/src/Riva.AnnouncementPreferences.Functions.Matchers/Riva.AnnouncementPreferences.Functions.Matchers.csproj'
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish build artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'RivaAnnouncementPreferencesFunctionsMatchersApp'
+            publishLocation: 'Container'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.AnnouncementPreferences.Functions.Matchers test'
+          inputs:
+            command: 'test'
+            projects: 'src/azureFunctions/announcementPreferences/tests/Riva.AnnouncementPreferences.Functions.Matchers.Test/Riva.AnnouncementPreferences.Functions.Matchers.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.AnnouncementPreferences.Functions.Matchers tests'
