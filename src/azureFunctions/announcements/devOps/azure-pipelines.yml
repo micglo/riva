@@ -1,0 +1,45 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/azureFunctions/announcements/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Build_Riva_Announcements_Functions_Application
+    displayName: 'Build Riva Announcements Functions application'
+    jobs:
+    - job: Build_Riva_Announcements_Functions_Application
+      displayName: 'Build Riva Announcements Functions application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet restore'
+          inputs:
+            command: 'restore'
+            projects: 'src/azureFunctions/announcements/src/Riva.Announcements.Functions/Riva.Announcements.Functions.csproj'
+            verbosityRestore: 'Normal'
+        - task: DotNetCoreCLI@2
+          displayName: 'Run dotnet publish'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'src/azureFunctions/announcements/src/Riva.Announcements.Functions/Riva.Announcements.Functions.csproj'
+            arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish build artifact'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'RivaAnnouncementsFunctionsApp'
+            publishLocation: 'Container'

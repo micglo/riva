@@ -232,6 +232,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreference
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.AnnouncementPreferences.Functions.Senders.Test", "src\azureFunctions\announcementPreferences\tests\Riva.AnnouncementPreferences.Functions.Senders.Test\Riva.AnnouncementPreferences.Functions.Senders.Test.csproj", "{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "announcements", "announcements", "{64DF1F52-8C2F-42D5-99DF-A80E83196C68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1B91AFF1-1C2E-452D-8922-99ED3C8D34F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{C851D60B-0BCD-40AF-BE1B-C3F92D521446}"
+	ProjectSection(SolutionItems) = preProject
+		src\azureFunctions\announcements\devOps\azure-pipelines-release.json = src\azureFunctions\announcements\devOps\azure-pipelines-release.json
+		src\azureFunctions\announcements\devOps\azure-pipelines.yml = src\azureFunctions\announcements\devOps\azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Announcements.Functions", "src\azureFunctions\announcements\src\Riva.Announcements.Functions\Riva.Announcements.Functions.csproj", "{DE40A0B6-372C-4F9E-BF53-45405E218EED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -434,6 +446,10 @@ Global
 		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -520,6 +536,10 @@ Global
 		{851B02FD-863E-40BC-9E68-BD9549E16AE8} = {66E717FB-D574-437F-9976-A59154A82C2F}
 		{01FA35F6-C0C8-49BE-A18C-D3CE34C018CB} = {66E717FB-D574-437F-9976-A59154A82C2F}
 		{E4F1C3EA-0979-4B9F-BE35-CE0818486A9F} = {66E717FB-D574-437F-9976-A59154A82C2F}
+		{64DF1F52-8C2F-42D5-99DF-A80E83196C68} = {F884222C-B258-4607-94FB-F9B4318D4AA0}
+		{1B91AFF1-1C2E-452D-8922-99ED3C8D34F2} = {64DF1F52-8C2F-42D5-99DF-A80E83196C68}
+		{C851D60B-0BCD-40AF-BE1B-C3F92D521446} = {64DF1F52-8C2F-42D5-99DF-A80E83196C68}
+		{DE40A0B6-372C-4F9E-BF53-45405E218EED} = {1B91AFF1-1C2E-452D-8922-99ED3C8D34F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}
