@@ -260,6 +260,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7219E121
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.SignalR.Test", "src\services\signalR\tests\Riva.SignalR.Test\Riva.SignalR.Test.csproj", "{046AC2CC-F4B0-4262-80A7-56B0D864728C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apiGateways", "apiGateways", "{1DE5FBDB-0CD7-4C76-A399-F8091C355DB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{C554861C-AA04-4B79-9AD6-7650F7DDBB56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C25F5173-E73F-452A-A8F5-C53F9616C90C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{3BF165E1-D01D-4B22-B507-FB080FA29F7E}"
+	ProjectSection(SolutionItems) = preProject
+		src\apiGateways\web\devOps\azure-pipelines-releases.json = src\apiGateways\web\devOps\azure-pipelines-releases.json
+		src\apiGateways\web\devOps\azure-pipelines.yml = src\apiGateways\web\devOps\azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Web.Api.Gateway", "src\apiGateways\web\src\Riva.Web.Api.Gateway\Riva.Web.Api.Gateway.csproj", "{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -474,6 +488,10 @@ Global
 		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -570,6 +588,11 @@ Global
 		{EF0E59D5-81A5-4831-B6D1-0969461A6F43} = {28BFAB14-0803-40F3-AEEB-452D5C87C50E}
 		{7219E121-8396-4A42-BF90-3D0938140346} = {1C757312-CA10-4D4C-8A6F-F80FE6163187}
 		{046AC2CC-F4B0-4262-80A7-56B0D864728C} = {7219E121-8396-4A42-BF90-3D0938140346}
+		{1DE5FBDB-0CD7-4C76-A399-F8091C355DB5} = {FB2EB21A-1C64-4041-A402-4BBE9196D2A9}
+		{C554861C-AA04-4B79-9AD6-7650F7DDBB56} = {1DE5FBDB-0CD7-4C76-A399-F8091C355DB5}
+		{C25F5173-E73F-452A-A8F5-C53F9616C90C} = {C554861C-AA04-4B79-9AD6-7650F7DDBB56}
+		{3BF165E1-D01D-4B22-B507-FB080FA29F7E} = {C554861C-AA04-4B79-9AD6-7650F7DDBB56}
+		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B} = {C25F5173-E73F-452A-A8F5-C53F9616C90C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}
