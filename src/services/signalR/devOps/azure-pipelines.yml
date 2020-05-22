@@ -1,0 +1,74 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - develop
+  paths:
+    include:
+      - 'src/buildingBlocks/src/Riva.BuildingBlocks.WebApi/*'
+      - 'src/services/signalR/*'
+      - 'infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/signalR/*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'Global variables'
+  - group: 'Dev stage variables'
+  - name: buildConfiguration
+    value: 'Release'
+
+stages:
+  - stage: Test_Application
+    displayName: 'Test application'
+    jobs:
+    - job: Test_Application
+      displayName: 'Test application'
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Riva.Users.SignalR.Test tests'
+          inputs:
+            command: 'test'
+            projects: 'src/services/signalR/tests/Riva.SignalR.Test/Riva.SignalR.Test.csproj'
+            arguments: '-c $(buildConfiguration)'
+            testRunTitle: 'Riva.SignalR.Test tests'
+
+  - stage: Build_And_Push_Docker_Image_For_Develop
+    displayName: 'Build and push docker image for develop'
+    dependsOn: Test_Application
+    condition: and(succeeded('Test_Application'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: 'Dev stage variables'
+    jobs:
+    - job: Build_And_Push_Docker_Image
+      displayName: 'Build and push docker image'
+      steps:
+      - task: Docker@2
+        displayName: 'Run docker build and push'
+        inputs:
+          containerRegistry: '$(ServiceConnection.Azure.ContainerRegistry)'
+          repository: '$(Image.RivaSignalR)'
+          command: 'buildAndPush'
+          Dockerfile: 'src/services/signalR/src/Riva.SignalR/Dockerfile.Develop'
+          buildContext: '$(System.DefaultWorkingDirectory)'
+          tags: '$(Image.Tag)'
+
+  - stage: Push_Infrastructure_Scripts
+    displayName: 'Push infrastructure scripts'
+    dependsOn: Test_Application
+    condition: succeeded('Test_Application')
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+    - job: Push_Infrastructure_Scripts
+      displayName: 'Push infrastructure scripts'
+      steps:
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish infrastructure files'
+        inputs:
+          PathtoPublish: '$(System.DefaultWorkingDirectory)/infrastructure/azureResourceManager/Riva.Infrastructure.AzureResourceManager/WebApps/signalR'
+          ArtifactName: 'Infrastructure'
+          publishLocation: 'Container'

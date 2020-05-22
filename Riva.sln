@@ -244,6 +244,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{C851D6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Announcements.Functions", "src\azureFunctions\announcements\src\Riva.Announcements.Functions\Riva.Announcements.Functions.csproj", "{DE40A0B6-372C-4F9E-BF53-45405E218EED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "signalR", "signalR", "{1C757312-CA10-4D4C-8A6F-F80FE6163187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{7F0E4351-CF42-46AC-8B71-EC1604936C0A}"
+	ProjectSection(SolutionItems) = preProject
+		src\services\signalR\devOps\azure-pipelines-release.json = src\services\signalR\devOps\azure-pipelines-release.json
+		src\services\signalR\devOps\azure-pipelines.yml = src\services\signalR\devOps\azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28BFAB14-0803-40F3-AEEB-452D5C87C50E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.SignalR", "src\services\signalR\src\Riva.SignalR\Riva.SignalR.csproj", "{EF0E59D5-81A5-4831-B6D1-0969461A6F43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7219E121-8396-4A42-BF90-3D0938140346}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.SignalR.Test", "src\services\signalR\tests\Riva.SignalR.Test\Riva.SignalR.Test.csproj", "{046AC2CC-F4B0-4262-80A7-56B0D864728C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -450,6 +466,14 @@ Global
 		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE40A0B6-372C-4F9E-BF53-45405E218EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0E59D5-81A5-4831-B6D1-0969461A6F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0E59D5-81A5-4831-B6D1-0969461A6F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0E59D5-81A5-4831-B6D1-0969461A6F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0E59D5-81A5-4831-B6D1-0969461A6F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046AC2CC-F4B0-4262-80A7-56B0D864728C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -540,6 +564,12 @@ Global
 		{1B91AFF1-1C2E-452D-8922-99ED3C8D34F2} = {64DF1F52-8C2F-42D5-99DF-A80E83196C68}
 		{C851D60B-0BCD-40AF-BE1B-C3F92D521446} = {64DF1F52-8C2F-42D5-99DF-A80E83196C68}
 		{DE40A0B6-372C-4F9E-BF53-45405E218EED} = {1B91AFF1-1C2E-452D-8922-99ED3C8D34F2}
+		{1C757312-CA10-4D4C-8A6F-F80FE6163187} = {2009E535-9DE3-4D3B-B9FB-97BC32D67536}
+		{7F0E4351-CF42-46AC-8B71-EC1604936C0A} = {1C757312-CA10-4D4C-8A6F-F80FE6163187}
+		{28BFAB14-0803-40F3-AEEB-452D5C87C50E} = {1C757312-CA10-4D4C-8A6F-F80FE6163187}
+		{EF0E59D5-81A5-4831-B6D1-0969461A6F43} = {28BFAB14-0803-40F3-AEEB-452D5C87C50E}
+		{7219E121-8396-4A42-BF90-3D0938140346} = {1C757312-CA10-4D4C-8A6F-F80FE6163187}
+		{046AC2CC-F4B0-4262-80A7-56B0D864728C} = {7219E121-8396-4A42-BF90-3D0938140346}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}
