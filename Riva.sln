@@ -274,6 +274,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devOps", "devOps", "{3BF165
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Riva.Web.Api.Gateway", "src\apiGateways\web\src\Riva.Web.Api.Gateway\Riva.Web.Api.Gateway.csproj", "{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "src\docker-compose.dcproj", "{8123DFCF-538A-44FA-B2AF-F810262E6DC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -492,6 +494,10 @@ Global
 		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8123DFCF-538A-44FA-B2AF-F810262E6DC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -593,6 +599,7 @@ Global
 		{C25F5173-E73F-452A-A8F5-C53F9616C90C} = {C554861C-AA04-4B79-9AD6-7650F7DDBB56}
 		{3BF165E1-D01D-4B22-B507-FB080FA29F7E} = {C554861C-AA04-4B79-9AD6-7650F7DDBB56}
 		{5441C6B2-9F74-46DD-B92B-CEF1715AE50B} = {C25F5173-E73F-452A-A8F5-C53F9616C90C}
+		{8123DFCF-538A-44FA-B2AF-F810262E6DC0} = {FB2EB21A-1C64-4041-A402-4BBE9196D2A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}

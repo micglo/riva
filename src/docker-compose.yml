@@ -1,0 +1,73 @@
+version: '3.4'
+
+services:
+
+  data.sql:
+    image: microsoft/mssql-server-windows-express:latest
+
+  data.nosql:
+    image: microsoft/azure-cosmosdb-emulator:latest
+
+  data.storage.account:
+    image: microsoft/azure-storage-emulator:latest
+
+  riva.identity.web:
+    image: ${DOCKER_REGISTRY:-riva}/identity.web:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\identity\src\Riva.Identity.Web\Dockerfile
+    depends_on:
+      - data.sql
+
+  riva.identity.web.api:
+    image: ${DOCKER_REGISTRY:-riva}/identity.web.api:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\identity\src\Riva.Identity.Web.Api\Dockerfile
+    depends_on:
+      - data.sql
+
+  riva.administrative.divisions.web.api:
+    image: ${DOCKER_REGISTRY:-riva}/administrative.divisions.web.api:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\administrativeDivisions\src\Riva.AdministrativeDivisions.Web.Api\Dockerfile
+    depends_on:
+      - data.sql
+
+  riva.announcements.web.api:
+    image: ${DOCKER_REGISTRY:-riva}/announcements.web.api:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\announcements\src\Riva.Announcements.Web.Api\Dockerfile
+    depends_on:
+      - data.nosql
+
+  riva.users.web.api:
+    image: ${DOCKER_REGISTRY:-riva}/users.web.api:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\users\src\Riva.Users.Web.Api\Dockerfile
+    depends_on:
+      - data.sql
+
+  riva.signalr:
+    image: ${DOCKER_REGISTRY:-riva}/signalr:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: services\signalR\src\Riva.SignalR\Dockerfile
+    depends_on:
+      - riva.identity.web
+      - riva.identity.web.api
+      - riva.users.web.api
+
+  riva.web.api.gateway:
+    image: ${DOCKER_REGISTRY:-riva}/web.api.gateway:${PLATFORM:-windows}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: apiGateways\web\src\Riva.Web.Api.Gateway\Dockerfile
+    depends_on:
+      - riva.identity.web.api
+      - riva.administrative.divisions.web.api
+      - riva.announcements.web.api
+      - riva.users.web.api
