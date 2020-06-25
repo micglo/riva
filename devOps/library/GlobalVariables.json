@@ -1,0 +1,116 @@
+{
+  "variables": [
+    {
+      "name": "Configuration.Release",
+      "value": "Release"
+    },
+    {
+      "name": "Image.RivaAdministrativeDivisionsWebApi",
+      "value": "riva.administrative.divisions.web.api"
+    },
+    {
+      "name": "Image.RivaAnnouncementsWebApi",
+      "value": "riva.announcements.web.api"
+    },
+    {
+      "name": "Image.RivaIdentityWeb",
+      "value": "riva.identity.web"
+    },
+    {
+      "name": "Image.RivaIdentityWebApi",
+      "value": "riva.identity.web.api"
+    },
+    {
+      "name": "Image.RivaSignalR",
+      "value": "riva.signalr"
+    },
+    {
+      "name": "Image.RivaUsersWebApi",
+      "value": "riva.users.web.api"
+    },
+    {
+      "name": "Image.RivaWebApiGateway",
+      "value": "riva.web.api.gateway"
+    },
+    {
+      "name": "Image.Tag",
+      "value": "latest"
+    },
+    {
+      "name": "KeyVault.Certificate.SigningCredential.Name",
+      "value": "SigningCredentialCertificate"
+    },
+    {
+      "name": "Location.WestEurope.Name",
+      "value": "West Europe"
+    },
+    {
+      "name": "Location.WestEurope.ShortName",
+      "value": "WE"
+    },
+    {
+      "name": "Project.Name",
+      "value": "Riva"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Aks",
+      "value": "AksDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.AppServices",
+      "value": "AppServicesDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Containers",
+      "value": "ContainersDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Databases",
+      "value": "DatabasesDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.FunctionApps",
+      "value": "FunctionsDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Integrations",
+      "value": "IntegrationsDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Monitoring",
+      "value": "MonitoringDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaAdministrativeDivisionsWebApi",
+      "value": "RivaAdministrativeDivisionsWebApiDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaAnnouncementsWebApi",
+      "value": "RivaAnnouncementsWebApiDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaIdentityWeb",
+      "value": "RivaIdentityWebDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaIdentityWebApi",
+      "value": "RivaIdentityWebApiDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaSignalR",
+      "value": "RivaSignalRDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaUsersWebApi",
+      "value": "RivaUsersWebApiDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.RivaWebApiGateway",
+      "value": "RivaWebApiGatewayDeployment"
+    },
+    {
+      "name": "ResourceGroup.Deployment.Security",
+      "value": "SecurityDeployment"
+    }
+  ] 
+}

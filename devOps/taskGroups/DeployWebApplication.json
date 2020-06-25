@@ -1,0 +1,317 @@
+{
+  "tasks": [
+    {
+      "environment": {
+      },
+      "displayName": "ARM Outputs - Web app",
+      "alwaysRun": false,
+      "continueOnError": false,
+      "condition": "succeeded()",
+      "enabled": true,
+      "timeoutInMinutes": 0,
+      "inputs": {
+        "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+        "ConnectedServiceNameARM": "$(azureSubscription)",
+        "resourceGroupName": "$(resourceGroupName)",
+        "prefix": "",
+        "outputNames": "",
+        "whenLastDeploymentIsFailed": "fail",
+        "deploymentNameFilter": "$(deploymentName)"
+      },
+      "task": {
+        "id": "584bcff2-3353-4f11-872b-6ba01267a972",
+        "versionSpec": "5.*",
+        "definitionType": "task"
+      }
+    },
+    {
+      "environment": {
+      },
+      "displayName": "Deploy web application",
+      "alwaysRun": false,
+      "continueOnError": false,
+      "condition": "succeeded()",
+      "enabled": true,
+      "timeoutInMinutes": 0,
+      "inputs": {
+        "ConnectionType": "AzureRM",
+        "ConnectedServiceName": "$(azureSubscription)",
+        "PublishProfilePath": "$(System.DefaultWorkingDirectory)/**/*.pubxml",
+        "PublishProfilePassword": "",
+        "WebAppKind": "webAppContainer",
+        "WebAppName": "$(webAppName)",
+        "DeployToSlotOrASEFlag": "false",
+        "ResourceGroupName": "",
+        "SlotName": "production",
+        "DockerNamespace": "$(acrLoginServer)",
+        "DockerRepository": "$(imageName)",
+        "DockerImageTag": "$(imageTag)",
+        "VirtualApplication": "",
+        "Package": "",
+        "RuntimeStack": "",
+        "RuntimeStackFunction": "",
+        "StartupCommand": "",
+        "ScriptType": "",
+        "InlineScript": ":: You can provide your deployment commands here. One command per line.",
+        "ScriptPath": "",
+        "WebConfigParameters": "",
+        "AppSettings": "",
+        "ConfigurationSettings": "",
+        "UseWebDeploy": "false",
+        "DeploymentType": "webDeploy",
+        "TakeAppOfflineFlag": "true",
+        "SetParametersFile": "",
+        "RemoveAdditionalFilesFlag": "false",
+        "ExcludeFilesFromAppDataFlag": "true",
+        "AdditionalArguments": "-retryAttempts:6 -retryInterval:10000",
+        "RenameFilesFlag": "true",
+        "XmlTransformation": "false",
+        "XmlVariableSubstitution": "false",
+        "JSONFiles": ""
+      },
+      "task": {
+        "id": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+        "versionSpec": "4.*",
+        "definitionType": "task"
+      }
+    },
+    {
+      "environment": {
+      },
+      "displayName": "Create managed identity",
+      "alwaysRun": false,
+      "continueOnError": false,
+      "condition": "succeeded()",
+      "enabled": true,
+      "timeoutInMinutes": 0,
+      "inputs": {
+        "connectedServiceNameARM": "$(azureSubscription)",
+        "scriptType": "pscore",
+        "scriptLocation": "scriptPath",
+        "scriptPath": "$(System.DefaultWorkingDirectory)/_RivaTools-CI/Scripts/CreateWebAppManagedIdentity.ps1",
+        "inlineScript": "",
+        "scriptArguments": "-WebAppName $(webAppName) -WebAppResourceGroupName $(resourceGroupName) -CreatedIdentityPrincipalIdVsoVariableName \"managedIdentityPrincipalId\"",
+        "powerShellErrorActionPreference": "stop",
+        "addSpnToEnvironment": "false",
+        "useGlobalConfig": "false",
+        "cwd": "",
+        "failOnStandardError": "false",
+        "powerShellIgnoreLASTEXITCODE": "false"
+      },
+      "task": {
+        "id": "46e4be58-730b-4389-8a2f-ea10b3e5e815",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      }
+    },
+    {
+      "environment": {
+      },
+      "displayName": "Set get list key vault permissions",
+      "alwaysRun": false,
+      "continueOnError": false,
+      "condition": "succeeded()",
+      "enabled": true,
+      "timeoutInMinutes": 0,
+      "inputs": {
+        "connectedServiceNameARM": "$(azureSubscription)",
+        "scriptType": "pscore",
+        "scriptLocation": "scriptPath",
+        "scriptPath": "$(System.DefaultWorkingDirectory)/_RivaTools-CI/Scripts/SetGetListKeyVaultPolicy.ps1",
+        "inlineScript": "",
+        "scriptArguments": "-KeyVaultName $(keyVaultName) -KeyVaultResourceGroupName $(resourceGroupName) -ObjectId $(managedIdentityPrincipalId)",
+        "powerShellErrorActionPreference": "stop",
+        "addSpnToEnvironment": "false",
+        "useGlobalConfig": "false",
+        "cwd": "",
+        "failOnStandardError": "false",
+        "powerShellIgnoreLASTEXITCODE": "false"
+      },
+      "task": {
+        "id": "46e4be58-730b-4389-8a2f-ea10b3e5e815",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      }
+    }
+  ],
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "revision": 6,
+  "createdBy": {
+    "displayName": "Michał Głowaczewski",
+    "id": "2091925e-cf59-4280-ab05-8beb78f42c49",
+    "uniqueName": "michalglowaczewski@hotmail.com"
+  },
+  "createdOn": "2020-06-25T18:40:00.360Z",
+  "comment": "",
+  "id": "e99e3540-8c46-48c2-9730-be6ffa8bb1b0",
+  "name": "Deploy web application",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "isTest": false
+  },
+  "iconUrl": "https://cdn.vsassets.io/v/M170_20200622.9/_content/icon-meta-task.png",
+  "friendlyName": "Deploy web application",
+  "description": "",
+  "category": "Deploy",
+  "definitionType": "metaTask",
+  "author": "Michał Głowaczewski",
+  "demands": [
+  ],
+  "groups": [
+  ],
+  "inputs": [
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "acrLoginServer",
+      "label": "acrLoginServer",
+      "defaultValue": "$(acrLoginServer)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "A globally unique top-level domain name for your specific registry or namespace.<br/> Note: Fully qualified image name will be of the format: '<b>`<registry or namespace`></b>/`<repository`>:`<tag`>'. For example, '<b>myregistry.azurecr.io</b>/nginx:latest'.",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "azureSubscription",
+      "label": "azureSubscription",
+      "defaultValue": "$(ServiceConnection.Azure.Portal)",
+      "required": true,
+      "type": "connectedService:AzureRM",
+      "helpMarkDown": "Select the Azure Resource Manager subscription.",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "deploymentName",
+      "label": "deploymentName",
+      "defaultValue": "",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "Optional string to filter deployments by. This can be useful if you have concurrent deployments to the same resource group. Deployment names in Azure Pipelines are the name of the JSON file plus the date and time, so a file `CreateKeyVault.json` could have a deployment name of `CreateKeyVault-20180025-151538-0688`. In this case, if you want to filter to deployments of this file enter `CreateKeyVault` as the filter.<br/><br/>This uses [micromatch](https://github.com/micromatch/micromatch) under the hood (ignoring case) so us wildcards like *",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "imageName",
+      "label": "imageName",
+      "defaultValue": "",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "Name of the repository where the container images are stored.<br/> Note: Fully qualified image name will be of the format: '`<registry or namespace`>/<b>`<repository`></b>:`<tag`>'. For example, 'myregistry.azurecr.io/<b>nginx</b>:latest'.",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "imageTag",
+      "label": "imageTag",
+      "defaultValue": "$(Image.Tag)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "Tags are optional, it is the mechanism that registries use to give Docker images a version.<br/> Note: Fully qualified image name will be of the format: '`<registry or namespace`>/`<repository`>:<b>`<tag`></b>'. For example, 'myregistry.azurecr.io/nginx:<b>latest</b>'.",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "keyVaultName",
+      "label": "keyVaultName",
+      "defaultValue": "$(keyVaultName)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "managedIdentityPrincipalId",
+      "label": "managedIdentityPrincipalId",
+      "defaultValue": "$(managedIdentityPrincipalId)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "resourceGroupName",
+      "label": "resourceGroupName",
+      "defaultValue": "$(ResourceGroup.Name)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "webAppName",
+      "label": "webAppName",
+      "defaultValue": "",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    }
+  ],
+  "satisfies": [
+  ],
+  "sourceDefinitions": [
+  ],
+  "dataSourceBindings": [
+  ],
+  "instanceNameFormat": "Task group: Deploy web application",
+  "preJobExecution": {
+  },
+  "execution": {
+  },
+  "postJobExecution": {
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "variables": [
+    {
+      "name": "ServiceConnection.Azure.Portal",
+      "value": "AzurePortalServiceConnection"
+    },
+    {
+      "name": "Stage",
+      "value": "Docker"
+    }
+  ] 
+}

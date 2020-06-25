@@ -21,12 +21,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{1C0E
 		devOps\scripts\SetKeyVaultSecret.ps1 = devOps\scripts\SetKeyVaultSecret.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "taskGroups", "taskGroups", "{2611EDD8-B34A-46ED-83C6-1B5B11128A3C}"
+	ProjectSection(SolutionItems) = preProject
+		devOps\taskGroups\ComposeAzureResourceGroupName.json = devOps\taskGroups\ComposeAzureResourceGroupName.json
+		devOps\taskGroups\DeployWebApplication.json = devOps\taskGroups\DeployWebApplication.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{FF77381D-E5A6-41FD-8D88-E05DF8CBA580}"
+	ProjectSection(SolutionItems) = preProject
+		devOps\library\DevStageVariables.json = devOps\library\DevStageVariables.json
+		devOps\library\DockerStageVariables.json = devOps\library\DockerStageVariables.json
+		devOps\library\GlobalVariables.json = devOps\library\GlobalVariables.json
+		devOps\library\LocalStageVariables.json = devOps\library\LocalStageVariables.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1C0EE0B1-7DD1-42BE-9ED3-3675965EE326} = {CE31DD3A-9A3E-4A9C-8B34-27ADCFEAD47F}
+		{2611EDD8-B34A-46ED-83C6-1B5B11128A3C} = {CE31DD3A-9A3E-4A9C-8B34-27ADCFEAD47F}
+		{FF77381D-E5A6-41FD-8D88-E05DF8CBA580} = {CE31DD3A-9A3E-4A9C-8B34-27ADCFEAD47F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB515EEA-4055-42FC-861C-EB9BF1FC8737}

@@ -1,0 +1,40 @@
+{
+  "variables": [
+    {
+      "name": "Environment",
+      "value": "Development"
+    },
+    {
+      "name": "Facebook.AppId",
+      "value": "******"
+    },
+    {
+      "name": "Facebook.AppSecret",
+      "value": "******"
+    },
+    {
+      "name": "Google.ClientId",
+      "value": "******"
+    },
+    {
+      "name": "Google.ClientSecret",
+      "value": "******"
+    },
+    {
+      "name": "RivaWebPortalUrl",
+      "value": "https://riva-dev-we-portal-webapp.azurewebsites.net"
+    },
+    {
+      "name": "ServiceConnection.Azure.ContainerRegistry",
+      "value": "RivaDevWeContainerRegistryServiceConnection"
+    },
+    {
+      "name": "ServiceConnection.Azure.Portal",
+      "value": "AzurePortalServiceConnection"
+    },
+    {
+      "name": "Stage",
+      "value": "Dev"
+    }
+  ] 
+}

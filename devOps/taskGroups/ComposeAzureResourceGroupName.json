@@ -1,0 +1,135 @@
+{
+  "tasks": [
+    {
+      "environment": {
+      },
+      "displayName": "Compose Azure Resource Group name",
+      "alwaysRun": false,
+      "continueOnError": false,
+      "condition": "succeeded()",
+      "enabled": true,
+      "timeoutInMinutes": 0,
+      "inputs": {
+        "targetType": "filePath",
+        "filePath": "$(System.DefaultWorkingDirectory)/_RivaTools-CI/Scripts/ComposeAzureResourceGroupName.ps1",
+        "arguments": "-ProjectName $(projectName) -Stage $(stage) -LocationShort $(locationShort) -VsoResourceGroupVariableName $(vsoResourceGroupVariableName)",
+        "script": "",
+        "errorActionPreference": "stop",
+        "failOnStderr": "false",
+        "ignoreLASTEXITCODE": "false",
+        "pwsh": "false",
+        "workingDirectory": ""
+      },
+      "task": {
+        "id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+        "versionSpec": "2.*",
+        "definitionType": "task"
+      }
+    }
+  ],
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "revision": 3,
+  "createdBy": {
+    "displayName": "Michał Głowaczewski",
+    "id": "2091925e-cf59-4280-ab05-8beb78f42c49",
+    "uniqueName": "michalglowaczewski@hotmail.com"
+  },
+  "createdOn": "2020-02-07T19:23:35.520Z",
+  "comment": "",
+  "id": "ef9c6e68-b2d1-4123-9624-f34de3dcfdcd",
+  "name": "Compose Azure Resource Group name",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "isTest": false
+  },
+  "iconUrl": "https://cdn.vsassets.io/v/M164_20200204.2/_content/icon-meta-task.png",
+  "friendlyName": "Compose Azure Resource Group name",
+  "description": "",
+  "category": "Utility",
+  "definitionType": "metaTask",
+  "author": "Michał Głowaczewski",
+  "demands": [
+  ],
+  "groups": [
+  ],
+  "inputs": [
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "locationShort",
+      "label": "locationShort",
+      "defaultValue": "$(Location.WestEurope.ShortName)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "projectName",
+      "label": "projectName",
+      "defaultValue": "$(Project.Name)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "stage",
+      "label": "stage",
+      "defaultValue": "$(Stage)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    },
+    {
+      "aliases": [
+      ],
+      "options": {
+      },
+      "properties": {
+      },
+      "name": "vsoResourceGroupVariableName",
+      "label": "vsoResourceGroupVariableName",
+      "defaultValue": "$(ResourceGroup.Name)",
+      "required": true,
+      "type": "string",
+      "helpMarkDown": "",
+      "groupName": ""
+    }
+  ],
+  "satisfies": [
+  ],
+  "sourceDefinitions": [
+  ],
+  "dataSourceBindings": [
+  ],
+  "instanceNameFormat": "Task group: Compose Azure Resource Group name",
+  "preJobExecution": {
+  },
+  "execution": {
+  },
+  "postJobExecution": {
+  }
+}
