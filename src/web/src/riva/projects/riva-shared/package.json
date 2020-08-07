@@ -1,0 +1,19 @@
+{
+  "name": "riva-shared",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "~10.0.11",
+    "@angular/forms": "~10.0.11",
+    "@angular/core": "~10.0.11",
+    "@ng-bootstrap/ng-bootstrap": "~7.0.0",
+    "@ng-select/ng-select": "~5.0.8",
+    "@ngx-translate/core": "~13.0.0",
+    "@sweetalert2/ngx-sweetalert2": "~8.1.1",
+    "ngx-device-detector": "~1.4.6",
+    "ngx-ui-switch": "^10.0.2",
+    "screenfull": "~5.0.2"
+  },
+  "dependencies": {
+    "tslib": "~2.0.0"
+  }
+}

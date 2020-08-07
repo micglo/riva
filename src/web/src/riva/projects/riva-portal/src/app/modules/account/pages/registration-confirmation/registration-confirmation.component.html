@@ -1,0 +1,29 @@
+<section id="regestration-confirmation">
+    <div class="row auth-height full-height-vh m-0">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="card overflow-hidden">
+                <div class="card-content">
+                    <div class="card-body auth-img">
+                        <div class="row m-0">
+                            <div
+                                class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center text-center auth-img-bg py-2">
+                                <img src="assets/img/gallery/register.png" alt="" class="img-fluid" width="350"
+                                    height="230">
+                            </div>
+                            <div
+                                class="col-lg-6 col-md-12 px-4 py-3 d-flex justify-content-center flex-column text-center">
+                                <h4 class="card-title mb-2">
+                                    {{ 'account.registrationConfirmation.title' | translate }}</h4>
+                                <p>{{ 'account.registrationConfirmation.subtitle' | translate }}</p>
+                                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                                    <a [routerLink]="['/']"
+                                        class="btn bg-light-primary mb-2 mb-sm-0">{{ 'application.operation.backToHome' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

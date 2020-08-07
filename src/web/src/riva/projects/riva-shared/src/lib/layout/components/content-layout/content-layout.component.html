@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="main-panel">
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper p-0">
+                <router-outlet></router-outlet>
+                <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box"
+                    [fullScreen]="true">
+                    <p style="color: white"> {{ 'application.spinner.message' | translate }} </p>
+                </ngx-spinner>
+            </div>
+        </div>
+    </div>
+</div>

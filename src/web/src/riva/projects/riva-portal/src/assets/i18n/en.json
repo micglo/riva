@@ -1,0 +1,185 @@
+{
+    "application": {
+        "menu": {
+            "home": {
+                "main": "Home"
+            }
+        },
+        "error": {
+            "email": "This field must be a valid email address",
+            "required": "This field is required",
+            "minLength": "This field must contain at least {{ minLength }} characters",
+            "minValue": "This field must not be smaller than {{ minValue }}",
+            "maxLength": "This field must contain less than {{ maxLength }} characters",
+            "mustMatch": "This field value must match {{ matchingFieldName }} field value",
+            "somethingWentWrong": "Something went wrong. Try again or contact administrator."
+        },
+        "operation": {
+            "save": "Save",
+            "cancel": "Cancel",
+            "backToHome": "Back To Home"
+        },
+        "spinner": {
+            "message": "Loading..."
+        },
+        "integrationEvent": {
+            "accountCreated": {
+                "success": "Account created",
+                "failure": "Account creation failed. Please contact an Administrator."
+            },
+            "userUpdated": {
+                "success": "General profile data changed",
+                "failure": "General profile data update failed. Please contact an Administrator."
+            },
+            "userDeleted": {
+                "success": "Account deleted",
+                "failure": "Account deletion failed. Please contact an Administrator."
+            }
+        }
+    },
+    "navbar": {
+        "login": "Login",
+        "user": {
+            "editProfile": "Edit profile",
+            "logout": "Logout"
+        }
+    },
+    "authCodeRedirect": {
+        "title": "Authentication!",
+        "message": "You are now being authenticating."
+    },
+    "pageNotFound": {
+        "title": "404 - Page Not Found!",
+        "message": "The page you are looking for might have beel removed, had it's name changed, or is temporarily unavailable.",
+        "backToHome": "Back To Home"
+    },
+    "user": {
+        "announcementSendingFrequency": {
+            "everyHour": "Every Hour",
+            "everyTwoHours": "Every Two Hours",
+            "everyThreeHours": "Every Three Hours",
+            "everyFourHours": "Every Four Hours",
+            "everyFiveHours": "Every Five Hours",
+            "everySixHours": "Every Six Hours",
+            "everyTwelveHours": "Every Twelve Hours"
+        }
+    },
+    "myAccount": {
+        "profile": {
+            "title": "Account profile",
+            "subtitle": "Configure account settings to your needs",
+            "tab": {
+                "general": {
+                    "title": "General",
+                    "uploadPhoto": "Upload Photo",
+                    "reset": "Reset",
+                    "allowedFormats": "Allowed JPG, GIF or PNG. Max size of 800kB",
+                    "email": "Email",
+                    "announcementPreferenceLimit": "Number of announcement preferences",
+                    "announcementSendingFrequency": "Announcement Sending Frequency",
+                    "serviceActive": "Service is active",
+                    "deleteAccount": {
+                        "button": "Delete account",
+                        "successMessage": "Account deletion request accepted",
+                        "confirmationAlert": {
+                            "title": "Are you sure?",
+                            "text": "You won't be able to revert this!",
+                            "confirmButtonText": "Delete account"
+                        }
+                    },
+                    "submit": {
+                        "successMessage": "General profile data update request accepted"
+                    }
+                },
+                "changePassword": {
+                    "title": "Change Password",
+                    "oldPassword": "Old Password",
+                    "newPassword": "New Password",
+                    "confirmNewPassword": "Confirm New Password",
+                    "submit": {
+                        "successMessage": "Password changed",
+                        "incorrectOldPasswordErrorMessage": "Old password is incorrect"
+                    }
+                },
+                "assignPassword": {
+                    "title": "Assign password",
+                    "password": "Password",
+                    "confirmPassword": "Confirm Password",
+                    "submit": {
+                        "successMessage": "Password assigned"
+                    }
+                }
+            }
+        }
+    },
+    "account": {
+        "registration": {
+            "title": "Create Account",
+            "subtitle": "Fill the below form to create a new account",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "acceptTerms": "I accept the terms & conditions",
+            "register": "Register",
+            "requestRegistrationConfirmationEmail": "Request new account confirmation email",
+            "requestPasswordResetEmail": "Request password reset email",
+            "submit": {
+                "successMessage": "Account creation request accepted",
+                "emailIsAlreadyTakenErrorMessage": "Email is already taken"
+            }
+        },
+        "registrationConfirmation": {
+            "title": "Confirm Account",
+            "subtitle": "Your account is now being confirmed",
+            "confirmAccount": {
+                "successMessage": "Account confirmed",
+                "alreadyConfirmedErrorMessage": "Account is already confirmed",
+                "confirmationCodeExpiredErrorMessage": "Confirmation code is expired",
+                "confirmationCodeWasNotGeneratedErrorMessage": "Confirmation code was not generated",
+                "incorrectConfirmationCodeErrorMessage": "Confirmation code is incorrect",
+                "notFoundErrorMessage": "Account not found"
+            }
+        },
+        "requestRegistrationConfirmationEmail": {
+            "title": "Request new account confirmation email",
+            "subtitle": "Fill the below form to request a new account confirmation email",
+            "email": "Email",
+            "send": "Send",
+            "submit": {
+                "successMessage": "Account confirmed email requested",
+                "alreadyConfirmedErrorMessage": "Account is already confirmed",
+                "notFoundErrorMessage": "Account not found"
+            }
+        },
+        "requestPasswordResetEmail": {
+            "title": "Request password reset email",
+            "subtitle": "Fill the below form to request a password reset email",
+            "email": "Email",
+            "send": "Send",
+            "submit": {
+                "successMessage": "Password reset email requested",
+                "notConfirmedErrorMessage": "Account is not confirmed",
+                "notFoundErrorMessage": "Account not found",
+                "passwordIsNotSetErrorMessage": "Account password is not set"
+            }
+        },
+        "resetPassword": {
+            "title": "Reset Password",
+            "subtitle": "Fill the below form to reset a password",
+            "email": "Email",
+            "code": "Code",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "send": "Send",
+            "submit": {
+                "successMessage": "Password changed",
+                "notConfirmedErrorMessage": "Account is not confirmed",
+                "notFoundErrorMessage": "Account not found",
+                "passwordIsNotSetErrorMessage": "Account password is not set",
+                "confirmationCodeExpiredErrorMessage": "Reset password code is expired",
+                "confirmationCodeWasNotGeneratedErrorMessage": "Reset password code was not generated",
+                "incorrectConfirmationCodeErrorMessage": "Reset password code is incorrect"
+            }
+        }
+    }
+}

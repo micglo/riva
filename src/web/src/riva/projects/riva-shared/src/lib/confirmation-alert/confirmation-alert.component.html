@@ -1,0 +1,6 @@
+<swal #confirmationSwal title="{{ titleKey | translate }}" text="{{ textKey | translate }}"
+    confirmButtonText="{{ confirmButtonTextKey | translate }}"
+    cancelButtonText="{{ 'application.operation.cancel' | translate }}" [icon]="icon"
+    [customClass]="customClass" [showCancelButton]="true" [buttonsStyling]="false" (confirm)="onConfirm()"
+    (cancel)="onCancel()">
+</swal>

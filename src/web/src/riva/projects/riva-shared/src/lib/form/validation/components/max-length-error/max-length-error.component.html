@@ -1,0 +1,4 @@
+<div *ngIf="field.touched && field.dirty && field.errors?.maxlength" class="help-block mt-1 text-danger"> <i
+        class="ft-alert-circle align-middle"></i>
+    {{ 'application.error.maxLength' | translate: { maxLength : maxLength } }}
+</div>

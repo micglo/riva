@@ -1,0 +1,10 @@
+export const FLAG_URL = 'assets/img/flags/';
+export const LIGHT_LOGO_URL = 'assets/img/logo.png';
+export const DARK_LOGO_URL = 'assets/img/logo-dark.png';
+export const AVATAR_URL = 'assets/img/portrait/small/avatar-s-27.png';
+export const SIDEBAR_BG_1_URL = 'assets/img/sidebar-bg/01.jpg';
+export const SIDEBAR_BG_2_URL = 'assets/img/sidebar-bg/02.jpg';
+export const SIDEBAR_BG_3_URL = 'assets/img/sidebar-bg/03.jpg';
+export const SIDEBAR_BG_4_URL = 'assets/img/sidebar-bg/04.jpg';
+export const SIDEBAR_BG_5_URL = 'assets/img/sidebar-bg/05.jpg';
+export const SIDEBAR_BG_6_URL = 'assets/img/sidebar-bg/06.jpg';

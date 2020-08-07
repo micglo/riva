@@ -1,0 +1,16 @@
+<li class="i18n-dropdown dropdown nav-item mr-2" display="dynamic" ngbDropdown>
+    <a class="nav-link d-flex align-items-center dropdown-toggle dropdown-language" id="dropdown-flag"
+        href="javascript:;" data-toggle="dropdown" ngbDropdownToggle>
+        <img class="langimg selected-flag" [src]="selectedLanguage.flagUrl" alt="flag" />
+        <span class="selected-language d-md-flex d-none">{{ selectedLanguage.languageName }}</span>
+    </a>
+    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right text-left" aria-labelledby="dropdown-flag">
+        <ng-container *ngFor="let languageItem of languages;">
+            <a class="dropdown-item" href="javascript:;" data-language="languageItem.translationLanguage"
+            (click)="changeLanguage(languageItem.translationLanguage)">
+                <img class="langimg mr-2" [src]="languageItem.flagUrl" alt="flag" />
+                <span class="font-small-3">{{ languageItem.languageName }}</span>
+            </a>
+        </ng-container>
+    </div>
+</li>

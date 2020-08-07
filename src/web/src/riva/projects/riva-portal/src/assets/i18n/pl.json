@@ -1,0 +1,183 @@
+{
+    "application": {
+        "menu": {
+            "home": {
+                "main": "Strona główna"
+            }
+        },
+        "error": {
+            "email": "To pole musi być prawidłowym adresem email",
+            "required": "To pole jest wymagane",
+            "minLength": "To pole musi zawierać co najamniej {{ minLength }} znaków",
+            "minValue": "To pole nie może być mniejsze niż {{ minValue }}",
+            "maxLength": "To pole musi zawierać mniej niż {{ maxLength }} znaków",
+            "mustMatch": "Wartość tego pola musi pasować do wartości pola {{ matchingFieldName }}"
+        },
+        "operation": {
+            "save": "Zapisz",
+            "cancel": "Anuluj",
+            "backToHome": "Powrót na stronę główną"
+        },
+        "spinner": {
+            "message": "Ładowanie..."
+        },
+        "integrationEvent": {
+            "accountCreated": {
+                "success": "Konto zostało utworzone",
+                "failure": "Utworzenie konta nie powiodło się. Skontaktuj się z administratorem."
+            },
+            "userUpdated": {
+                "success": "Dane ogólne profilu zostały zmienione",
+                "failure": "Zmina danych ogólnych profilu nie powiodła się. Skontaktuj się z administratorem."
+            },
+            "userDeleted": {
+                "success": "Konto zostało usunięte",
+                "failure": "Usunięcie konta nie powiodło się. Skontaktuj się z administratorem."
+            }
+        }
+    },
+    "navbar": {
+        "login": "Zaloguj",
+        "user": {
+            "editProfile": "Edytuj profil",
+            "logout": "Wyloguj"
+        }
+    },
+    "authCodeRedirect": {
+        "title": "Uwierzytelnianie!",
+        "message": "Jesteś teraz uwierzytelniany."
+    },
+    "pageNotFound": {
+        "title": "404 - Strona nie została odnaleziona!",
+        "message": "Strona którą szukasz mogła zostać usunięta, jej nazwa się zmieniła lub jest tymczasowo niedosępna."
+    },
+    "user": {
+        "announcementSendingFrequency": {
+            "everyHour": "Co godzinę",
+            "everyTwoHours": "Co 2 godziny",
+            "everyThreeHours": "Co 3 godziny",
+            "everyFourHours": "Co 4 godziny",
+            "everyFiveHours": "Co 5 godziny",
+            "everySixHours": "Co 6 godziny",
+            "everyTwelveHours": "Co 12 godzin"
+        }
+    },
+    "myAccount": {
+        "profile": {
+            "title": "Profil konta",
+            "subtitle": "Skonfiguruj ustawienia konta do swoich potrzeb",
+            "tab": {
+                "general": {
+                    "title": "Ogólne",
+                    "uploadPhoto": "Prześlij zdjęcie",
+                    "reset": "Resetuj",
+                    "allowedFormats": "Dozwolone JPG, GIF lub PNG. Maksymalny rozmiar 800kB",
+                    "email": "Email",
+                    "announcementPreferenceLimit": "Liczba preferencji ogłoszeń",
+                    "announcementSendingFrequency": "Częstotliwość wysyłania ogłoszeń",
+                    "serviceActive": "Usługa jest aktywna",
+                    "deleteAccount": {
+                        "button": "Usuń konto",
+                        "successMessage": "Żądanie usunięcia konta zostało zaakceptowane",
+                        "confirmationAlert": {
+                            "title": "Jesteś pewny?",
+                            "text": "Nie będziesz w stanie tego cofnąć!",
+                            "confirmButtonText": "Usuń konto"
+                        }
+                    },
+                    "submit": {
+                        "successMessage": "Żądanie zmiany danych ogólnych profilu zostało zaakceptowane"
+                    }
+                },
+                "changePassword": {
+                    "title": "Zmiana hasła",
+                    "oldPassword": "Stare hasło",
+                    "newPassword": "Nowe hasło",
+                    "confirmNewPassword": "Potwierdź nowe hasło",
+                    "submit": {
+                        "successMessage": "Hasło zostało zmienione",
+                        "incorrectOldPasswordErrorMessage": "Stare hasło jest niepoprawne"
+                    }
+                },
+                "assignPassword": {
+                    "title": "Ustawienie hasła",
+                    "password": "Hasło",
+                    "confirmPassword": "Potwierdź hasło",
+                    "submit": {
+                        "successMessage": "Hasło zostało przypisane"
+                    }
+                }
+            }
+        }
+    },
+    "account": {
+        "registration": {
+            "title": "Utwórz konto",
+            "subtitle": "Wypelnił poniższą formę, aby utworzyć nowe konto",
+            "email": "Email",
+            "password": "Hasło",
+            "confirmPassword": "Potwierdź hasło",
+            "acceptTerms": "Akceptuję zasady i warunki",
+            "register": "Zarejestruj",
+            "requestRegistrationConfirmationEmail": "Zażądaj nowy email z potwierdzeniem konta",
+            "requestPasswordResetEmail": "Zażądaj email z resetowaniem hasła",
+            "submit": {
+                "successMessage": "Żądanie założenia konta zaakceptowane",
+                "emailIsAlreadyTakenErrorMessage": "Email jest już zajęty"
+            }
+        },
+        "registrationConfirmation": {
+            "title": "Potwierdzenie konta",
+            "subtitle": "Twoje konto jest teraz potwierdzane",
+            "confirmAccount": {
+                "successMessage": "Konto potwierdzone",
+                "alreadyConfirmedErrorMessage": "Konto zostało już potwierdzone",
+                "confirmationCodeExpiredErrorMessage": "Kod potwierdzenia wygasł",
+                "confirmationCodeWasNotGeneratedErrorMessage": "Kod potwierdzenia nie został wygenerowany",
+                "incorrectConfirmationCodeErrorMessage": "Kod potwierdzenia jest nieprawidłowy",
+                "notFoundErrorMessage": "Nie odnaleziono konta"
+            }
+        },
+        "requestRegistrationConfirmationEmail": {
+            "title": "Zażądaj nowy email z potwierdzeniem konta",
+            "subtitle": "Wypelnił poniższą formę, aby zażądać nowy email z potwierdzeniem konta",
+            "email": "Email",
+            "send": "Wyślij",
+            "submit": {
+                "successMessage": "Żądanie potwierdzenia konta wykonane",
+                "alreadyConfirmedErrorMessage": "Konto zostało już potwierdzone",
+                "notFoundErrorMessage": "Nie odnaleziono konta"
+            }
+        },
+        "requestPasswordResetEmail": {
+            "title": "Zażądaj email z resetowaniem hasła",
+            "subtitle": "Wypelnił poniższą formę, aby zażądać email z resetowaniem hasła",
+            "email": "Email",
+            "send": "Wyślij",
+            "submit": {
+                "successMessage": "Żądanie potwierdzenia konta wykonane",
+                "notConfirmedErrorMessage": "Konto nie zostało potwierdzone",
+                "notFoundErrorMessage": "Nie odnaleziono konta",
+                "passwordIsNotSetErrorMessage": "Hasło konta nie jest ustawione"
+            }
+        },
+        "resetPassword": {
+            "title": "Resetowanie hasła",
+            "subtitle": "Wypelnił poniższą formę, aby zresetować hasło",
+            "email": "Email",
+            "code": "Kod",
+            "password": "Hasło",
+            "confirmPassword": "Potwierdź hasło",
+            "send": "Wyślij",
+            "submit": {
+                "successMessage": "Hasło zmienione",
+                "notConfirmedErrorMessage": "Konto nie zostało potwierdzone",
+                "notFoundErrorMessage": "Nie odnaleziono konta",
+                "passwordIsNotSetErrorMessage": "Hasło konta nie jest ustawione",
+                "confirmationCodeExpiredErrorMessage": "Kod resetowania hasła wygasł",
+                "confirmationCodeWasNotGeneratedErrorMessage": "Kod resetowania hasła nie został wygenerowany",
+                "incorrectConfirmationCodeErrorMessage": "Kod resetowania hasła jest nieprawidłowy"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<section id="error">
+    <div class="container-fluid">
+        <div class="row auth-height full-height-vh">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <img src="assets/img/gallery/error.png" alt="error" class="img-fluid error-img mt-2"
+                            height="300" width="400">
+                        <h1 class="mt-4">{{ 'pageNotFound.title' | translate }}</h1>
+                        <div class="w-75 error-text mx-auto mt-4">
+                            <p>{{ 'pageNotFound.message' | translate }}</p>
+                        </div>
+                        <a [routerLink]="['/']"
+                            class="btn btn-warning my-2">{{ 'application.operation.backToHome' | translate }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

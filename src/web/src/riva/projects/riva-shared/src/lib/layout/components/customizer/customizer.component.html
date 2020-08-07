@@ -1,0 +1,174 @@
+<div class="customizer d-none d-lg-none d-xl-block" [class.open]="layoutTemplate.isCustomizerOpen"
+    *ngIf="layoutTemplate">
+    <a class="customizer-close" (click)="closeCustomizer()">
+        <i class="ft-x font-medium-3"></i></a><a class="customizer-toggle bg-primary" id="customizer-toggle-icon"
+        (click)="toggleCustomizer()">
+        <i class="ft-settings font-medium-1 spinner white align-middle"></i>
+    </a>
+    <div [perfectScrollbar] class="customizer-content p-3 ps-container ps-theme-dark"
+        data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a">
+        <h4 class="text-uppercase">Theme Customizer</h4>
+        <p>Customize & Preview in Real Time</p>
+        <div class="ct-layout">
+            <hr>
+            <h6 class="mb-3 d-flex align-items-center"><i class="ft-layout font-medium-2 mr-2"></i><span>Layout
+                    Options</span>
+            </h6>
+
+            <div class="layout-switch">
+                <div class="radio radio-sm d-inline-block light-layout mr-3">
+                    <input id="ll-switch" type="radio" name="layout-switch"
+                        [checked]="layoutTemplate.variant === variant.Light"
+                        (click)="customizerService.changeLayoutVariant(layoutTemplate, variant.Light)">
+                    <label for="ll-switch">Light</label>
+                </div>
+                <div class="radio radio-sm d-inline-block dark-layout mr-3">
+                    <input id="dl-switch" type="radio" name="layout-switch"
+                        [checked]="layoutTemplate.variant === variant.Dark"
+                        (click)="customizerService.changeLayoutVariant(layoutTemplate, variant.Dark)">
+                    <label for="dl-switch">Dark</label>
+                </div>
+                <div class="radio radio-sm d-inline-block transparent-layout">
+                    <input id="tl-switch" type="radio" name="layout-switch"
+                        [checked]="layoutTemplate.variant === variant.Transparent"
+                        (click)="customizerService.changeLayoutVariant(layoutTemplate, variant.Transparent)">
+                    <label for="tl-switch">Transparent</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="ct-navbar-type" *ngIf="layoutTemplate.menuPosition === menuPosition.Top">
+            <hr>
+            <h6 class="mb-3 d-flex align-items-center"><i class="ft-more-horizontal font-medium-2 mr-2"></i><span>Navbar
+                    Type</span></h6>
+            <div class="navbar-switch">
+                <div class="radio radio-sm d-inline-block nav-static mr-3">
+                    <input id="nav-static" type="radio" name="navbar-switch"
+                        [checked]="layoutTemplate.navbarType === navbarType.Static"
+                        (click)="customizerService.changeLayoutNavbarType(layoutTemplate, navbarType.Static)">
+                    <label for="nav-static">Static</label>
+                </div>
+                <div class="radio radio-sm d-inline-block nav-fixed">
+                    <input id="nav-fixed" type="radio" name="navbar-switch"
+                        [checked]="layoutTemplate.navbarType === navbarType.Fixed"
+                        (click)="customizerService.changeLayoutNavbarType(layoutTemplate, navbarType.Fixed)">
+                    <label for="nav-fixed">Fixed</label>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="layoutTemplate.menuPosition === menuPosition.Side || isSmallScreen">
+            <div class="ct-bg-color">
+                <hr>
+                <h6 class="sb-options d-flex align-items-center mb-3"><i
+                        class="ft-droplet font-medium-2 mr-2"></i><span>Sidebar
+                        Color Options</span></h6>
+                <div class="cz-bg-color sb-color-options">
+                    <div class="row mb-3">
+                        <div class="col px-2" *ngFor="let color of lightDarkGradientColors">
+                            <span class="{{color.backgroundClass}} d-block rounded" style="width:30px; height:30px;"
+                                [attr.data-bg-color]="color.backgroundColor" [class.selected]="color.active"
+                                (click)="customizerService.changeLayoutSidebarColor(layoutTemplate, color)">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col px-2" *ngFor="let color of lightDarkSolidColors">
+                            <span class="{{color.backgroundClass}} d-block rounded" style="width:30px; height:30px;"
+                                [attr.data-bg-color]="color.backgroundColor" [class.selected]="color.active"
+                                (click)="customizerService.changeLayoutSidebarColor(layoutTemplate, color)">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-bg-img">
+                    <h6 class="d-flex align-items-center mb-3"><i
+                            class="ft-star font-medium-2 mr-2"></i><span>Background
+                            Colors
+                            with Shades</span></h6>
+                    <div class="cz-tl-bg-image row">
+
+                        <div class="col-sm-3" *ngFor="let color of transparentColorsWithShades">
+                            <div class="rounded {{color.backgroundColor}} ct-glass-bg"
+                                [attr.data-bg-image]="color.backgroundColor" [class.selected]="color.active"
+                                (click)="customizerService.changeLayoutSidebarTransparentColor(layoutTemplate, color)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ct-bg-image">
+                <hr>
+                <h6 class="sb-bg-img d-flex align-items-center mb-3"><i
+                        class="ft-sidebar font-medium-2 mr-2"></i><span>Sidebar Bg
+                        Image</span></h6>
+                <div class="cz-bg-image row sb-bg-img">
+                    <div class="col-2 px-2" *ngFor="let img of lightDarkBgImages">
+                        <img class="rounded" alt="sidebar bg image" [src]="img.src" width="90"
+                            [class.selected]="img.active"
+                            (click)="customizerService.changeLayoutSidebarImage(layoutTemplate, img)" />
+                    </div>
+                </div>
+
+                <div class="tl-color-option">
+                    <h6 class="tl-color-options d-flex align-items-center mb-3"><i
+                            class="ft-droplet font-medium-2 mr-2"></i><span>Background Colors</span></h6>
+                    <div class="cz-tl-bg-color">
+                        <div class="row">
+                            <div class="col" *ngFor="let color of transparentColors">
+                                <span class="{{color.backgroundColor}} d-block rounded  ct-color-bg"
+                                    style="width:30px; height:30px;" [attr.data-bg-color]="color.backgroundColor"
+                                    [class.selected]="color.active"
+                                    (click)="customizerService.changeLayoutSidebarTransparentColor(layoutTemplate, color)">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ct-bg-image-toggler">
+                <div class="togglebutton toggle-sb-bg-img">
+                    <hr>
+                    <div><span>Sidebar Bg Image</span>
+                        <div class="float-right">
+                            <div class="checkbox">
+                                <input class="cz-bg-image-display" id="sidebar-bg-img" type="checkbox" checked
+                                    (change)="customizerService.displayLayoutSidebarImage(layoutTemplate, $event)">
+                                <label for="sidebar-bg-img"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ct-sidebar-size">
+                <hr>
+                <p>Sidebar Width</p>
+                <div class="cz-sidebar-width btn-group btn-group-toggle" id="cz-sidebar-width" data-toggle="buttons">
+                    <label class="btn btn-outline-primary"
+                        [class.active]="layoutTemplate.sidebar.size === sidebarSize.Small">
+                        <input id="cz-btn-radio-1" type="radio" name="cz-btn-radio" value="sidebarSize.Small"
+                            [checked]="layoutTemplate.sidebar.size === sidebarSize.Small"
+                            (change)="customizerService.changeLayoutSidebarSize(layoutTemplate, sidebarSize.Small)"><span>Small</span>
+                    </label>
+                    <label class="btn btn-outline-primary"
+                        [class.active]="layoutTemplate.sidebar.size === sidebarSize.Medium">
+                        <input id="cz-btn-radio-2" type="radio" name="cz-btn-radio" value="sidebarSize.Medium"
+                            [checked]="layoutTemplate.sidebar.size === sidebarSize.Medium"
+                            (change)="customizerService.changeLayoutSidebarSize(layoutTemplate, sidebarSize.Medium)"><span>Medium</span>
+                    </label>
+                    <label class="btn btn-outline-primary"
+                        [class.active]="layoutTemplate.sidebar.size === sidebarSize.Large">
+                        <input id="cz-btn-radio-3" type="radio" name="cz-btn-radio" value="sidebarSize.Large"
+                            [checked]="layoutTemplate.sidebar.size === sidebarSize.Large"
+                            (change)="customizerService.changeLayoutSidebarSize(layoutTemplate, sidebarSize.Large)"><span>Large</span>
+                    </label>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

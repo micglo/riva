@@ -1,0 +1,4 @@
+<div *ngIf="field.touched && field.dirty && field.errors?.min" class="help-block mt-1 text-danger"> <i
+        class="ft-alert-circle align-middle"></i>
+    {{ 'application.error.minValue' | translate: { minValue : minValue } }}
+</div>

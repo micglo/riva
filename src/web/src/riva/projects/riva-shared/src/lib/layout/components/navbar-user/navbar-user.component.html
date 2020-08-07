@@ -1,0 +1,19 @@
+<li class="dropdown nav-item mr-1" placement="bottom-left" display="static" ngbDropdown>
+    <a class="nav-link dropdown-toggle user-dropdown d-flex align-items-end" id="dropdownBasic2" href="javascript:;"
+        data-toggle="dropdown" ngbDropdownToggle>
+        <img class="avatar" [src]="avatarUrl" alt="avatar" height="35" width="35" />
+    </a>
+    <div class="dropdown-menu text-left dropdown-menu-right m-0 pb-0" aria-labelledby="dropdownBasic2" ngbDropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/my-account/profile']">
+            <div class="d-flex align-items-center">
+                <i class="ft-edit mr-2"></i><span>{{ 'navbar.user.editProfile' | translate }}</span>
+            </div>
+        </a>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" (click)="logOut()">
+            <div class="d-flex align-items-center">
+                <i class="ft-log-out mr-2"></i><span>{{ 'navbar.user.logout' | translate }}</span>
+            </div>
+        </button>
+    </div>
+</li>

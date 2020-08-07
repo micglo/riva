@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-12">
+        <div class="content-header">{{ 'myAccount.profile.title' | translate }}</div>
+        <p class="content-sub-header mb-1">{{ 'myAccount.profile.subtitle' | translate }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 mt-3">
+        <ul class="nav flex-column nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:;" [class.active]="activeTab === tab.General"
+                    (click)="setActiveTab(tab.General)" id="general-tab" data-toggle="tab" role="tab"
+                    aria-controls="general" aria-selected="true">
+                    <i class="ft-settings mr-1 align-middle"></i>
+                    <span class="align-middle">{{ 'myAccount.profile.tab.general.title' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="myAccount?.passwordAssigned">
+                <a class="nav-link" href="javascript:;" [class.active]="activeTab === tab.ChangePassword"
+                    (click)="setActiveTab(tab.ChangePassword)" id="change-password-tab" data-toggle="tab" role="tab"
+                    aria-controls="change-password" aria-selected="false">
+                    <i class="ft-lock mr-1 align-middle"></i>
+                    <span class="align-middle">{{ 'myAccount.profile.tab.changePassword.title' | translate }}</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="!myAccount?.passwordAssigned">
+                <a class="nav-link" href="javascript:;" [class.active]="activeTab === tab.AssignPassword"
+                    (click)="setActiveTab(tab.AssignPassword)" id="assign-password-tab" data-toggle="tab" role="tab"
+                    aria-controls="assign-password" aria-selected="false">
+                    <i class="ft-lock mr-1 align-middle"></i>
+                    <span class="align-middle">{{ 'myAccount.profile.tab.assignPassword.title' | translate }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane" [class.active]="activeTab === tab.General" id="general" role="tabpanel"
+                            aria-labelledby="general-tab">
+                            <lib-general-tab></lib-general-tab>
+                        </div>
+
+                        <div class="tab-pane" [class.active]="activeTab === tab.ChangePassword" id="change-password"
+                            role="tabpanel" aria-labelledby="change-password-tab" *ngIf="myAccount?.passwordAssigned">
+                            <lib-change-password-tab></lib-change-password-tab>
+                        </div>
+
+                        <div class="tab-pane" [class.active]="activeTab === tab.AssignPassword" id="assign-password"
+                            role="tabpanel" aria-labelledby="assign-password-tab" *ngIf="!myAccount?.passwordAssigned">
+                            <lib-assign-password-tab (passwordAssigned)="onPasswordAssigned()">
+                            </lib-assign-password-tab>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

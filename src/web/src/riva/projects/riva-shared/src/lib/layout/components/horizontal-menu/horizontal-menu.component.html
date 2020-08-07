@@ -1,0 +1,84 @@
+<div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-shadow menu-border navbar-brand-center {{backgroundColor}}"
+    role="navigation" data-menu="menu-wrapper" data-nav="brand-center"
+    [class.navbar-sticky]="layoutTemplate.menuPosition === menuPosition.Top && layoutTemplate.navbarType === navbarType.Static"
+    [class.navbar-fixed]="layoutTemplate.menuPosition === menuPosition.Top && layoutTemplate.navbarType === navbarType.Fixed"
+    *ngIf="layoutTemplate">
+
+    <div class="navbar-container main-menu-content center-layout" data-menu="menu-container">
+        <ul class="navigation-main nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+
+            <li libHorizontalMenuLink level="1" *ngFor="let menuItem of menuItems"
+                [attr.data-menu]="menuItem.class === 'dropdown nav-item' ? 'dropdown' : null"
+                [ngClass]="[menuItem.class]" [routerLinkActive]="menuItem.submenu.length != 0 ? 'open' : 'active'"
+                [routerLinkActiveOptions]="{exact: true}">
+
+                <a libHorizontalMenuAnchorToggle *ngIf="menuItem.submenu.length > 0 && !menuItem.isExternalLink"
+                    data-toggle="dropdown" class="dropdown-toggle nav-link d-flex align-items-center">
+                    <i [ngClass]="[menuItem.icon]"></i>
+                    <span>{{ menuItem.title | translate }}</span>
+                </a>
+                <a libHorizontalMenuAnchorToggle [routerLink]="[menuItem.path]"
+                    *ngIf="menuItem.submenu.length === 0 && !menuItem.isExternalLink" data-toggle="dropdown"
+                    class="nav-link d-flex align-items-center">
+                    <i [ngClass]="[menuItem.icon]"></i>
+                    <span>{{ menuItem.title | translate }}</span>
+                </a>
+                <a [href]="[menuItem.path]" target="_blank" *ngIf="menuItem.isExternalLink" data-toggle="dropdown"
+                    class="nav-link d-flex align-items-center">
+                    <i [ngClass]="[menuItem.icon]"></i>
+                    <span>{{ menuItem.title | translate }}</span>
+                </a>
+
+
+                <ul class="dropdown-menu" *ngIf="menuItem.submenu.length > 0">
+                    <li libHorizontalMenulink level="2"
+                        [attr.data-menu]="menuSubItem.class === 'dropdown-item' ? '' : 'dropdown-submenu'"
+                        *ngFor="let menuSubItem of menuItem.submenu"
+                        [routerLinkActive]="menuSubItem.submenu.length != 0 ? 'open' : 'active'"
+                        [ngClass]="menuSubItem.class === 'dropdown-item' ? '' : 'has-sub dropdown dropdown-submenu'">
+
+                        <a libHorizontalMenuAnchorToggle
+                            *ngIf="menuSubItem.submenu.length > 0 && !menuSubItem.isExternalLink"
+                            [ngClass]="'dropdown-toggle dropdown-item d-flex align-items-center'">
+                            <i [ngClass]="[menuSubItem.icon]"></i>
+                            <span>{{ menuSubItem.title | translate }}</span>
+                        </a>
+                        <a libHorizontalMenuAnchorToggle [routerLink]="[menuSubItem.path]"
+                            *ngIf="menuSubItem.submenu.length === 0 && !menuSubItem.isExternalLink"
+                            [ngClass]="'dropdown-item d-flex align-items-center'">
+                            <i [ngClass]="[menuSubItem.icon]"></i>
+                            <span>{{ menuSubItem.title | translate }}</span>
+                        </a>
+                        <a [href]="[menuSubItem.path]" *ngIf="menuSubItem.isExternalLink"
+                            [ngClass]="'dropdown-item d-flex align-items-center'">
+                            <i [ngClass]="[menuSubItem.icon]"></i>
+                            <span>{{ menuSubItem.title | translate }}</span>
+                        </a>
+
+
+                        <ul class="dropdown-menu" *ngIf="menuSubItem.submenu.length > 0">
+                            <li libHorizontalMenulink level="3" data-menu="" data-toggle="dropdown"
+                                *ngFor="let menuSubSubItem of menuSubItem.submenu" [routerLinkActive]="'active'"
+                                [routerLinkActiveOptions]="{exact: true}">
+                                <a libHorizontalMenuAnchorToggle data-toggle="dropdown"
+                                    [ngClass]="'dropdown-item d-flex align-items-center'"
+                                    [routerLink]="[menuSubSubItem.path]"
+                                    *ngIf="!menuSubSubItem.isExternalLink; else externalSubSubLinkBlock">
+                                    <i [ngClass]="[menuSubSubItem.icon]"></i>
+                                    <span class="">{{ menuSubSubItem.title | translate}}</span>
+                                </a>
+                                <ng-template #externalSubSubLinkBlock>
+                                    <a data-toggle="dropdown" [ngClass]="'dropdown-item d-flex align-items-center'"
+                                        [href]="[menuSubSubItem.path]" target="_blank">
+                                        <i [ngClass]="[menuSubSubItem.icon]"></i>
+                                        <span class="">{{ menuSubSubItem.title | translate}}</span>
+                                    </a>
+                                </ng-template>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

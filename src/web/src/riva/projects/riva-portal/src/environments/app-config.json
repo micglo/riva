@@ -1,0 +1,11 @@
+{
+    "api_url": "http://localhost:5006",
+    "auth": {
+        "issuer": "https://localhost:5100",
+        "client_id": "27cb8732-c7fd-4dea-8a66-5d09cc2696ca",
+        "redirect_uri": "http://localhost:4200/index.html",
+        "silent_refresh_redirect_uri": "http://localhost:4200/silent-refresh.html",
+        "post_logout_redirect_uri": "http://localhost:4200",
+        "scope": "openid profile RivaIdentity RivaAdministrativeDivisions RivaAnnouncements RivaUsers RivaSignalR"
+    }
+}

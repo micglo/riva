@@ -1,0 +1,345 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "riva-portal": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                },
+                "@schematics/angular:application": {
+                    "strict": true
+                }
+            },
+            "root": "projects/riva-portal",
+            "sourceRoot": "projects/riva-portal/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/riva-portal",
+                        "index": "projects/riva-portal/src/index.html",
+                        "main": "projects/riva-portal/src/main.ts",
+                        "polyfills": "projects/riva-portal/src/polyfills.ts",
+                        "tsConfig": "projects/riva-portal/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/riva-portal/src/favicon.ico",
+                            "projects/riva-portal/src/assets",
+                            "projects/riva-portal/src/silent-refresh.html",
+                            {
+                                "glob": "app-config.json",
+                                "input": "projects/riva-portal/src/environments",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "assets",
+                                "output": "/assets"
+                            }
+                        ],
+                        "styles": ["projects/riva-portal/src/styles.scss"],
+                        "scripts": ["assets/vendor/pace/pace.min.js"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/riva-portal/src/environments/environment.ts",
+                                    "with": "projects/riva-portal/src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "projects/riva-portal/src/environments/app-config.json",
+                                    "with": "projects/riva-portal/src/environments/app-config.prod.json"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "riva-portal:build",
+                        "port": 4200
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "riva-portal:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "riva-portal:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/riva-portal/src/test.ts",
+                        "polyfills": "projects/riva-portal/src/polyfills.ts",
+                        "tsConfig": "projects/riva-portal/tsconfig.spec.json",
+                        "karmaConfig": "projects/riva-portal/karma.conf.js",
+                        "assets": ["projects/riva-portal/src/favicon.ico", "projects/riva-portal/src/assets"],
+                        "styles": ["projects/riva-portal/src/styles.scss"],
+                        "scripts": ["assets/vendor/pace/pace.min.js"]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/riva-portal/tsconfig.app.json",
+                            "projects/riva-portal/tsconfig.spec.json",
+                            "projects/riva-portal/e2e/tsconfig.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/riva-portal/e2e/protractor.conf.js",
+                        "devServerTarget": "riva-portal:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "riva-portal:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "riva-administrative-portal": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                },
+                "@schematics/angular:application": {
+                    "strict": true
+                }
+            },
+            "root": "projects/riva-administrative-portal",
+            "sourceRoot": "projects/riva-administrative-portal/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/riva-administrative-portal",
+                        "index": "projects/riva-administrative-portal/src/index.html",
+                        "main": "projects/riva-administrative-portal/src/main.ts",
+                        "polyfills": "projects/riva-administrative-portal/src/polyfills.ts",
+                        "tsConfig": "projects/riva-administrative-portal/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/riva-administrative-portal/src/favicon.ico",
+                            "projects/riva-administrative-portal/src/assets",
+                            {
+                                "glob": "app-config.json",
+                                "input": "projects/riva-administrative-portal/src/environments",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "assets",
+                                "output": "/assets"
+                            }
+                        ],
+                        "styles": ["projects/riva-administrative-portal/src/styles.scss"],
+                        "scripts": ["assets/vendor/pace/pace.min.js"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/riva-administrative-portal/src/environments/environment.ts",
+                                    "with": "projects/riva-administrative-portal/src/environments/environment.prod.ts"
+                                },
+                                {
+                                    "replace": "projects/riva-administrative-portal/src/environments/app-config.json",
+                                    "with": "projects/riva-administrative-portal/src/environments/app-config.prod.json"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "riva-administrative-portal:build",
+                        "port": 4201
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "riva-administrative-portal:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "riva-administrative-portal:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/riva-administrative-portal/src/test.ts",
+                        "polyfills": "projects/riva-administrative-portal/src/polyfills.ts",
+                        "tsConfig": "projects/riva-administrative-portal/tsconfig.spec.json",
+                        "karmaConfig": "projects/riva-administrative-portal/karma.conf.js",
+                        "assets": ["projects/riva-administrative-portal/src/favicon.ico", "projects/riva-administrative-portal/src/assets"],
+                        "styles": ["projects/riva-administrative-portal/src/styles.scss"],
+                        "scripts": ["assets/vendor/pace/pace.min.js"]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/riva-administrative-portal/tsconfig.app.json",
+                            "projects/riva-administrative-portal/tsconfig.spec.json",
+                            "projects/riva-administrative-portal/e2e/tsconfig.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/riva-administrative-portal/e2e/protractor.conf.js",
+                        "devServerTarget": "riva-administrative-portal:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "riva-administrative-portal:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "riva-core": {
+            "projectType": "library",
+            "root": "projects/riva-core",
+            "sourceRoot": "projects/riva-core/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/riva-core/tsconfig.lib.json",
+                        "project": "projects/riva-core/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/riva-core/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/riva-core/src/test.ts",
+                        "tsConfig": "projects/riva-core/tsconfig.spec.json",
+                        "karmaConfig": "projects/riva-core/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["projects/riva-core/tsconfig.lib.json", "projects/riva-core/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "riva-shared": {
+            "projectType": "library",
+            "root": "projects/riva-shared",
+            "sourceRoot": "projects/riva-shared/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/riva-shared/tsconfig.lib.json",
+                        "project": "projects/riva-shared/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/riva-shared/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/riva-shared/src/test.ts",
+                        "tsConfig": "projects/riva-shared/tsconfig.spec.json",
+                        "karmaConfig": "projects/riva-shared/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["projects/riva-shared/tsconfig.lib.json", "projects/riva-shared/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        }
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "styleext": "scss",
+            "changeDetection": "OnPush"
+        }
+    },
+    "defaultProject": "riva-portal"
+}

@@ -1,0 +1,85 @@
+<div class="media">
+    <img [src]="pictureUrl" alt="profile-img" class="rounded mr-3" height="64" width="64">
+    <div class="media-body">
+        <div class="col-12 d-flex flex-sm-row flex-column justify-content-start px-0 mb-sm-2">
+            <label class="btn btn-sm bg-light-primary mb-sm-0"
+                for="select-files">{{ 'myAccount.profile.tab.general.uploadPhoto' | translate }}</label>
+            <input type="file" id="select-files" (change)="fileChange($event)" hidden accept="image/png, image/gif, image/jpeg">
+            <button class="btn btn-sm bg-light-secondary ml-sm-2"
+                (click)="resetImage()">{{ 'myAccount.profile.tab.general.reset' | translate }}</button>
+        </div>
+        <p class="text-muted mb-0 mt-1 mt-sm-0">
+            <small>{{ 'myAccount.profile.tab.general.allowedFormats' | translate }}</small>
+        </p>
+    </div>
+</div>
+<hr class="mt-1 mt-sm-2">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-12 form-group">
+            <label for="email">{{ 'myAccount.profile.tab.general.email' | translate }}</label>
+            <div class="controls">
+                <input type="text" formControlName="email" class="form-control"
+                    placeholder="{{ 'myAccount.profile.tab.general.email' | translate }}"
+                    [class.is-invalid]="isControlTouchedAndDirty(formGroupControls.email) && formGroupControls.email.invalid"
+                    [class.is-valid]="isControlTouchedAndDirty(formGroupControls.email) && !formGroupControls.email.invalid"
+                    required>
+                <lib-required-error [field]="formGroupControls.email"></lib-required-error>
+                <lib-max-length-error [field]="formGroupControls.email" [maxLength]="maxEmailLength">
+                </lib-max-length-error>
+                <lib-email-error [field]="formGroupControls.email"></lib-email-error>
+            </div>
+        </div>
+        <div class="col-12 form-group" *ngIf="isAdmin">
+            <label
+                for="announcementPreferenceLimit">{{ 'myAccount.profile.tab.general.announcementPreferenceLimit' | translate }}</label>
+            <div class="controls">
+                <input type="number" formControlName="announcementPreferenceLimit" class="form-control"
+                    placeholder="{{ 'myAccount.profile.tab.general.announcementPreferenceLimit' | translate }}"
+                    [class.is-invalid]="isControlTouchedAndDirty(formGroupControls.announcementPreferenceLimit) && formGroupControls.announcementPreferenceLimit.invalid"
+                    [class.is-valid]="isControlTouchedAndDirty(formGroupControls.announcementPreferenceLimit) && !formGroupControls.announcementPreferenceLimit.invalid"
+                    required>
+                <lib-required-error [field]="formGroupControls.announcementPreferenceLimit"></lib-required-error>
+                <lib-min-value-error [field]="formGroupControls.announcementPreferenceLimit"
+                    [minValue]="minAnouncementPreferenceLimitValue"></lib-min-value-error>
+            </div>
+        </div>
+        <div class="col-12 form-group" *ngIf="isAdmin">
+            <label
+                for="announcementSendingFrequency">{{ 'myAccount.profile.tab.general.announcementSendingFrequency' | translate }}</label>
+            <div class="controls">
+                <ng-select formControlName="announcementSendingFrequency" [items]="announcementSendingFrequencies"
+                    bindValue="value" bindLabel="label"
+                    placeholder="{{ 'myAccount.profile.tab.general.announcementSendingFrequency' | translate }}">
+                </ng-select>
+                <lib-required-error [field]="formGroupControls.announcementSendingFrequency"></lib-required-error>
+            </div>
+        </div>
+        <div class="col-12 form-group">
+            <div class="custom-control-inline switchery-primary">
+                <ui-switch formControlName="serviceActive" class="switchery"></ui-switch>
+                <label for="switchery"
+                    class="pt-1 pl-1">{{ 'myAccount.profile.tab.general.serviceActive' | translate }}</label>
+            </div>
+        </div>
+        <div class="col-sm-6 d-flex flex-sm-row flex-column justify-content-start mt-sm-2">
+            <button type="button" (click)="confirmAccountDeletion()"
+                class="btn btn-danger mb-1">{{ 'myAccount.profile.tab.general.deleteAccount.button' | translate }}</button>
+        </div>
+        <div class="col-sm-6 d-flex flex-sm-row flex-column justify-content-end mt-sm-2">
+            <button type="reset"
+                class="btn btn-secondary mr-sm-3 mb-1">{{ 'application.operation.cancel' | translate }}</button>
+            <button type="submit" class="btn btn-primary mb-1">{{ 'application.operation.save' | translate }}</button>
+        </div>
+    </div>
+</form>
+
+<lib-confirmation-alert #confirmationAltert
+    [titleKey]="'myAccount.profile.tab.general.deleteAccount.confirmationAlert.title'"
+    [textKey]="'myAccount.profile.tab.general.deleteAccount.confirmationAlert.text'"
+    [confirmButtonTextKey]="'myAccount.profile.tab.general.deleteAccount.confirmationAlert.confirmButtonText'"
+    [icon]="icon.Warning"
+    [confirmButtonClass]="'btn btn-danger'"
+    [cancelButtonClass]="'btn btn-secondary ml-1'"
+    (confirmed)="onConfirmed($event)">
+</lib-confirmation-alert>

@@ -1,0 +1,40 @@
+<lib-navbar></lib-navbar>
+
+<div class="wrapper" (window:resize)="onResize($event)" *ngIf="layoutTemplate">
+    <ng-container *ngIf="isAuthenticated">
+        <lib-horizontal-menu libHorizontalMenu [menuItems]="menuItems"
+            *ngIf="layoutTemplate.menuPosition === menuPosition.Top && !isSmallScreen">
+        </lib-horizontal-menu>
+
+        <div libVertical *ngIf="layoutTemplate.menuPosition === menuPosition.Side || isSmallScreen"
+            class="app-sidebar main-menu menu-fixed" data-active-color="white" [attr.data-background-color]="bgColor"
+            [attr.data-image]="bgImage">
+            <lib-vertical-menu [menuItems]="menuItems"></lib-vertical-menu>
+            <div class="sidebar-background" [ngStyle]="{'background-image': 'url(' + bgImage + ')'}" *ngIf="bgImage">
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="main-panel">
+        <div class="main-content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <lib-footer></lib-footer>
+        <button class="btn btn-primary scroll-top" type="button" *ngIf="isScrollTopVisible" (click)="scrollToTop()"><i
+                class="ft-arrow-up"></i></button>
+    </div>
+
+    <lib-customizer [isSmallScreen]="isSmallScreen"></lib-customizer>
+
+    <div class="sidenav-overlay" (click)="onOutsideClick($event);" [class.d-none]="!isSmallScreenMenuShown"
+        [class.d-block]="isSmallScreenMenuShown" *ngIf="isSmallScreen">
+    </div>
+    <div class="drag-target"></div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> {{ 'application.spinner.message' | translate }} </p>
+</ngx-spinner>
