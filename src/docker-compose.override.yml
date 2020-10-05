@@ -20,60 +20,54 @@ services:
       - Auth__GoogleClientSecret=${Riva_Identity_Web_Auth_Google_Client_Secret}
       - Auth__FacebookAppId=${Riva_Identity_Web_Auth_Facebook_App_Id}
       - Auth__FacebookAppSecret=${Riva_Identity_Web_Auth_Facebook_App_Secret}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5000:80"
       - "5100:443"
 
   riva.identity.web.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__RivaIdentitySQLServerDatabaseConnectionString=Server=data.sql;Database=RivaIdentityDb;User Id=sa;Password=Pass@word;MultipleActiveResultSets=false;Integrated Security=false
       - ConnectionStrings__CentralServiceBusConnectionString=${Service_Bus_Connection_String_With_Entity_Path}
       - ApplicationInsights__InstrumentationKey=${Application_Insights_Instrumentation_Key}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5001:80"
 
   riva.administrative.divisions.web.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__RivaAdministrativeDivisionsSQLServerDatabaseConnectionString=Server=data.sql;Database=RivaAdministrativeDivisionsDb;User Id=sa;Password=Pass@word;MultipleActiveResultSets=false;Integrated Security=false
       - ApplicationInsights__InstrumentationKey=${Application_Insights_Instrumentation_Key}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5002:80"
 
   riva.announcements.web.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ApplicationInsights__InstrumentationKey=${Application_Insights_Instrumentation_Key}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5003:80"
 
   riva.users.web.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__RivaUsersSQLServerDatabaseConnectionString=Server=data.sql;Database=RivaUsersDb;User Id=sa;Password=Pass@word;MultipleActiveResultSets=false;Integrated Security=false
       - ConnectionStrings__CentralServiceBusConnectionString=${Service_Bus_Connection_String_With_Entity_Path}
       - ConnectionStrings__StorageAccountConnectionString=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;
       - ApplicationInsights__InstrumentationKey=${Application_Insights_Instrumentation_Key}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5004:80"
 
   riva.signalr:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__CentralServiceBusConnectionString=${Service_Bus_Connection_String_With_Entity_Path}
       - ApplicationInsights__InstrumentationKey=${Application_Insights_Instrumentation_Key}
-      - AddUserSecrets=${Add_User_Secrets}
     ports:
       - "5005:80"
 
